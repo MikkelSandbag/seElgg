@@ -191,7 +191,7 @@ $CONFIG->db_disable_query_cache = false;
  *
  * @global int $CONFIG->min_password_length
  */
-$CONFIG->min_password_length = 6;
+$CONFIG->min_password_length = 4;
 
 /**
  * This is an optional script used to override Elgg's default handling of
