@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2014
+ * @copyright Coldtrick IT Solutions 2009-2015
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014
+ * @copyright iionly 2014-2015
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -30,7 +30,7 @@ if ($user = elgg_get_logged_in_user_entity()) {
 	if ($chat_sessions_count > 0) {
 
 		// Generate sessions
-		$chat_sessions = $user->getEntitiesFromRelationship(ELGGCHAT_MEMBER, true);
+		$chat_sessions = $user->getEntitiesFromRelationship(array('relationship' => ELGGCHAT_MEMBER, 'inverse_relationship' => true));
 		if (!empty($chat_sessions)) {
 
 			krsort($chat_sessions);
@@ -43,7 +43,7 @@ if ($user = elgg_get_logged_in_user_entity()) {
 					$result["sessions"][$session->guid] = array();
 
 					// List all the Members of the chat session
-                    $members = $session->getEntitiesFromRelationship(ELGGCHAT_MEMBER);
+                    $members = $session->getEntitiesFromRelationship(array('relationship' => ELGGCHAT_MEMBER));
 					if (is_array($members) && count($members) > 1) {
 
 						$result["sessions"][$session->guid]["members"] = array();

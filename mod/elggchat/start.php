@@ -6,11 +6,11 @@
  *
  * @package elggchat
  * @author ColdTrick IT Solutions
- * @copyright Coldtrick IT Solutions 2009-2014
+ * @copyright Coldtrick IT Solutions 2009-2015
  * @link http://www.coldtrick.com/
  *
  * for Elgg 1.8 and newer by iionly (iionly@gmx.de)
- * @copyright iionly 2014
+ * @copyright iionly 2014-2015
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
@@ -27,14 +27,9 @@ function elggchat_init() {
 	elgg_extend_view('css/admin', 'elggchat/admin_css');
 	elgg_extend_view('css/elgg','elggchat/css');
 
-	$js_elggchat_snd = elgg_get_site_url() . "mod/elggchat/views/default/js/elggchat/buzz.js";
-	elgg_register_js('elggchat_sound', $js_elggchat_snd);
-	$js_elggchat_scroll = elgg_get_site_url() . "mod/elggchat/views/default/js/elggchat/jquery.scrollTo.js";
-	elgg_register_js('elggchat_scroll', $js_elggchat_scroll);
-
 	if (elgg_is_logged_in()) {
 		if (elgg_get_plugin_user_setting("enableChat", 0, "elggchat") != "no") {
-			elgg_extend_view('page/elements/footer', 'elggchat/session_monitor');
+ 			elgg_extend_view('page/elements/footer', 'elggchat/session_monitor');
 		}
 	}
 
@@ -61,7 +56,7 @@ function elggchat_init() {
 	elgg_register_action("elggchat/delete_session", "$action_path/delete_session.php", "admin");
 
 	// Logout event handler
-	elgg_register_event_handler('logout', 'user', 'elggchat_logout_handler');
+	elgg_register_event_handler('logout:before', 'user', 'elggchat_logout_handler');
 }
 
 // Session cleanup by cron
@@ -121,7 +116,7 @@ function elggchat_logout_handler($event, $object_type, $object) {
 		));
 
 		if($chat_sessions_count > 0) {
-			$sessions = $object->getEntitiesFromRelationship(ELGGCHAT_MEMBER, true);
+			$sessions = $object->getEntitiesFromRelationship(array('relationship' => ELGGCHAT_MEMBER, 'inverse_relationship' => true));
 
 			foreach($sessions as $session) {
 				remove_entity_relationship($session->guid, ELGGCHAT_MEMBER, $object->guid);
@@ -157,16 +152,16 @@ function elggchat_user_hover_menu($hook, $type, $return, $params) {
 	if (elgg_is_logged_in() && elgg_get_logged_in_user_guid() != $user->guid) {
 
 		$allowed = false;
-		$allow_contact_from = elgg_get_plugin_user_setting("allow_contact_from", $user->guid, "elggchat");
+		$allow_contact_from = elgg_get_plugin_user_setting("allow_contact_from",  $user->guid, "elggchat");
 		if (!empty($allow_contact_from)) {
 			if($allow_contact_from == "all") {
 				$allowed = true;
 			} elseif ($allow_contact_from == "friends") {
-				if(user_is_friend($user->guid, elgg_get_logged_in_user_guid())) {
+				if($user->isFriendsWith(elgg_get_logged_in_user_guid())) {
 					$allowed = true;
 				}
 			}
-		} else if(user_is_friend($user->guid, elgg_get_logged_in_user_guid())) {
+		} else if($user->isFriendsWith(elgg_get_logged_in_user_guid())) {
 			// default: only friends allowed to invite to chat
 			$allowed = true;
 		} else if(elgg_is_admin_logged_in()) {
