@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eee0ee7a3a365576f6fe743ee950c085",
+    "hash": "015fc1eb53bb2fe84e9755e8cc9bfe48",
     "packages": [
         {
             "name": "ircmaxell/password-compat",
@@ -176,15 +176,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "8919ab6093ca028bbf54167088b476cc39bf9d3b"
+                "reference": "35c8c878f73dd71f669146b9b45aef333f7120e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/8919ab6093ca028bbf54167088b476cc39bf9d3b",
-                "reference": "8919ab6093ca028bbf54167088b476cc39bf9d3b",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/35c8c878f73dd71f669146b9b45aef333f7120e1",
+                "reference": "35c8c878f73dd71f669146b9b45aef333f7120e1",
                 "shasum": ""
             },
             "conflict": {
+                "contao/core": ">=2.11.0,<2.11.16|>=3.0.0,<3.1.0|>=3.1.0,<3.2.0|>=3.2.0,<3.2.7|>=2.11.0,<2.11.17|>=3.0.0,<3.1.0|>=3.1.0,<3.2.0|>=3.2.0,<3.2.9|>=2.11.0,<3.0.0|>=3.0.0,<3.1.0|>=3.1.0,<3.2.0|>=3.2.0,<3.2.19|>=3.3.0,<3.4.0|>=3.4.0,<3.4.4",
                 "doctrine/dbal": ">=2.0.0,<2.0.8|>=2.1.0,<2.1.2",
                 "doctrine/doctrine-module": "<=0.7.1|<=0.7.1",
                 "doctrine/orm": ">=2.0.0,<2.0.3",
@@ -238,7 +239,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2015-01-16 16:20:00"
+            "time": "2015-02-17 11:02:34"
         },
         {
             "name": "tedivm/stash",
