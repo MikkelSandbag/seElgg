@@ -5,9 +5,8 @@
  *
  * Registers an \ElggUpgrade object.
  */
-
-if (get_subtype_id('object', 'elgg_upgrade')) {
-	update_subtype('object', 'elgg_upgrade', 'ElggUpgrade');
+if (get_subtype_id ( 'object', 'elgg_upgrade' )) {
+	update_subtype ( 'object', 'elgg_upgrade', 'ElggUpgrade' );
 } else {
-	add_subtype('object', 'elgg_upgrade', 'ElggUpgrade');
+	add_subtype ( 'object', 'elgg_upgrade', 'ElggUpgrade' );
 }

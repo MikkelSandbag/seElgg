@@ -14,38 +14,39 @@
  * @uses string $_REQUEST['title']           Optional title for the widget
  *
  */
+elgg_set_context ( 'widgets' );
 
-elgg_set_context('widgets');
+$guid = get_input ( 'guid' );
+$params = get_input ( 'params' );
+$default_widgets = get_input ( 'default_widgets', 0 );
+$context = get_input ( 'context' );
+$title = get_input ( 'title' );
 
-$guid = get_input('guid');
-$params = get_input('params');
-$default_widgets = get_input('default_widgets', 0);
-$context = get_input('context');
-$title = get_input('title');
-
-$widget = get_entity($guid);
-if ($widget && $widget->saveSettings($params)) {
+$widget = get_entity ( $guid );
+if ($widget && $widget->saveSettings ( $params )) {
 	if ($title && $title != $widget->title) {
 		$widget->title = $title;
-		$widget->save();
-	}
-
-	elgg_set_page_owner_guid($widget->getContainerGUID());
-	if ($context) {
-		elgg_push_context($context);
+		$widget->save ();
 	}
 	
-	if (!$default_widgets) {
-		if (elgg_view_exists("widgets/$widget->handler/content")) {
+	elgg_set_page_owner_guid ( $widget->getContainerGUID () );
+	if ($context) {
+		elgg_push_context ( $context );
+	}
+	
+	if (! $default_widgets) {
+		if (elgg_view_exists ( "widgets/$widget->handler/content" )) {
 			$view = "widgets/$widget->handler/content";
 		} else {
-			elgg_deprecated_notice("widgets use content as the display view", 1.8);
+			elgg_deprecated_notice ( "widgets use content as the display view", 1.8 );
 			$view = "widgets/$widget->handler/view";
 		}
-		echo elgg_view($view, array('entity' => $widget));
+		echo elgg_view ( $view, array (
+				'entity' => $widget 
+		) );
 	}
 } else {
-	register_error(elgg_echo('widgets:save:failure'));
+	register_error ( elgg_echo ( 'widgets:save:failure' ) );
 }
 
-forward(REFERER);
+forward ( REFERER );

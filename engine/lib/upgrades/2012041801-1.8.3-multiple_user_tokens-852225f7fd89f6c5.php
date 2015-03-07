@@ -6,8 +6,7 @@
  * Fixes https://github.com/elgg/elgg/issues/4291
  * Removes the unique index on users_apisessions for user_guid and site_guid
  */
-
-$db_prefix = elgg_get_config('dbprefix');
+$db_prefix = elgg_get_config ( 'dbprefix' );
 $q = "ALTER TABLE {$db_prefix}users_apisessions DROP INDEX user_guid,
 	ADD INDEX user_guid (user_guid, site_guid)";
-update_data($q);
+update_data ( $q );

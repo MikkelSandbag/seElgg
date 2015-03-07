@@ -8,25 +8,21 @@
  *
  * @uses $vars['collections'] The array of friends collections
  */
+$friendspicker = $vars ['friendspicker'];
 
-$friendspicker = $vars['friendspicker'];
-
-$collectionid = $vars['collection']->id;
-$ownerid = $vars['owner']->getGUID();
+$collectionid = $vars ['collection']->id;
+$ownerid = $vars ['owner']->getGUID ();
 
 ?>
 
 <ul class="elgg-tabs">
-	<li class="elgg-state-selected">
-		<a href="#" class="collectionmembers<?php echo $friendspicker; ?>">
+	<li class="elgg-state-selected"><a href="#"
+		class="collectionmembers<?php echo $friendspicker; ?>">
 			<?php echo elgg_echo('friends:collections:members'); ?>
-		</a>
-	</li>
-	<li>
-		<a href="#" class="editmembers<?php echo $friendspicker; ?>">
+		</a></li>
+	<li><a href="#" class="editmembers<?php echo $friendspicker; ?>">
 			<?php echo elgg_echo('friends:collections:edit'); ?>
-		</a>
-	</li>
+		</a></li>
 </ul>
 
 <?php //@todo JS 1.8: no ?>

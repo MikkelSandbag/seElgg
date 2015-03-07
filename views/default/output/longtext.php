@@ -10,29 +10,28 @@
  * @uses $vars['parse_urls'] Whether to turn urls into links. Default is true.
  * @uses $vars['class']
  */
-
 $class = 'elgg-output';
-$additional_class = elgg_extract('class', $vars, '');
+$additional_class = elgg_extract ( 'class', $vars, '' );
 if ($additional_class) {
-	$vars['class'] = "$class $additional_class";
+	$vars ['class'] = "$class $additional_class";
 } else {
-	$vars['class'] = $class;
+	$vars ['class'] = $class;
 }
 
-$parse_urls = elgg_extract('parse_urls', $vars, true);
-unset($vars['parse_urls']);
+$parse_urls = elgg_extract ( 'parse_urls', $vars, true );
+unset ( $vars ['parse_urls'] );
 
-$text = $vars['value'];
-unset($vars['value']);
+$text = $vars ['value'];
+unset ( $vars ['value'] );
 
 if ($parse_urls) {
-	$text = parse_urls($text);
+	$text = parse_urls ( $text );
 }
 
-$text = filter_tags($text);
+$text = filter_tags ( $text );
 
-$text = elgg_autop($text);
+$text = elgg_autop ( $text );
 
-$attributes = elgg_format_attributes($vars);
+$attributes = elgg_format_attributes ( $vars );
 
 echo "<div $attributes>$text</div>";

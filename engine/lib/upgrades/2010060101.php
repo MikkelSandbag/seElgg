@@ -3,14 +3,13 @@
 /**
  * Clears old simplecache variables out of database
  */
-
 $query = "DELETE FROM {$CONFIG->dbprefix}datalists WHERE name LIKE 'simplecache%'";
 
-delete_data($query);
+delete_data ( $query );
 
 if ($CONFIG->simplecache_enabled) {
-	datalist_set('simplecache_enabled', 1);
-	elgg_invalidate_simplecache();
+	datalist_set ( 'simplecache_enabled', 1 );
+	elgg_invalidate_simplecache ();
 } else {
-	datalist_set('simplecache_enabled', 0);
+	datalist_set ( 'simplecache_enabled', 0 );
 }

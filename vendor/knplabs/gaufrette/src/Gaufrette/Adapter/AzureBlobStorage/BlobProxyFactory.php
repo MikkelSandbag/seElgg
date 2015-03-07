@@ -9,28 +9,26 @@ use WindowsAzure\Common\ServicesBuilder;
  *
  * @author Luciano Mammino <lmammino@oryzone.com>
  */
-class BlobProxyFactory implements BlobProxyFactoryInterface
-{
-    /**
-     * @var string $connectionString
-     */
-    protected $connectionString;
-
-    /**
-     * Constructor
-     *
-     * @param string $connectionString
-     */
-    public function __construct($connectionString)
-    {
-        $this->connectionString = $connectionString;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function create()
-    {
-        return ServicesBuilder::getInstance()->createBlobService($this->connectionString);
-    }
+class BlobProxyFactory implements BlobProxyFactoryInterface {
+	/**
+	 *
+	 * @var string $connectionString
+	 */
+	protected $connectionString;
+	
+	/**
+	 * Constructor
+	 *
+	 * @param string $connectionString        	
+	 */
+	public function __construct($connectionString) {
+		$this->connectionString = $connectionString;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public function create() {
+		return ServicesBuilder::getInstance ()->createBlobService ( $this->connectionString );
+	}
 }

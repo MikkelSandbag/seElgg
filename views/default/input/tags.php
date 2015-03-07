@@ -8,38 +8,37 @@
  * @uses $vars['value']    Array of tags or a string
  * @uses $vars['entity']   Optional. Entity whose tags are being displayed (metadata ->tags)
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-tags {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-tags {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-tags";
+	$vars ['class'] = "elgg-input-tags";
 }
 
-$defaults = array(
-	'value' => '',
-	'disabled' => false,
-	'autocapitalize' => 'off',
+$defaults = array (
+		'value' => '',
+		'disabled' => false,
+		'autocapitalize' => 'off' 
 );
 
-if (isset($vars['entity'])) {
-	$defaults['value'] = $vars['entity']->tags;
-	unset($vars['entity']);
+if (isset ( $vars ['entity'] )) {
+	$defaults ['value'] = $vars ['entity']->tags;
+	unset ( $vars ['entity'] );
 }
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
-if (is_array($vars['value'])) {
-	$tags = array();
-
-	foreach ($vars['value'] as $tag) {
-		if (is_string($tag)) {
-			$tags[] = $tag;
+if (is_array ( $vars ['value'] )) {
+	$tags = array ();
+	
+	foreach ( $vars ['value'] as $tag ) {
+		if (is_string ( $tag )) {
+			$tags [] = $tag;
 		} else {
-			$tags[] = $tag->value;
+			$tags [] = $tag->value;
 		}
 	}
-
-	$vars['value'] = implode(", ", $tags);
+	
+	$vars ['value'] = implode ( ", ", $tags );
 }
 
 ?>

@@ -8,12 +8,12 @@
  */
 
 // Load Elgg engine
-require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
+require_once (dirname ( dirname ( dirname ( __FILE__ ) ) ) . "/engine/start.php");
 
-elgg_load_library('elgg:discussion');
+elgg_load_library ( 'elgg:discussion' );
 
-$guid = get_input('topic');
+$guid = get_input ( 'topic' );
 
-register_error(elgg_echo('changebookmark'));
+register_error ( elgg_echo ( 'changebookmark' ) );
 
-forward("/discussion/view/$guid");
+forward ( "/discussion/view/$guid" );

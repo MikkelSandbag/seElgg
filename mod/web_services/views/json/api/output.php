@@ -6,9 +6,8 @@
  * @package Elgg
  * @subpackage Core
  */
-
-$result = $vars['result'];
-$export = $result->export();
+$result = $vars ['result'];
+$export = $result->export ();
 
 global $jsonexport;
 

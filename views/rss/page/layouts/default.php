@@ -2,4 +2,4 @@
 /**
  * RSS layout shell
  */
-echo $vars['content'];
+echo $vars ['content'];

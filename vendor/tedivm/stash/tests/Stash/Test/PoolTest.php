@@ -8,13 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Stash\Test;
 
 /**
+ *
  * @package Stash
- * @author  Robert Hafner <tedivm@tedivm.com>
+ * @author Robert Hafner <tedivm@tedivm.com>
  */
-class PoolTest extends AbstractPoolTest
-{
+class PoolTest extends AbstractPoolTest {
 }

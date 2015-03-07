@@ -12,35 +12,35 @@
  */
 
 // Register subtype and class for comments
-if (get_subtype_id('object', 'comment')) {
-	update_subtype('object', 'comment', 'ElggComment');
+if (get_subtype_id ( 'object', 'comment' )) {
+	update_subtype ( 'object', 'comment', 'ElggComment' );
 } else {
-	add_subtype('object', 'comment', 'ElggComment');
+	add_subtype ( 'object', 'comment', 'ElggComment' );
 }
 
-$access_status = access_get_show_hidden_status();
-access_show_hidden_entities(true);
-$ia = elgg_set_ignore_access(true);
+$access_status = access_get_show_hidden_status ();
+access_show_hidden_entities ( true );
+$ia = elgg_set_ignore_access ( true );
 
 // add \ElggUpgrade object if need to migrate comments
-$options = array(
-	'annotation_names' => 'generic_comment',
-	'order_by' => 'n_table.id DESC',
-	'count' => true
+$options = array (
+		'annotation_names' => 'generic_comment',
+		'order_by' => 'n_table.id DESC',
+		'count' => true 
 );
 
-if (elgg_get_annotations($options)) {
+if (elgg_get_annotations ( $options )) {
 	$path = "admin/upgrades/comments";
-	$upgrade = new \ElggUpgrade();
-
+	$upgrade = new \ElggUpgrade ();
+	
 	// Create the upgrade if one with the same URL doesn't already exist
-	if (!$upgrade->getUpgradeFromPath($path)) {
-		$upgrade->setPath($path);
+	if (! $upgrade->getUpgradeFromPath ( $path )) {
+		$upgrade->setPath ( $path );
 		$upgrade->title = 'Comments Upgrade';
 		$upgrade->description = 'Comments have been improved in Elgg 1.9 and require a migration. Run this upgrade to complete the migration.';
-		$upgrade->save();
+		$upgrade->save ();
 	}
 }
 
-elgg_set_ignore_access($ia);
-access_show_hidden_entities($access_status);
+elgg_set_ignore_access ( $ia );
+access_show_hidden_entities ( $access_status );

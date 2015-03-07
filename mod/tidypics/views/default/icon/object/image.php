@@ -12,51 +12,55 @@
  * @author Cash Costello
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
  */
+$entity = $vars ['entity'];
 
-$entity = $vars['entity'];
-
-$sizes = array('master', 'large', 'small', 'tiny');
+$sizes = array (
+		'master',
+		'large',
+		'small',
+		'tiny' 
+);
 // Get size
-if (!in_array($vars['size'], $sizes)) {
-	$vars['size'] = 'small';
+if (! in_array ( $vars ['size'], $sizes )) {
+	$vars ['size'] = 'small';
 }
 
-if (!isset($vars['title'])) {
-	$title = $entity->getTitle();
+if (! isset ( $vars ['title'] )) {
+	$title = $entity->getTitle ();
 } else {
-	$title = $vars['title'];
+	$title = $vars ['title'];
 }
 
-$url = isset($vars['href']) ? $vars['href'] : $entity->getURL();
-if (isset($vars['href'])) {
-	$url = $vars['href'];
+$url = isset ( $vars ['href'] ) ? $vars ['href'] : $entity->getURL ();
+if (isset ( $vars ['href'] )) {
+	$url = $vars ['href'];
 }
 
 $class = '';
-if (isset($vars['img_class'])) {
-	$class = $vars['img_class'];
+if (isset ( $vars ['img_class'] )) {
+	$class = $vars ['img_class'];
 }
 $class = "elgg-photo $class";
 
-$img_src = $entity->getIconURL($vars['size']);
-$img_src = elgg_format_url($img_src);
-$img = elgg_view('output/img', array(
-	'src' => $img_src,
-	'class' => $class,
-	'title' => $title,
-	'alt' => $title,
-));
+$img_src = $entity->getIconURL ( $vars ['size'] );
+$img_src = elgg_format_url ( $img_src );
+$img = elgg_view ( 'output/img', array (
+		'src' => $img_src,
+		'class' => $class,
+		'title' => $title,
+		'alt' => $title 
+) );
 
 if ($url) {
-	$params = array(
-		'href' => $url,
-		'text' => $img,
-		'is_trusted' => true,
+	$params = array (
+			'href' => $url,
+			'text' => $img,
+			'is_trusted' => true 
 	);
-	if (isset($vars['link_class'])) {
-		$params['class'] = $vars['link_class'];
+	if (isset ( $vars ['link_class'] )) {
+		$params ['class'] = $vars ['link_class'];
 	}
-	echo elgg_view('output/url', $params);
+	echo elgg_view ( 'output/url', $params );
 } else {
 	echo $img;
 }

@@ -4,8 +4,7 @@
  *
  * Resets the remember me codes for admin users
  */
-
-$prefix = elgg_get_config('dbprefix');
+$prefix = elgg_get_config ( 'dbprefix' );
 $query = "
 	DELETE FROM {$prefix}users_remember_me_cookies
 	WHERE guid IN (
@@ -14,4 +13,4 @@ $query = "
 		WHERE admin = 'yes'
 	)
 ";
-update_data($query);
+update_data ( $query );

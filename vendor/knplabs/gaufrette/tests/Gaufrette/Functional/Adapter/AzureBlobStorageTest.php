@@ -2,6 +2,5 @@
 
 namespace Gaufrette\Functional\Adapter;
 
-class AzureBlobStorageTest extends FunctionalTestCase
-{
+class AzureBlobStorageTest extends FunctionalTestCase {
 }

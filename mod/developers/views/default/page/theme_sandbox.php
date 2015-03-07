@@ -6,18 +6,19 @@
  * @uses $vars['body']        The laid out content of the page
  * @uses $vars['sysmessages'] System message array
  */
-
-$messages = elgg_view('page/elements/messages', array('object' => $vars['sysmessages']));
-$content = elgg_view('page/elements/body', $vars);
-$title_link = elgg_view('output/url', array(
-	'text' => 'Theme Sandbox',
-	'href' => 'theme_preview/intro',
-	'is_trusted' => true,
-));
+$messages = elgg_view ( 'page/elements/messages', array (
+		'object' => $vars ['sysmessages'] 
+) );
+$content = elgg_view ( 'page/elements/body', $vars );
+$title_link = elgg_view ( 'output/url', array (
+		'text' => 'Theme Sandbox',
+		'href' => 'theme_preview/intro',
+		'is_trusted' => true 
+) );
 
 $header = "<h1 class=\"theme-sandbox-site-heading\">$title_link</h1>";
-if (get_input("site_menu", false)) {
-	$header .= elgg_view_menu('site');
+if (get_input ( "site_menu", false )) {
+	$header .= elgg_view_menu ( 'site' );
 }
 
 $body = <<<__BODY
@@ -41,8 +42,11 @@ $body .= <<<__BODY
 </div>
 __BODY;
 
-$body .= elgg_view('page/elements/foot');
+$body .= elgg_view ( 'page/elements/foot' );
 
-$head = elgg_view('page/elements/head', $vars);
+$head = elgg_view ( 'page/elements/head', $vars );
 
-echo elgg_view("page/elements/html", array("head" => $head, "body" => $body));
+echo elgg_view ( "page/elements/html", array (
+		"head" => $head,
+		"body" => $body 
+) );

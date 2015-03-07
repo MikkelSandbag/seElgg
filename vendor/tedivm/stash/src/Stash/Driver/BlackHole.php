@@ -2,13 +2,12 @@
 
 /*
  * This file is part of the Stash package.
-*
-* (c) Robert Hafner <tedivm@tedivm.com>
-*
-* For the full copyright and license information, please view the LICENSE
-* file that was distributed with this source code.
-*/
-
+ *
+ * (c) Robert Hafner <tedivm@tedivm.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Stash\Driver;
 
 use Stash\Interfaces\DriverInterface;
@@ -19,53 +18,56 @@ use Stash\Interfaces\DriverInterface;
  *
  * @author Benjamin Zikarsky <benjamin.zikarsky@perbility.de>
  */
-class BlackHole implements DriverInterface
-{
-    /**
-     * NOOP constructor
-     */
-    public function setOptions(array $options = array())
-    {
-        // empty
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function clear($key = null)
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getData($key)
-    {
-        return false;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function purge()
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function storeData($key, $data, $expiration)
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function isAvailable()
-    {
-        return true;
-    }
+class BlackHole implements DriverInterface {
+	/**
+	 * NOOP constructor
+	 */
+	public function setOptions(array $options = array()) {
+		// empty
+	}
+	
+	/**
+	 *
+	 * @ERROR!!!
+	 *
+	 */
+	public function clear($key = null) {
+		return true;
+	}
+	
+	/**
+	 *
+	 * @ERROR!!!
+	 *
+	 */
+	public function getData($key) {
+		return false;
+	}
+	
+	/**
+	 *
+	 * @ERROR!!!
+	 *
+	 */
+	public function purge() {
+		return true;
+	}
+	
+	/**
+	 *
+	 * @ERROR!!!
+	 *
+	 */
+	public function storeData($key, $data, $expiration) {
+		return true;
+	}
+	
+	/**
+	 *
+	 * @ERROR!!!
+	 *
+	 */
+	public static function isAvailable() {
+		return true;
+	}
 }

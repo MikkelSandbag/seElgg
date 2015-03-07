@@ -3,5 +3,4 @@
  * Alias of 'input/select'.
  *
  */
-
-echo elgg_view('input/select', $vars);
+echo elgg_view ( 'input/select', $vars );

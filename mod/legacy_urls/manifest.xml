@@ -6,7 +6,8 @@
 	<version>1.9</version>
 	<category>bundled</category>
 	<category>utility</category>
-	<description>Provides support for URLs used in previous versions of Elgg</description>
+	<description>Provides support for URLs used in previous versions of
+		Elgg</description>
 	<website>http://www.elgg.org/</website>
 	<copyright>See COPYRIGHT.txt</copyright>
 	<license>GNU General Public License version 2</license>

@@ -8,21 +8,20 @@
  *
  * @uses $vars['class'] Additional CSS class
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-url {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-url {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-url";
+	$vars ['class'] = "elgg-input-url";
 }
 
-$defaults = array(
-	'value' => '',
-	'disabled' => false,
-	'autocapitalize' => 'off',
-	'autocorrect' => 'off',
+$defaults = array (
+		'value' => '',
+		'disabled' => false,
+		'autocapitalize' => 'off',
+		'autocorrect' => 'off' 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
 ?>
 

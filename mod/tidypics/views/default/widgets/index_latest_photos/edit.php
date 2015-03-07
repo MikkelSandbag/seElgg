@@ -5,10 +5,9 @@
  * Index page Latest Photos widget for Widget Manager plugin
  *
  */
-
-$count = sanitise_int($vars["entity"]->tp_latest_photos_count, false);
-if(empty($count)){
-        $count = 12;
+$count = sanitise_int ( $vars ["entity"]->tp_latest_photos_count, false );
+if (empty ( $count )) {
+	$count = 12;
 }
 
 ?>

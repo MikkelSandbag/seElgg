@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg\Http;
 
 /**
@@ -29,116 +30,143 @@ namespace Elgg\Http;
  * Mock for unit tests.
  *
  * @access private
- * 
- * @package    Elgg.Core
+ *        
+ * @package Elgg.Core
  * @subpackage Http
  */
 class MockSessionStorage implements \Elgg\Http\SessionStorage {
-
-	/** @var boolean */
+	
+	/**
+	 * @var boolean
+	 */
 	protected $started = false;
-
-	/** @var boolean */
+	
+	/**
+	 * @var boolean
+	 */
 	protected $closed = false;
-
-	/** @var string */
+	
+	/**
+	 * @var string
+	 */
 	protected $id = '';
-
-	/** @var string */
+	
+	/**
+	 * @var string
+	 */
 	protected $name;
-
-	/** @var array */
-	protected $data = array();
-
+	
+	/**
+	 * @var array
+	 */
+	protected $data = array ();
+	
 	/**
 	 * Constructor.
 	 *
-	 * @param string $name Session name
+	 * @param string $name
+	 *        	Session name
 	 */
 	public function __construct($name = 'MOCKSESSID') {
 		$this->name = $name;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function start() {
-		if ($this->started && !$this->closed) {
+		if ($this->started && ! $this->closed) {
 			return true;
 		}
-
-		if (empty($this->id)) {
-			$this->id = $this->generateId();
+		
+		if (empty ( $this->id )) {
+			$this->id = $this->generateId ();
 		}
-
+		
 		$this->started = true;
 		$this->closed = false;
-
+		
 		return true;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function regenerate($destroy = false, $lifetime = null) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-
-		$this->id = $this->generateId();
-
+		
+		$this->id = $this->generateId ();
+		
 		return true;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function save() {
-		if (!$this->started || $this->closed) {
-			throw new \RuntimeException("Trying to save a session that was not started yet or was already closed");
+		if (! $this->started || $this->closed) {
+			throw new \RuntimeException ( "Trying to save a session that was not started yet or was already closed" );
 		}
 		$this->closed = false;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function isStarted() {
 		return $this->started;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function getId() {
 		return $this->id;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function setId($id) {
 		if ($this->started) {
-			throw new \RuntimeException('Cannot change the ID of an active session');
+			throw new \RuntimeException ( 'Cannot change the ID of an active session' );
 		}
-
+		
 		$this->id = $id;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function getName() {
 		return $this->name;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function setName($name) {
 		$this->name = $name;
 	}
-
+	
 	/**
 	 * Generates a session ID.
 	 *
@@ -148,87 +176,100 @@ class MockSessionStorage implements \Elgg\Http\SessionStorage {
 	 * @return string
 	 */
 	protected function generateId() {
-		return sha1(uniqid(mt_rand()));
+		return sha1 ( uniqid ( mt_rand () ) );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function has($name) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		return array_key_exists($name, $this->data);
+		return array_key_exists ( $name, $this->data );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function get($name, $default = null) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		return array_key_exists($name, $this->data) ? $this->data[$name] : $default;
+		return array_key_exists ( $name, $this->data ) ? $this->data [$name] : $default;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function set($name, $value) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		$this->data[$name] = $value;
+		$this->data [$name] = $value;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function all() {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
 		return $this->data;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function replace(array $attributes) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		$this->data = array();
-		foreach ($attributes as $key => $value) {
-			$this->set($key, $value);
+		$this->data = array ();
+		foreach ( $attributes as $key => $value ) {
+			$this->set ( $key, $value );
 		}
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function remove($name) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
 		$retval = null;
-		if (array_key_exists($name, $this->data)) {
-			$retval = $this->data[$name];
-			unset($this->data[$name]);
+		if (array_key_exists ( $name, $this->data )) {
+			$retval = $this->data [$name];
+			unset ( $this->data [$name] );
 		}
-
+		
 		return $retval;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function clear() {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		$this->data = array();
+		$this->data = array ();
 	}
-
 }
 

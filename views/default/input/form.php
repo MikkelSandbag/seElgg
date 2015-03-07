@@ -14,33 +14,32 @@
  * @uses $vars['disable_security'] turn off CSRF security by setting to true
  * @uses $vars['class'] Additional class for the form
  */
-
-$defaults = array(
-	'method' => "post",
-	'disable_security' => FALSE,
+$defaults = array (
+		'method' => "post",
+		'disable_security' => FALSE 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-form {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-form {$vars['class']}";
 } else {
-	$vars['class'] = 'elgg-form';
+	$vars ['class'] = 'elgg-form';
 }
 
-$vars['action'] = elgg_normalize_url($vars['action']);
-$vars['method'] = strtolower($vars['method']);
+$vars ['action'] = elgg_normalize_url ( $vars ['action'] );
+$vars ['method'] = strtolower ( $vars ['method'] );
 
-$body = $vars['body'];
-unset($vars['body']);
+$body = $vars ['body'];
+unset ( $vars ['body'] );
 
 // Generate a security header
-if (!$vars['disable_security']) {
-	$body = elgg_view('input/securitytoken') . $body;
+if (! $vars ['disable_security']) {
+	$body = elgg_view ( 'input/securitytoken' ) . $body;
 }
-unset($vars['disable_security']);
-unset($vars['action_name']);
+unset ( $vars ['disable_security'] );
+unset ( $vars ['action_name'] );
 
-$attributes = elgg_format_attributes($vars);
+$attributes = elgg_format_attributes ( $vars );
 
 echo "<form $attributes><fieldset>$body</fieldset></form>";

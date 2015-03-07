@@ -22,7 +22,7 @@
  * @global float
  */
 global $START_MICROTIME;
-$START_MICROTIME = microtime(true);
+$START_MICROTIME = microtime ( true );
 
 /**
  * Configuration values.
@@ -38,22 +38,22 @@ $START_MICROTIME = microtime(true);
  * @global \stdClass $CONFIG
  */
 global $CONFIG;
-if (!isset($CONFIG)) {
-	$CONFIG = new \stdClass;
+if (! isset ( $CONFIG )) {
+	$CONFIG = new \stdClass ();
 }
 $CONFIG->boot_complete = false;
 
-$engine_dir = dirname(__FILE__);
+$engine_dir = dirname ( __FILE__ );
 
 // No settings means a fresh install
-if (!is_file("$engine_dir/settings.php")) {
-	header("Location: install.php");
-	exit;
+if (! is_file ( "$engine_dir/settings.php" )) {
+	header ( "Location: install.php" );
+	exit ();
 }
 
-if (!is_readable("$engine_dir/settings.php")) {
+if (! is_readable ( "$engine_dir/settings.php" )) {
 	echo "The Elgg settings file exists but the web server doesn't have read permission to it.";
-	exit;
+	exit ();
 }
 
 require_once "$engine_dir/settings.php";
@@ -65,26 +65,26 @@ require_once "$engine_dir/load.php";
 
 // Connect to database, load language files, load configuration, init session
 // Plugins can't use this event because they haven't been loaded yet.
-elgg_trigger_event('boot', 'system');
+elgg_trigger_event ( 'boot', 'system' );
 
 // Load the plugins that are active
-_elgg_load_plugins();
+_elgg_load_plugins ();
 
 // @todo move loading plugins into a single boot function that replaces 'boot', 'system' event
 // and then move this code in there.
 // This validates the view type - first opportunity to do it is after plugins load.
-$viewtype = elgg_get_viewtype();
-if (!elgg_is_registered_viewtype($viewtype)) {
-	elgg_set_viewtype('default');
+$viewtype = elgg_get_viewtype ();
+if (! elgg_is_registered_viewtype ( $viewtype )) {
+	elgg_set_viewtype ( 'default' );
 }
 
 // @todo deprecate as plugins can use 'init', 'system' event
-elgg_trigger_event('plugins_boot', 'system');
+elgg_trigger_event ( 'plugins_boot', 'system' );
 
 // Complete the boot process for both engine and plugins
-elgg_trigger_event('init', 'system');
+elgg_trigger_event ( 'init', 'system' );
 
 $CONFIG->boot_complete = true;
 
 // System loaded and ready
-elgg_trigger_event('ready', 'system');
+elgg_trigger_event ( 'ready', 'system' );

@@ -6,8 +6,7 @@
  * Moves the remember code into the new table and then drops the code from
  * the users entity table
  */
-
-$db_prefix = elgg_get_config('dbprefix');
+$db_prefix = elgg_get_config ( 'dbprefix' );
 
 // create remember me table
 $query1 = <<<SQL
@@ -19,18 +18,18 @@ $query1 = <<<SQL
 	  KEY `timestamp` (`timestamp`)
 	) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SQL;
-update_data($query1);
+update_data ( $query1 );
 
 // move codes
-$time = time();
+$time = time ();
 $query2 = <<<SQL
 	INSERT INTO {$db_prefix}users_remember_me_cookies (`code`, `guid`, `timestamp`)
 	SELECT `code`, `guid`, $time
 	FROM {$db_prefix}users_entity
 	WHERE `code` != ''
 SQL;
-update_data($query2);
+update_data ( $query2 );
 
 // drop code from users table
 $query3 = "ALTER TABLE {$db_prefix}users_entity DROP `code`";
-update_data($query3);
+update_data ( $query3 );

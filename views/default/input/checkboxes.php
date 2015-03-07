@@ -27,64 +27,65 @@
  * @uses string $vars['align']    'horizontal' or 'vertical' Default: 'vertical'
  *
  */
-
-$defaults = array(
-	'align' => 'vertical',
-	'value' => array(),
-	'default' => 0,
-	'disabled' => false,
-	'options' => array(),
-	'name' => '',
+$defaults = array (
+		'align' => 'vertical',
+		'value' => array (),
+		'default' => 0,
+		'disabled' => false,
+		'options' => array (),
+		'name' => '' 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
 $class = "elgg-input-checkboxes elgg-{$vars['align']}";
-if (isset($vars['class'])) {
+if (isset ( $vars ['class'] )) {
 	$class .= " {$vars['class']}";
-	unset($vars['class']);
+	unset ( $vars ['class'] );
 }
 
 $id = '';
-if (isset($vars['id'])) {
+if (isset ( $vars ['id'] )) {
 	$id = "id=\"{$vars['id']}\"";
-	unset($vars['id']);
+	unset ( $vars ['id'] );
 }
 
-if (is_array($vars['value'])) {
-	$values = array_map('elgg_strtolower', $vars['value']);
+if (is_array ( $vars ['value'] )) {
+	$values = array_map ( 'elgg_strtolower', $vars ['value'] );
 } else {
-	$values = array(elgg_strtolower($vars['value']));
+	$values = array (
+			elgg_strtolower ( $vars ['value'] ) 
+	);
 }
 
 $input_vars = $vars;
-$input_vars['default'] = false;
-if ($vars['name']) {
-	$input_vars['name'] = "{$vars['name']}[]";
+$input_vars ['default'] = false;
+if ($vars ['name']) {
+	$input_vars ['name'] = "{$vars['name']}[]";
 }
-unset($input_vars['align']);
-unset($input_vars['options']);
+unset ( $input_vars ['align'] );
+unset ( $input_vars ['options'] );
 
-if (count($vars['options']) > 0) {
+if (count ( $vars ['options'] ) > 0) {
 	// include a default value so if nothing is checked 0 will be passed.
-	if ($vars['name'] && $vars['default'] !== false) {
+	if ($vars ['name'] && $vars ['default'] !== false) {
 		echo "<input type=\"hidden\" name=\"{$vars['name']}\" value=\"{$vars['default']}\" />";
 	}
-
+	
 	echo "<ul class=\"$class\" $id>";
-	foreach ($vars['options'] as $label => $value) {
+	foreach ( $vars ['options'] as $label => $value ) {
 		// @deprecated 1.8 Remove in 1.9
-		if (is_integer($label)) {
-			elgg_deprecated_notice('$vars[\'options\'] must be an associative array in input/checkboxes', 1.8);
+		if (is_integer ( $label )) {
+			elgg_deprecated_notice ( '$vars[\'options\'] must be an associative array in input/checkboxes', 1.8 );
 			$label = $value;
 		}
-
-		$input_vars['checked'] = in_array(elgg_strtolower($value), $values);
-		$input_vars['value'] = $value;
-		$input_vars['label'] = $label;
 		
-		$input = elgg_view('input/checkbox', $input_vars);
-
+		$input_vars ['checked'] = in_array ( elgg_strtolower ( $value ), $values );
+		$input_vars ['value'] = $value;
+		$input_vars ['label'] = $label;
+		
+		$input = elgg_view ( 'input/checkbox', $input_vars );
+		
 		echo "<li>$input</li>";
 	}
 	echo '</ul>';

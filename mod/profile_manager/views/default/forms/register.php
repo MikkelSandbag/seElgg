@@ -5,46 +5,45 @@
  * @package Elgg
  * @subpackage Core
  */
-
 $password = $password2 = '';
-$username = get_input('u');
-$email = get_input('e');
-$name = get_input('n');
+$username = get_input ( 'u' );
+$email = get_input ( 'e' );
+$name = get_input ( 'n' );
 $terms = "";
 
-if (elgg_is_sticky_form('register')) {
-	$values = elgg_get_sticky_values('register');
-	extract($values);
-	elgg_clear_sticky_form('register');
+if (elgg_is_sticky_form ( 'register' )) {
+	$values = elgg_get_sticky_values ( 'register' );
+	extract ( $values );
+	elgg_clear_sticky_form ( 'register' );
 }
 
 echo "<div id='profile_manager_register_left'>";
 
 $show_hints = false;
-if (elgg_get_plugin_setting("show_account_hints", "profile_manager") == "yes") {
+if (elgg_get_plugin_setting ( "show_account_hints", "profile_manager" ) == "yes") {
 	$show_hints = true;
 }
 ?>
 
 <fieldset>
 	<div class="mtm mandatory">
-		
+
 		<label for='register-name'><?php echo elgg_echo('name'); ?></label>
 		
 		<?php if ($show_hints) { ?>
-		<span class='custom_fields_more_info' id='more_info_name'></span>
-		<span class='hidden' id='text_more_info_name'><?php echo elgg_echo("profile_manager:register:hints:name")?></span>
+		<span class='custom_fields_more_info' id='more_info_name'></span> <span
+			class='hidden' id='text_more_info_name'><?php echo elgg_echo("profile_manager:register:hints:name")?></span>
 		<?php } ?>
 		
 		<br />
 		
 		<?php
-		echo elgg_view('input/text', array(
-			'id' => 'register-name',
-			'name' => 'name',
-			'value' => $name,
-			'class' => 'elgg-autofocus'
-		));
+		echo elgg_view ( 'input/text', array (
+				'id' => 'register-name',
+				'name' => 'name',
+				'value' => $name,
+				'class' => 'elgg-autofocus' 
+		) );
 		?>
 		
 	</div>
@@ -52,18 +51,18 @@ if (elgg_get_plugin_setting("show_account_hints", "profile_manager") == "yes") {
 		<label for='register-email'><?php echo elgg_echo('email'); ?></label>
 		
 		<?php if ($show_hints) { ?>
-		<span class='custom_fields_more_info' id='more_info_email'></span>
-		<span class='hidden' id='text_more_info_email'><?php echo elgg_echo("profile_manager:register:hints:email")?></span>
+		<span class='custom_fields_more_info' id='more_info_email'></span> <span
+			class='hidden' id='text_more_info_email'><?php echo elgg_echo("profile_manager:register:hints:email")?></span>
 		<?php } ?>
 		
 		<br />
 		<div class='profile_manager_register_input_container'>
 			<?php
-			echo elgg_view('input/text', array(
-				'id' => 'register-email',
-				'name' => 'email',
-				'value' => $email,
-			));
+			echo elgg_view ( 'input/text', array (
+					'id' => 'register-email',
+					'name' => 'email',
+					'value' => $email 
+			) );
 			?>
 			<span class='elgg-icon profile_manager_validate_icon'></span>
 		</div>
@@ -79,11 +78,11 @@ if (elgg_get_plugin_setting("show_account_hints", "profile_manager") == "yes") {
 		<br />
 		<div class='profile_manager_register_input_container'>
 			<?php
-			echo elgg_view('input/text', array(
-				'id' => 'register-username',
-				'name' => 'username',
-				'value' => $username,
-			));
+			echo elgg_view ( 'input/text', array (
+					'id' => 'register-username',
+					'name' => 'username',
+					'value' => $username 
+			) );
 			?>
 			<div class='elgg-icon profile_manager_validate_icon'></div>
 		</div>
@@ -99,11 +98,11 @@ if (elgg_get_plugin_setting("show_account_hints", "profile_manager") == "yes") {
 		<br />
 		<div class='profile_manager_register_input_container'>
 			<?php
-			echo elgg_view('input/password', array(
-				'id' => 'register-password',
-				'name' => 'password',
-				'value' => $password,
-			));
+			echo elgg_view ( 'input/password', array (
+					'id' => 'register-password',
+					'name' => 'password',
+					'value' => $password 
+			) );
 			?>
 			<span class='elgg-icon profile_manager_validate_icon'></span>
 		</div>
@@ -119,11 +118,11 @@ if (elgg_get_plugin_setting("show_account_hints", "profile_manager") == "yes") {
 		<br />
 		<div class='profile_manager_register_input_container'>
 			<?php
-			echo elgg_view('input/password', array(
-				'id' => 'register-password2',
-				'name' => 'password2',
-				'value' => $password2,
-			));
+			echo elgg_view ( 'input/password', array (
+					'id' => 'register-password2',
+					'name' => 'password2',
+					'value' => $password2 
+			) );
 			?>
 			<span class='elgg-icon profile_manager_validate_icon'></span>
 		</div>
@@ -131,24 +130,35 @@ if (elgg_get_plugin_setting("show_account_hints", "profile_manager") == "yes") {
 </fieldset>
 <?php
 // view to extend to add more fields to the registration form
-echo elgg_view('register/extend');
+echo elgg_view ( 'register/extend' );
 
 // Add captcha hook
-echo elgg_view('input/captcha');
+echo elgg_view ( 'input/captcha' );
 
 echo "</div>";
 
 echo "<div id='profile_manager_register_right'>";
-echo elgg_view("register/extend_side", array("field_location" => "beside"));
+echo elgg_view ( "register/extend_side", array (
+		"field_location" => "beside" 
+) );
 echo "</div>";
 
 echo "<div class='clearfloat man'></div>";
 echo "<div class='elgg-foot'>";
-echo elgg_view('input/hidden', array('name' => 'friend_guid', 'value' => $vars['friend_guid']));
-echo elgg_view('input/hidden', array('name' => 'invitecode', 'value' => $vars['invitecode']));
-echo elgg_view("profile_manager/register/terms", $vars);
-echo elgg_view('input/submit', array('name' => 'submit', 'value' => elgg_echo('register')));
-echo "<div class='elgg-subtext mtm'>" . elgg_echo("profile_manager:register:mandatory") . "</div>";
+echo elgg_view ( 'input/hidden', array (
+		'name' => 'friend_guid',
+		'value' => $vars ['friend_guid'] 
+) );
+echo elgg_view ( 'input/hidden', array (
+		'name' => 'invitecode',
+		'value' => $vars ['invitecode'] 
+) );
+echo elgg_view ( "profile_manager/register/terms", $vars );
+echo elgg_view ( 'input/submit', array (
+		'name' => 'submit',
+		'value' => elgg_echo ( 'register' ) 
+) );
+echo "<div class='elgg-subtext mtm'>" . elgg_echo ( "profile_manager:register:mandatory" ) . "</div>";
 echo "</div>";
 
 ?>

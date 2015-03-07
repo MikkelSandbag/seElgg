@@ -6,7 +6,6 @@
  * 
  * @package ElggReportContent
  */
-
 ?>
 /* Reported Content */
 .elgg-icon-report-this {

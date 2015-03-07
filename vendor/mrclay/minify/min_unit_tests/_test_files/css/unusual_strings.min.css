@@ -1,2 +1,8 @@
-foo[attr="multiple  spaces"]{content:"Hello  World!"}foo[attr="Hel\
-lo"]{content:" \"World\""}
+foo[attr="multiple  spaces"] {
+	content: "Hello  World!"
+}
+
+foo[attr="Hel\
+lo"] {
+	content: " \"World\""
+}

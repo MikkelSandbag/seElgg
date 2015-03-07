@@ -9,5 +9,4 @@
  * @uses $vars['tags']      HTML for the tags (optional)
  * @uses $vars['content']   HTML for the entity content (optional)
  */
-
-echo elgg_view('object/elements/summary', $vars);
+echo elgg_view ( 'object/elements/summary', $vars );

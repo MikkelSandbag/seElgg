@@ -2,21 +2,20 @@
 /**
  * Tidypics thumbnail creation tool
  */
+elgg_load_js ( 'tidypics:resize_thumbnails' );
 
-elgg_load_js('tidypics:resize_thumbnails');
+$title = elgg_echo ( 'tidypics:settings:thumbnail' );
+$body = '<p>' . elgg_echo ( 'tidypics:thumbnail_tool_blurb' ) . '</p>';
+$im_id = elgg_echo ( 'tidypics:settings:im_id' );
+$input = elgg_view ( 'input/text', array (
+		'name' => 'image_id' 
+) );
+$submit = elgg_view ( 'input/submit', array (
+		'value' => elgg_echo ( 'submit' ),
+		'id' => 'elgg-tidypics-im-test' 
+) );
 
-$title = elgg_echo('tidypics:settings:thumbnail');
-$body = '<p>' . elgg_echo('tidypics:thumbnail_tool_blurb') . '</p>';
-$im_id = elgg_echo('tidypics:settings:im_id');
-$input = elgg_view('input/text', array(
-	'name' => 'image_id'
-));
-$submit = elgg_view('input/submit', array(
-	'value' => elgg_echo('submit'),
-	'id' => 'elgg-tidypics-im-test'
-));
-
-$body .=<<<HTML
+$body .= <<<HTML
 	<p>
 		<label>$im_id $input</label>
 	</p>
@@ -26,42 +25,43 @@ $body .=<<<HTML
 	</p>
 HTML;
 
-echo elgg_view_module('inline', $title, $body);
+echo elgg_view_module ( 'inline', $title, $body );
 
-
-$access_status = access_get_show_hidden_status();
-access_show_hidden_entities(true);
-$options = array(
-	'type' => 'object',
-	'subtype' => 'image',
-	'count' => true
+$access_status = access_get_show_hidden_status ();
+access_show_hidden_entities ( true );
+$options = array (
+		'type' => 'object',
+		'subtype' => 'image',
+		'count' => true 
 );
-$count = elgg_get_entities($options);
-access_show_hidden_entities($access_status);
+$count = elgg_get_entities ( $options );
+access_show_hidden_entities ( $access_status );
 
 $action = 'action/photos/admin/resize_thumbnails';
 
-$success_count_string = elgg_echo('tidypics:resize_thumbnails:success_processed');
-$error_count_invalid_image_string = elgg_echo('tidypics:resize_thumbnails:error_invalid_image_info');
-$error_count_recreate_failed_string = elgg_echo('tidypics:resize_thumbnails:error_recreate_failed');
+$success_count_string = elgg_echo ( 'tidypics:resize_thumbnails:success_processed' );
+$error_count_invalid_image_string = elgg_echo ( 'tidypics:resize_thumbnails:error_invalid_image_info' );
+$error_count_recreate_failed_string = elgg_echo ( 'tidypics:resize_thumbnails:error_recreate_failed' );
 
 echo '<p class="mtm">';
 
-$title2 = elgg_echo('tidypics:settings:resize_thumbnails_title');
-$body2 = '<p>' . elgg_echo('tidypics:settings:resize_thumbnails_instructions') . '</p>';
+$title2 = elgg_echo ( 'tidypics:settings:resize_thumbnails_title' );
+$body2 = '<p>' . elgg_echo ( 'tidypics:settings:resize_thumbnails_instructions' ) . '</p>';
 
-$status_string = '<p>' . elgg_echo('tidypics:settings:resize_thumbnails_count', array($count)) . '</p>';
+$status_string = '<p>' . elgg_echo ( 'tidypics:settings:resize_thumbnails_count', array (
+		$count 
+) ) . '</p>';
 
-$action_link = '<p>' . elgg_view('output/url', array(
-	'text' => elgg_echo('tidypics:settings:resize_thumbnails_start'),
-	'href' => $action,
-	'class' => 'elgg-button elgg-button-submit mtl',
-	'is_action' => true,
-	'is_trusted' => true,
-	'id' => 'tidypics-resizethumbnails-run',
-)) . "</p>";
+$action_link = '<p>' . elgg_view ( 'output/url', array (
+		'text' => elgg_echo ( 'tidypics:settings:resize_thumbnails_start' ),
+		'href' => $action,
+		'class' => 'elgg-button elgg-button-submit mtl',
+		'is_action' => true,
+		'is_trusted' => true,
+		'id' => 'tidypics-resizethumbnails-run' 
+) ) . "</p>";
 
-$body2 .=<<<HTML
+$body2 .= <<<HTML
 	<p>$status_string</p>
 	<span id="tidypics-resizethumbnails-total" class="hidden">$count</span>
 	<span id="tidypics-resizethumbnails-count" class="hidden">0</span>
@@ -77,7 +77,7 @@ $body2 .=<<<HTML
 	$action_link
 HTML;
 
-echo elgg_view_module('inline', $title2, $body2);
+echo elgg_view_module ( 'inline', $title2, $body2 );
 
 ?>
 

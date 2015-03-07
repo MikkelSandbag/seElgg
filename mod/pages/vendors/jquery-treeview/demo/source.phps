@@ -1,6 +1,6 @@
 <?php
-if ($_REQUEST['root'] == "source"):
-?>
+if ($_REQUEST ['root'] == "source") :
+	?>
 [
 	{
 		"text": "1. Pre Lunch (120 min)",

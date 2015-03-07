@@ -6,16 +6,27 @@
  */
 
 // set default value
-if (!isset($vars['entity']->pages_num)) {
-	$vars['entity']->pages_num = 4;
+if (! isset ( $vars ['entity']->pages_num )) {
+	$vars ['entity']->pages_num = 4;
 }
 
-$params = array(
-	'name' => 'params[pages_num]',
-	'value' => $vars['entity']->pages_num,
-	'options' => array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+$params = array (
+		'name' => 'params[pages_num]',
+		'value' => $vars ['entity']->pages_num,
+		'options' => array (
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10 
+		) 
 );
-$dropdown = elgg_view('input/select', $params);
+$dropdown = elgg_view ( 'input/select', $params );
 
 ?>
 <div>

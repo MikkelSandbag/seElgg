@@ -11,29 +11,28 @@
  * @uses $vars['id']           Optional id for module
  * @uses $vars['show_inner']   Optional flag to leave out inner div (default: false)
  */
-
-$type = elgg_extract('type', $vars, false);
-$title = elgg_extract('title', $vars, '');
-$header = elgg_extract('header', $vars, '');
-$body = elgg_extract('body', $vars, '');
-$footer = elgg_extract('footer', $vars, '');
-$show_inner = elgg_extract('show_inner', $vars, false);
+$type = elgg_extract ( 'type', $vars, false );
+$title = elgg_extract ( 'title', $vars, '' );
+$header = elgg_extract ( 'header', $vars, '' );
+$body = elgg_extract ( 'body', $vars, '' );
+$footer = elgg_extract ( 'footer', $vars, '' );
+$show_inner = elgg_extract ( 'show_inner', $vars, false );
 
 $class = 'elgg-module';
 if ($type) {
 	$class = "$class elgg-module-$type";
 }
-$additional_class = elgg_extract('class', $vars, '');
+$additional_class = elgg_extract ( 'class', $vars, '' );
 if ($additional_class) {
 	$class = "$class $additional_class";
 }
 
 $id = '';
-if (isset($vars['id'])) {
+if (isset ( $vars ['id'] )) {
 	$id = "id=\"{$vars['id']}\"";
 }
 
-if (isset($vars['header'])) {
+if (isset ( $vars ['header'] )) {
 	$header = "<div class=\"elgg-head\">$header</div>";
 } elseif ($title) {
 	$header = "<div class=\"elgg-head\"><h3>$title</h3></div>";

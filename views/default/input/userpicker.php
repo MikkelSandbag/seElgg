@@ -16,36 +16,35 @@
  * As users are selected they move down to a "users" box.
  * When this happens, a hidden input is created to return the GUID in the array with the form
  */
+elgg_load_js ( 'jquery.ui.autocomplete.html' );
 
-elgg_load_js('jquery.ui.autocomplete.html');
-
-if (empty($vars['name'])) {
-	$vars['name'] = 'members';
+if (empty ( $vars ['name'] )) {
+	$vars ['name'] = 'members';
 }
-$name = $vars['name'];
-$name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+$name = $vars ['name'];
+$name = htmlspecialchars ( $name, ENT_QUOTES, 'UTF-8' );
 
-$guids = (array)elgg_extract('values', $vars, array());
+$guids = ( array ) elgg_extract ( 'values', $vars, array () );
 
-$handler = elgg_extract('handler', $vars, 'livesearch');
-$handler = htmlspecialchars($handler, ENT_QUOTES, 'UTF-8');
+$handler = elgg_extract ( 'handler', $vars, 'livesearch' );
+$handler = htmlspecialchars ( $handler, ENT_QUOTES, 'UTF-8' );
 
-$limit = (int)elgg_extract('limit', $vars, 0);
+$limit = ( int ) elgg_extract ( 'limit', $vars, 0 );
 
 ?>
-<div class="elgg-user-picker" data-limit="<?php echo $limit ?>" data-name="<?php echo $name ?>" data-handler="<?php echo $handler ?>">
-	<input type="text" class="elgg-input-user-picker" size="30"/>
-	<input type="checkbox" name="match_on" value="true" />
-	<label><?php echo elgg_echo('userpicker:only_friends'); ?></label>
+<div class="elgg-user-picker" data-limit="<?php echo $limit ?>"
+	data-name="<?php echo $name ?>" data-handler="<?php echo $handler ?>">
+	<input type="text" class="elgg-input-user-picker" size="30" /> <input
+		type="checkbox" name="match_on" value="true" /> <label><?php echo elgg_echo('userpicker:only_friends'); ?></label>
 	<ul class="elgg-user-picker-list">
 		<?php
-		foreach ($guids as $guid) {
-			$entity = get_entity($guid);
+		foreach ( $guids as $guid ) {
+			$entity = get_entity ( $guid );
 			if ($entity) {
-				echo elgg_view('input/userpicker/item', array(
-					'entity' => $entity,
-					'input_name' => $vars['name'],
-				));
+				echo elgg_view ( 'input/userpicker/item', array (
+						'entity' => $entity,
+						'input_name' => $vars ['name'] 
+				) );
 			}
 		}
 		?>

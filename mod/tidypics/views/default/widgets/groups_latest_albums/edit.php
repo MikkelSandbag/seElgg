@@ -5,10 +5,9 @@
  * Groups page Latest Albums widget for Widget Manager plugin
  *
  */
-
-$count = sanitise_int($vars["entity"]->tp_latest_albums_count, false);
-if(empty($count)){
-        $count = 6;
+$count = sanitise_int ( $vars ["entity"]->tp_latest_albums_count, false );
+if (empty ( $count )) {
+	$count = 6;
 }
 
 ?>

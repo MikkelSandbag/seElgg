@@ -10,26 +10,31 @@
  * @subpackage UI
  */
 ?>
-/* <style> /**/
+/*
+<style> /**/
 
 /* ***************************************
 	PAGE LAYOUT
 *************************************** */
 /***** DEFAULT LAYOUT ******/
-<?php // the width is on the page rather than topbar to handle small viewports ?>
-.elgg-page-default {
+<?
+php?> // the width is on the page rather than topbar to handle small viewports
+ .elgg-page-default {
 	min-width: 800px;
 }
-.elgg-page-default .elgg-page-header > .elgg-inner {
+
+.elgg-page-default .elgg-page-header>.elgg-inner {
 	max-width: 990px;
 	margin: 0 auto;
 	height: 90px;
 }
-.elgg-page-default .elgg-page-body > .elgg-inner {
+
+.elgg-page-default .elgg-page-body>.elgg-inner {
 	max-width: 990px;
 	margin: 0 auto;
 }
-.elgg-page-default .elgg-page-footer > .elgg-inner {
+
+.elgg-page-default .elgg-page-footer>.elgg-inner {
 	max-width: 990px;
 	margin: 0 auto;
 	padding: 5px 0;
@@ -38,7 +43,8 @@
 
 /***** TOPBAR ******/
 .elgg-page-topbar {
-	background: #333333 url(<?php echo elgg_get_site_url(); ?>_graphics/toptoolbar_background.gif) repeat-x top left;
+	background: #333333 url(<? php echo elgg_get_site_url(); ?> _graphics
+	/toptoolbar_background.gif) repeat-x top left;
 	border-bottom: 1px solid #000000;
 	padding: 0 10px;
 	position: relative;
@@ -54,9 +60,11 @@
 	max-width: 500px;
 	z-index: 2000;
 }
+
 .elgg-system-messages li {
 	margin-top: 10px;
 }
+
 .elgg-system-messages li p {
 	margin: 0;
 }
@@ -65,9 +73,16 @@
 .elgg-page-header {
 	padding: 0 10px;
 	position: relative;
-	background: #4690D6 url(<?php echo elgg_get_site_url(); ?>_graphics/header_shadow.png) repeat-x bottom left;
+	background: #4690D6 url(<? php echo elgg_get_site_url ();
+?>
+	_graphics
+	/header_shadow.png)
+	repeat-x
+	bottom
+	left;
 }
-.elgg-page-header > .elgg-inner {
+
+.elgg-page-header>.elgg-inner {
 	position: relative;
 }
 
@@ -79,15 +94,31 @@
 .elgg-layout {
 	min-height: 360px;
 }
+
 .elgg-layout-one-sidebar {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/sidebar_background.gif) repeat-y right top;
+	background: transparent url(<? php echo elgg_get_site_url ();
+?>
+	_graphics
+	/sidebar_background.gif)
+	repeat-y
+	right
+	top;
 }
+
 .elgg-layout-two-sidebar {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>_graphics/two_sidebar_background.gif) repeat-y right top;
+	background: transparent url(<? php echo elgg_get_site_url ();
+?>
+	_graphics
+	/two_sidebar_background.gif)
+	repeat-y
+	right
+	top;
 }
-.elgg-layout-widgets > .elgg-widgets {
+
+.elgg-layout-widgets>.elgg-widgets {
 	float: right;
 }
+
 .elgg-sidebar {
 	position: relative;
 	padding: 20px 10px;
@@ -95,6 +126,7 @@
 	width: 210px;
 	margin: 0 0 0 10px;
 }
+
 .elgg-sidebar-alt {
 	position: relative;
 	padding: 20px 10px;
@@ -102,12 +134,14 @@
 	width: 160px;
 	margin: 0 10px 0 0;
 }
+
 .elgg-main {
 	position: relative;
 	min-height: 360px;
 	padding: 10px;
 }
-.elgg-main > .elgg-head {
+
+.elgg-main>.elgg-head {
 	padding-bottom: 3px;
 	border-bottom: 1px solid #CCCCCC;
 	margin-bottom: 10px;

@@ -5,23 +5,22 @@
  *
  * @package ElggTheWire
  */
-
-if (!array_key_exists('entity', $vars)) {
+if (! array_key_exists ( 'entity', $vars )) {
 	return FALSE;
 }
 
-$owner = $vars['entity']->getOwnerEntity();
+$owner = $vars ['entity']->getOwnerEntity ();
 if ($owner) {
-	$title = elgg_echo('thewire:by', array($owner->name));
+	$title = elgg_echo ( 'thewire:by', array (
+			$owner->name 
+	) );
 }
-$description = $vars['entity']->getVolatileData('search_matched_description');
+$description = $vars ['entity']->getVolatileData ( 'search_matched_description' );
 
 ?>
 
-<item>
-	<guid isPermaLink='false'><?php echo $vars['entity']->getGUID(); ?></guid>
-	<pubDate><?php echo date("r", $vars['entity']->time_created) ?></pubDate>
-	<link><?php echo htmlspecialchars($vars['entity']->getURL()); ?></link>
-	<title><![CDATA[<?php echo $title; ?>]]></title>
-	<description><![CDATA[<?php	echo $description; ?>]]></description>
-</item>
+<item> <guid isPermaLink='false'><?php echo $vars['entity']->getGUID(); ?></guid>
+<pubDate><?php echo date("r", $vars['entity']->time_created) ?></pubDate>
+<link><?php echo htmlspecialchars($vars['entity']->getURL()); ?></link>
+<title><![CDATA[<?php echo $title; ?>]]></title>
+<description><![CDATA[<?php	echo $description; ?>]]></description> </item>

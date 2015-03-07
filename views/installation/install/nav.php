@@ -8,23 +8,21 @@
  * @uses $vars['advance'] should the next button be active?
  */
 
-
 // has a refresh button been requested
 $refresh = '';
-if (isset($vars['refresh']) && $vars['refresh']) {
-	$refresh_text = elgg_echo('install:refresh');
+if (isset ( $vars ['refresh'] ) && $vars ['refresh']) {
+	$refresh_text = elgg_echo ( 'install:refresh' );
 	$refresh = "<a href=\"\">$refresh_text</a>";
 }
 
 // create next button and selectively disable
-$next_text = elgg_echo('install:next');
-$next_link = elgg_get_site_url()."install.php?step={$vars['next_step']}";
+$next_text = elgg_echo ( 'install:next' );
+$next_link = elgg_get_site_url () . "install.php?step={$vars['next_step']}";
 $next = "<a href=\"$next_link\">$next_text</a>";
-if (isset($vars['advance']) && !$vars['advance']) {
+if (isset ( $vars ['advance'] ) && ! $vars ['advance']) {
 	// disable the next button
 	$next = "<a class=\"elgg-state-disabled\">$next_text</a>";
 }
-
 
 echo <<<___END
 <div class="elgg-install-nav">

@@ -5,13 +5,12 @@
  *
  * @package ElggGroups
  */
-
 ?>
 <p class="mtm">
 <?php
-echo elgg_echo('groups:closedgroup:membersonly');
-if (elgg_is_logged_in()) {
-	echo ' ' . elgg_echo('groups:closedgroup:request');
+echo elgg_echo ( 'groups:closedgroup:membersonly' );
+if (elgg_is_logged_in ()) {
+	echo ' ' . elgg_echo ( 'groups:closedgroup:request' );
 }
 ?>
 </p>

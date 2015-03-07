@@ -9,25 +9,24 @@
  * @uses $vars['class']  Optional additional CSS class
  * @uses $vars['hidden'] Begin hidden? (true)
  */
+$attributes = array ();
 
-$attributes = array();
-
-if (isset($vars['id'])) {
-	$attributes['id'] = $vars['id'];
+if (isset ( $vars ['id'] )) {
+	$attributes ['id'] = $vars ['id'];
 }
 
 $class = 'elgg-ajax-loader';
-if (isset($vars['class'])) {
+if (isset ( $vars ['class'] )) {
 	$class = "$class {$vars['class']}";
 }
 
-if (elgg_extract('hidden', $vars, true)) {
+if (elgg_extract ( 'hidden', $vars, true )) {
 	$class = "$class hidden";
 }
 
-$attributes['class'] = $class;
+$attributes ['class'] = $class;
 
-$attrs = elgg_format_attributes($attributes);
+$attrs = elgg_format_attributes ( $attributes );
 
 $loader = <<< END
 

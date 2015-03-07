@@ -18,22 +18,20 @@
  * @uses $vars['class']       Optional additional class for media element
  * @uses $vars['id']          Optional id for the media element
  */
-
-$body = elgg_extract('body', $vars, '');
-$image = elgg_extract('image', $vars, '');
-$alt_image = elgg_extract('image_alt', $vars, '');
+$body = elgg_extract ( 'body', $vars, '' );
+$image = elgg_extract ( 'image', $vars, '' );
+$alt_image = elgg_extract ( 'image_alt', $vars, '' );
 
 $class = 'elgg-image-block';
-$additional_class = elgg_extract('class', $vars, '');
+$additional_class = elgg_extract ( 'class', $vars, '' );
 if ($additional_class) {
 	$class = "$class $additional_class";
 }
 
 $id = '';
-if (isset($vars['id'])) {
+if (isset ( $vars ['id'] )) {
 	$id = "id=\"{$vars['id']}\"";
 }
-
 
 $body = "<div class=\"elgg-body\">$body</div>";
 

@@ -6,7 +6,9 @@
  */
 
 // @todo is this a view for extensions?
-echo elgg_view('subscriptions/form/additions', $vars);
+echo elgg_view ( 'subscriptions/form/additions', $vars );
 
-$form_vars = array('class' => 'elgg-form-alt');
-echo elgg_view_form('notificationsettings/save', $form_vars, $vars);
+$form_vars = array (
+		'class' => 'elgg-form-alt' 
+);
+echo elgg_view_form ( 'notificationsettings/save', $form_vars, $vars );

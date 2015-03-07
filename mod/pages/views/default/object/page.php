@@ -4,5 +4,4 @@
  *
  * @package ElggPages
  */
-
-echo elgg_view('object/page_top', $vars);
+echo elgg_view ( 'object/page_top', $vars );

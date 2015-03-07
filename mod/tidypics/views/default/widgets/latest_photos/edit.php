@@ -7,16 +7,22 @@
  */
 
 // set default value
-if (!isset($vars['entity']->num_display)) {
-	$vars['entity']->num_display = 8;
+if (! isset ( $vars ['entity']->num_display )) {
+	$vars ['entity']->num_display = 8;
 }
 
-$params = array(
-	'name' => 'params[num_display]',
-	'value' => $vars['entity']->num_display,
-	'options' => array(4, 8, 12, 16, 20),
+$params = array (
+		'name' => 'params[num_display]',
+		'value' => $vars ['entity']->num_display,
+		'options' => array (
+				4,
+				8,
+				12,
+				16,
+				20 
+		) 
 );
-$dropdown = elgg_view('input/dropdown', $params);
+$dropdown = elgg_view ( 'input/dropdown', $params );
 
 ?>
 <div>

@@ -1,9 +1,8 @@
 <?php
-
-return array(
+return array (
 		// Hack for core bug
 		'untitled' => "Unbenannt",
-
+		
 		// Menu items and titles
 		'image' => "Bild",
 		'images' => "Bilder",
@@ -14,11 +13,11 @@ return array(
 		'tidypics:disabled' => 'Deaktiviert',
 		'tidypics:enabled' => 'Aktiviert',
 		'admin:settings:photos' => 'Tidypics',
-
+		
 		'photos:add' => "Album hinzufügen",
 		'photos:addphotos' => "Bilder hochladen",
 		'images:upload' => "Bilder zu Album hinzufügen",
-
+		
 		'album:slideshow' => "Diashow ansehen",
 		'album:yours' => "Deine Bilderalben",
 		'album:yours:friends' => "Bilderalben Deiner Freunde",
@@ -47,7 +46,7 @@ return array(
 		'tidypics:mostviewed' => 'Am häufigsten angesehene Bilder',
 		'tidypics:mostviewed:nosuccess' => 'Auf dieser Community-Seite hat bisher noch niemand ein Bild angesehen.',
 		'tidypics:mostviewedthisyear' => 'Am häufigsten angesehene Bilder des Jahres',
-		'tidypics:mostviewedthisyear:nosuccess' =>  'Dieses Jahr hat noch niemand ein Bilder angesehen.',
+		'tidypics:mostviewedthisyear:nosuccess' => 'Dieses Jahr hat noch niemand ein Bilder angesehen.',
 		'tidypics:mostviewedthismonth' => 'Am häufigsten angesehene Bilder des Monats',
 		'tidypics:mostviewedthismonth:nosuccess' => 'Diesen Monat hat noch niemand ein Bilder angesehen.',
 		'tidypics:mostviewedlastmonth' => 'Am häufigsten angesehene Bilder im letzten Monat',
@@ -90,7 +89,7 @@ return array(
 		'tidypics:upgrade' => 'Aktualisieren',
 		'tidypics:sort' => 'Umsortieren des %s-Bilderalbums',
 		'tidypics:none' => 'Keine Bilderalben vorhanden.',
-
+		
 		// Settings
 		'tidypics:settings' => 'Einstellungen',
 		'tidypics:settings:main' => 'Grundeinstellungen',
@@ -133,7 +132,7 @@ return array(
 		'tidypics:option:none' => 'Kein Eintrag im River',
 		'tidypics:option:cover' => 'Albumcover',
 		'tidypics:option:set' => 'Ein Set von bis zu 7 Bildern',
-
+		
 		'tidypics:settings:resize_thumbnails_title' => "Neuerstellung aller Vorschaubilder",
 		'tidypics:settings:resize_thumbnails_instructions' => "Die Vorschaubilder aller derzeit verfügbaren Bilder werden neu erstellt unter Berücksichtigung der momentan eingestellten Größen für die Vorschaubilder (siehe \"Einstellungen\"-Tab). WARNUNG: abhängig von der Anzahl der Bilder auf Deiner Seite kann dies eine SEHR LANGE ZEIT dauern! <b>Bitte erstelle in jeden Fall ein Backup der Datenbank und des Datenverzeichnisses Deiner Seite bevor Du startest!</b>",
 		'tidypics:settings:resize_thumbnails_count' => "Die Vorschaubilder von insgesamt %s Bildern werden neu erstellt.",
@@ -143,7 +142,7 @@ return array(
 		'tidypics:resize_thumbnails:error_recreate_failed' => "Anzahl der verarbeiteten Bilder bei denen die Neuerstellung der Vorschaubilder fehlschlug: ",
 		'tidypics:resize_thumbnails:finished' => "Die Neuerstellung der Vorschaubilder aller %s Bilder wurde erfolgreich durchgeführt.",
 		'tidypics:resize_thumbnails:finished_with_errors' => "Die Neuerstellung der Vorschaubilder ist beendet. Es sind dabei allerdings Fehler aufgetreten: bei %s Bildern sind Dateneinträge fehlerhaft (keine Neuerstellung der Vorschaubilder durchgeführt) und bei %s Bildern ist während des Erstellens der Vorschaubilder ein Fehler aufgetreten.",
-
+		
 		// Server analysis
 		'tidypics:server_info' => 'Informationen über den Server',
 		'tidypics:server_info:gd_desc' => 'Elgg setzt voraus, dass die GD-PHP-Erweiterung verfügbar ist.',
@@ -154,7 +153,7 @@ return array(
 		'tidypics:server_info:post_max_size_desc' => '"Max post size" abzüglich der Größe der HTML-Form = Maximal mögliche Gesamtgröße von gleichzeitig hochzuladenden Bildern.',
 		'tidypics:server_info:max_input_time_desc' => 'Maximale erlaubte Dauer, in der das Hochladen von Daten auf den Server abgeschlossen sein muss.',
 		'tidypics:server_info:max_execution_time_desc' => 'Maximal erlaubte Ausführdauer für ein Skript auf dem Server.',
-
+		
 		'tidypics:server_info:php_version' => 'PHP-Version',
 		'tidypics:server_info:memory_limit' => 'Für PHP verfügbarer Speicher',
 		'tidypics:server_info:peak_usage' => 'Genutzer Speicher, um diese Seite zu laden',
@@ -162,14 +161,14 @@ return array(
 		'tidypics:server_info:post_max_size' => 'PHP-Einstellung von post_max_size',
 		'tidypics:server_info:max_input_time' => 'PHP-Einstellung von max_input_time',
 		'tidypics:server_info:max_execution_time' => 'PHP-Einstellung von max_execution_time',
-
+		
 		'tidypics:server_config' => 'Server-Konfiguration',
 		'tidypics:server_configuration_doc' => 'Dokumentation über die Konfigurierung des Servers',
-
+		
 		// ImageMagick test
 		'tidypics:lib_tools:testing' => 'Tidypics benötigt den Pfad auf dem Server zu den ImageMagick-Kommandozeilentools, falls Du diese als Image-Library verwenden willst. Dein Webhoster sollte Dir diese Information mitteilen können. Du kannst im folgenden prüfen, ob dieser Pfad korrekt ist. Wenn der Test erfolgreich ist, sollten Informationen über die auf dem Server installierte Version von ImageMagick angezeigt werden.',
 		'tidypics:lib_tools:error' => 'Aufruf von ImageMagick ist fehlgeschlagen. Bitte prüfe den angegebenen Pfad zu den ImageMagick-Kommandozeilentools.',
-
+		
 		// Thumbnail tool
 		'tidypics:thumbnail_tool' => 'Vorschaubild-Erzeugung',
 		'tidypics:thumbnail_tool_blurb' => 'Im Folgenden kannst Du Vorschaubilder von Bildern erzeugen, falls dies beim Hochladen der Bilder fehlgeschlagen ist. Die Erzeugung der Vorschaubilder kann fehlschlagen, wenn die Image-Library nicht richtig eingerichtet ist oder falls für die GD-PHP-Erweiterung nicht genügend Arbeitsspeicher verfügbar ist, um das Bild zu laden und die Größe zu ändern. Falls die Mitglieder Deiner Seite bei der Erzeugung der Vorschaubilder für ihre hochgeladenen Bilder Probleme hatten, kannst Du im folgenden die Erzeugung der Vorschaubilder wiederholen, nachdem Du den Server bzw. Tidypics richtig konfiguriert hast. Bestimme die GUID des Bildes, für das Du Vorschaubilder erzeugen willst (dies ist die Nummer, die fast am Ende der URL enthalten ist, wenn Du dieses Bilder auf Deiner Seite anschaust) und gebe diese Nummer im folgenden Eingabefeld ein.',
@@ -177,7 +176,7 @@ return array(
 		'tidypics:thumbnail_tool:invalid_image_info' => 'Beim Abrufen Bildinformationen ist ein Fehler aufgetreten.',
 		'tidypics:thumbnail_tool:create_failed' => 'Die Erzeugung der Vorschaubilder ist fehlgeschlagen.',
 		'tidypics:thumbnail_tool:created' => 'Die Vorschaubilder wurden erzeugt.',
-
+		
 		// Delete image tool
 		'tidypics:delete_image' => "Bild löschen",
 		'tidypics:delete_image_id' => "Bild-ID",
@@ -185,7 +184,7 @@ return array(
 		'tidypics:delete_image:no_guid' => 'Es wurde keine Elgg-Entitätmit dieser GUID gefunden.',
 		'tidypics:delete_image:success' => 'Die Tidypics Bild-Entität wurde gelöscht.',
 		'tidypics:delete_image:no_image' => 'Diese GUID gehört nicht zu einer Tidypics Bild-Entität. Löschen abgebrochen.',
-
+		
 		// Actions
 		'album:create' => "Neues Album hinzufügen",
 		'album:add' => "Neues Album hinzufügen",
@@ -196,7 +195,7 @@ return array(
 		'image:edit' => "Bild bearbeiten",
 		'image:delete' => "Bild löschen",
 		'image:download' => "Bild herunterladen",
-
+		
 		// Forms
 		'album:title' => "Titel",
 		'album:desc' => "Beschreibung",
@@ -216,11 +215,11 @@ return array(
 		'tidypics:album_select' => 'Bevor Du mit dem Hochladen Deiner Bilder beginnen kannst, mußt Du zuerst ein Bilderalbum auswählen, zu dem Du die Bilder hinzufügen willst, oder Du kannst ein neues Bilderalbum hinzufügen: ',
 		'tidypics:continue' => 'Fortsetzen',
 		'tidypics:uploader:filetype' => 'Zulässige Dateiformate für Bilder',
-
+		
 		// Albums
 		'album:created_by' => 'Von ',
 		'album:num' => 'mit %s Bildern',
-
+		
 		// Views
 		'image:total' => "Bilder im Album:",
 		'image:by' => "Bild hinzugefügt von",
@@ -230,7 +229,7 @@ return array(
 		'image:back' => "Vorheriges",
 		'image:next' => "Nächstes",
 		'image:index' => "%u von %u",
-
+		
 		// Tagging
 		'tidypics:taginstruct' => 'Wähle den Bereich im Bild, für das Du ein Tag setzen willst, oder %s. <br> Gebe den Namen eines Mitglieds ein oder füge ein Wort-Tag zu Bild hinzu.',
 		'tidypics:quit' => 'Beenden',
@@ -250,19 +249,19 @@ return array(
 		'tidypics:phototagging:nosuccess' => 'Das Taggen ist fehlgeschlagen weil entweder kein Tag eingegeben wurde oder alle eingegebenen Tags bereits vorhanden sind.',
 		'tidypics:phototagging:success_partly' => 'Das Bild wurde getaggt aber die Wort-Tags, die schon vorhanden waren, wurden ausgelassen.',
 		'tidypics:phototagging:error' => 'Beim Hinzufügen des Tags ist ein Fehler aufgetreten.',
-
+		
 		'tidypics:phototagging:delete:success' => 'Das Tag wurde entfernt.',
 		'tidypics:phototagging:delete:error' => 'Beim Entfernen des Tags ist ein Fehler aufgetreten.',
 		'tidypics:phototagging:delete:confirm' => 'Dieses Tag entfernen?',
-
+		
 		'tidypics:tag:subject' => "Du wurdest in einem Bild getaggt",
 		'tidypics:tag:body' => "Du wurdest im Bild %s von %s getaggt.
 
 Um das Bild zu sehen, folge diesem Link: %s",
-
+		
 		// RSS
 		'tidypics:posted' => 'hat ein Bild hinzugefügt:',
-
+		
 		// Widgets
 		'tidypics:widget:albums' => "Bilderalben",
 		'tidypics:widget:album_descr' => "Auflistung Deiner neuesten Bilderalben",
@@ -273,7 +272,7 @@ Um das Bild zu sehen, folge diesem Link: %s",
 		'album:more' => "Alle Alben anzeigen",
 		'tidypics:widget:no_images' => "Noch keine Bilder vorhanden.",
 		'tidypics:widget:no_albums' => "Noch keine Bilderalben vorhanden.",
-
+		
 		// River
 		'image:river:created' => "%s hat das Bild %s zum Album %s hinzugefügt",
 		'image:river:created_single_entry' => "%s hat das Bild %s und %s weitere zum Album %s hinzugefügt",
@@ -289,27 +288,27 @@ Um das Bild zu sehen, folge diesem Link: %s",
 		'album:river:annotate' => "einen Kommentar zum Bilderalbum",
 		'river:comment:object:image' => '%s schrieb einen Kommentar zum Bild %s',
 		'river:comment:object:album' => '%s schrieb einen Kommentar zum Bilderalbum %s',
-
+		
 		// Notifications
 		'tidypics:newalbum_subject' => 'Neues Bilderalbum',
 		'tidypics:newalbum' => '%s hat ein neues Bilderalbum hinzugefügt',
 		'tidypics:updatealbum_subject' => 'Neue Bilder in Bilderalbum',
 		'tidypics:updatealbum' => "%s hat neue Bilder zum Album %s hinzugefügt",
-
+		
 		'tidypics:notify:summary_newalbum' => 'Neues Bilderalbum namens %s',
 		'tidypics:notify:subject_newalbum' => 'Neues Bilderalbum: %s',
 		'tidypics:notify:body_newalbum' => '%s hat ein neues Bilderalbum hinzugefügt: %s
 
 Schau Dir das Bilderalbum an und schreibe einen Kommentar:
 %s',
-
+		
 		'tidypics:notify:summary_updatealbum' => 'Neue Bilder im Bilderalbum %s',
 		'tidypics:notify:subject_updatealbum' => 'Neue Bilder im Bilderalbum: %s',
 		'tidypics:notify:body_updatealbum' => '%s hat neue Bilder zum Album %s hinzugefügt
 
 Schau Dir das Bilderalbum an und schreibe einen Kommentar:
 %s',
-
+		
 		// Status messages
 		'tidypics:upl_success' => "Deine Bilder wurden hochgeladen.",
 		'image:saved' => "Das Bild wurde gespeichert.",
@@ -327,7 +326,7 @@ Schau Dir das Bilderalbum an und schreibe einen Kommentar:
 		'tidypics:album:sorted' => 'Das Bilderalbum %s wurde umsortiert.',
 		'tidypics:album:could_not_sort' => 'Das Bilderalbum %s konnte nicht umsortiert werden. Vergewissere Dich, dass in diesem Album Bilder vorhanden sind und versuche es noch einmal.',
 		'tidypics:upgrade:success' => 'Das Upgrade des Tidypics-Plugins war erfolgreich.',
-
+		
 		// Error messages
 		'tidypics:baduploadform' => "Es gab ein unerwartetes Problem mit dem Uploader.",
 		'tidypics:partialuploadfailure' => "Beim Hochladen einiger Bilder sind Fehler aufgetreten (bei %s von %s Bildern).",
@@ -345,7 +344,7 @@ Schau Dir das Bilderalbum an und schreibe einen Kommentar:
 		'tidypics:nosettings' => "Der Administrator dieser Community-Seite hat leider bisher keine Einstellungen für Bilderalben vorgenommen.",
 		'tidypics:exceed_quota' => "Du hast die von Administrator dieser Community-Seite gesetze Quota für Bilder überschritten.",
 		'tidypics:cannot_upload_exceeds_quota' => 'Das Bild wurde nicht hochgeladen. Die Dateigröße übersteigt die verfügbare Quota.',
-
+		
 		'album:none' => "Es wurden noch keine Alben hinzugefügt.",
 		'album:error' => "Beim Anlegen des Bilderalbums ist ein Fehler aufgetreten.",
 		'album:uploadfailed' => "Beim Hinzufügen des Bilderalbums ist ein Fehler aufgetreten.",
@@ -353,11 +352,11 @@ Schau Dir das Bilderalbum an und schreibe einen Kommentar:
 		'album:blank' => "Bitte gib diesem Album einen Titel.",
 		'album:invalid_album' => 'Unzulässiges Bilderalbum.',
 		'album:cannot_save_cover_image' => 'Das Albumcover kann nicht gespeichert werden.',
-
+		
 		'image:downloadfailed' => "Entschuldigung. Das Bild ist nicht verfügbar.",
 		'images:notedited' => "Es konnten nicht alle Bilder fehlerfrei hochgeladen werden.",
 		'image:blank' => 'Bitte gib diesem Bild einen Titel.',
 		'image:error' => 'Das Bild konnte nicht gespeichert werden.',
-
-		'tidypics:upgrade:failed' => "Das Upgrade des Tidypics-Plugins ist gescheitert"
+		
+		'tidypics:upgrade:failed' => "Das Upgrade des Tidypics-Plugins ist gescheitert" 
 );

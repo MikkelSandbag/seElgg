@@ -4,11 +4,10 @@
  * can change this value. In this snippet, we check if the value of true was
  * changed by the handler functions.
  */
-
-$result = elgg_trigger_plugin_hook('get_status', 'example', null, true);
+$result = elgg_trigger_plugin_hook ( 'get_status', 'example', null, true );
 
 if ($result) {
-	var_dump('Plugin hook says ok!');
+	var_dump ( 'Plugin hook says ok!' );
 } else {
-	var_dump('Plugin hook says no.');
+	var_dump ( 'Plugin hook says no.' );
 }

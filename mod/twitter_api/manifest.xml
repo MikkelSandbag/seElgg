@@ -4,7 +4,8 @@
 	<id>twitter_api</id>
 	<author>Core developers</author>
 	<version>1.9</version>
-	<description>Allows users to log in with their Twitter account and provides access to the Twitter API.</description>
+	<description>Allows users to log in with their Twitter account and
+		provides access to the Twitter API.</description>
 	<category>api</category>
 	<category>bundled</category>
 	<website>http://www.elgg.org/</website>

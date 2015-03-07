@@ -7,24 +7,24 @@
  * @uses $vars['method'] Method (default POST)
  * @uses $vars['name']   Form name
  */
-
-if (isset($vars['name'])) {
+if (isset ( $vars ['name'] )) {
 	$name = "name=\"{$vars['name']}\"";
 } else {
 	$name = '';
 }
 
-$body = $vars['body'];
-$action = $vars['action'];
-if (isset($vars['method'])) {
-	$method = $vars['method'];
+$body = $vars ['body'];
+$action = $vars ['action'];
+if (isset ( $vars ['method'] )) {
+	$method = $vars ['method'];
 } else {
 	$method = 'POST';
 }
 
-$method = strtolower($method);
+$method = strtolower ( $method );
 
 ?>
-<form <?php echo $name; ?> action="<?php echo $action; ?>" method="<?php echo $method; ?>">
+<form <?php echo $name; ?> action="<?php echo $action; ?>"
+	method="<?php echo $method; ?>">
 <?php echo $body; ?>
 </form>

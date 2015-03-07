@@ -4,5 +4,4 @@
  *
  * @uses $vars['body'] The HTML of the page body
  */
-
-echo elgg_extract('body', $vars, '');
+echo elgg_extract ( 'body', $vars, '' );

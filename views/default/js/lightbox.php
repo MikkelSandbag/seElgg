@@ -30,9 +30,9 @@
  * In a plugin, override this view and override the registration for the
  * lightbox JavaScript and CSS (@see elgg_views_boot()).
  */
-
 ?>
-//<script>
+//
+<script>
 
 elgg.provide('elgg.ui.lightbox');
 
@@ -112,6 +112,6 @@ elgg.register_hook_handler('init', 'system', elgg.ui.lightbox.init);
 
 <?php
 
-$js_path = elgg_get_config('path');
+$js_path = elgg_get_config ( 'path' );
 $js_path = "{$js_path}vendors/jquery/colorbox/jquery.colorbox-min.js";
-readfile($js_path);
+readfile ( $js_path );

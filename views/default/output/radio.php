@@ -9,5 +9,4 @@
  * @uses $vars['text'] The text to display
  *
  */
-
-echo elgg_view('output/text', $vars);
+echo elgg_view ( 'output/text', $vars );

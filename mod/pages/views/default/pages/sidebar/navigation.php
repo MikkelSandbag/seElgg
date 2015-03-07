@@ -6,24 +6,25 @@
  */
 
 // add the jquery treeview files for navigation
-elgg_load_css('jquery.treeview');
+elgg_load_css ( 'jquery.treeview' );
 
-
-$selected_page = elgg_extract('page', $vars, false);
+$selected_page = elgg_extract ( 'page', $vars, false );
 if ($selected_page) {
-	$url = $selected_page->getURL();
+	$url = $selected_page->getURL ();
 }
 
-$title = elgg_echo('pages:navigation');
+$title = elgg_echo ( 'pages:navigation' );
 
-pages_register_navigation_tree(elgg_get_page_owner_entity());
+pages_register_navigation_tree ( elgg_get_page_owner_entity () );
 
-$content = elgg_view_menu('pages_nav', array('class' => 'pages-nav'));
-if (!$content) {
-	$content = '<p>' . elgg_echo('pages:none') . '</p>';
+$content = elgg_view_menu ( 'pages_nav', array (
+		'class' => 'pages-nav' 
+) );
+if (! $content) {
+	$content = '<p>' . elgg_echo ( 'pages:none' ) . '</p>';
 }
 
-echo elgg_view_module('aside', $title, $content);
+echo elgg_view_module ( 'aside', $title, $content );
 
 ?>
 <script>

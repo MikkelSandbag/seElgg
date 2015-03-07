@@ -7,14 +7,13 @@
  *
  * @uses $vars['body']
  */
+header ( "Content-Type: application/json" );
 
-header("Content-Type: application/json");
-
-echo $vars['body'];
+echo $vars ['body'];
 
 // backward compatibility
 global $jsonexport;
-if (isset($jsonexport)) {
-	elgg_deprecated_notice("Using \$jsonexport to produce json output has been deprecated", 1.9);
-	echo json_encode($jsonexport);
+if (isset ( $jsonexport )) {
+	elgg_deprecated_notice ( "Using \$jsonexport to produce json output has been deprecated", 1.9 );
+	echo json_encode ( $jsonexport );
 }

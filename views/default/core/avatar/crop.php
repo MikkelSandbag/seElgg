@@ -4,11 +4,9 @@
  *
  * @uses vars['entity']
  */
-
 ?>
 <div id="avatar-croppingtool" class="mtl ptm">
-	<label><?php echo elgg_echo('avatar:crop:title'); ?></label>
-	<br />
+	<label><?php echo elgg_echo('avatar:crop:title'); ?></label> <br />
 	<p>
 		<?php echo elgg_echo("avatar:create:instructions"); ?>
 	</p>

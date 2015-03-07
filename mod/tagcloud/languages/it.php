@@ -1,6 +1,6 @@
 <?php
-return array(
-	'tagcloud:widget:title' => 'Tag Cloud',
-	'tagcloud:widget:description' => 'Tag cloud',
-	'tagcloud:widget:numtags' => 'Numero di tag da mostrare',
+return array (
+		'tagcloud:widget:title' => 'Tag Cloud',
+		'tagcloud:widget:description' => 'Tag cloud',
+		'tagcloud:widget:numtags' => 'Numero di tag da mostrare' 
 );

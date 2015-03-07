@@ -34,4 +34,6 @@ E::selection
 E::before
 E::after
 E.warning#myid
-E:not(s)>F+F~F{color:red}
+E:not(s)>F+F ~F{
+	color: red
+}

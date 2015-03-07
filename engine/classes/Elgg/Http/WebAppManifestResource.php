@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg\Http;
 
 use ElggSite;
@@ -9,20 +10,23 @@ use ElggSite;
  *
  * Support was added to Chrome 39 and is expected to come to Firefox soon.
  *
- * @package    Elgg.Core
+ * @package Elgg.Core
  * @subpackage Http
- * @since      1.10
- *
+ * @since 1.10
+ *       
  * @access private
  */
 class WebAppManifestResource {
-	/** @var ElggSite */
+	/**
+	 * @var ElggSite
+	 */
 	private $site;
 	
 	/**
 	 * Constructor
-	 * 
-	 * @param ElggSite $site The site serving this manifest.
+	 *
+	 * @param ElggSite $site
+	 *        	The site serving this manifest.
 	 */
 	public function __construct(ElggSite $site) {
 		$this->site = $site;
@@ -30,14 +34,14 @@ class WebAppManifestResource {
 	
 	/**
 	 * Behavior for HTTP GET method
-	 * 
+	 *
 	 * @return array
 	 */
 	public function get() {
-		return [
-			'display' => 'standalone',
-			'name' => $this->site->getDisplayName(),
-			'start_url' => $this->site->getUrl(),
+		return [ 
+				'display' => 'standalone',
+				'name' => $this->site->getDisplayName (),
+				'start_url' => $this->site->getUrl () 
 		];
 	}
 }

@@ -1,2 +1,4 @@
 <?php
-echo elgg_view('js/languages', array('language' => 'en'));
+echo elgg_view ( 'js/languages', array (
+		'language' => 'en' 
+) );

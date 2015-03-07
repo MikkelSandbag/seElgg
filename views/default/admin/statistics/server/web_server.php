@@ -2,7 +2,6 @@
 /**
  * Web server info
  */
-
 ?>
 <table class="elgg-table-alt">
 	<tr class="odd">

@@ -1,17 +1,17 @@
 <?php
-	/**
-	* Profile Manager
-	*
-	* JS (admin pages only, so no extend)
-	*
-	* @package profile_manager
-	* @author ColdTrick IT Solutions
-	* @copyright Coldtrick IT Solutions 2009
-	* @link http://www.coldtrick.com/
-	*/
-
+/**
+ * Profile Manager
+ *
+ * JS (admin pages only, so no extend)
+ *
+ * @package profile_manager
+ * @author ColdTrick IT Solutions
+ * @copyright Coldtrick IT Solutions 2009
+ * @link http://www.coldtrick.com/
+ */
 ?>
-//<script>
+//
+<script>
 elgg.provide("elgg.profile_manager");
 
 elgg.profile_manager.init_admin = function() {

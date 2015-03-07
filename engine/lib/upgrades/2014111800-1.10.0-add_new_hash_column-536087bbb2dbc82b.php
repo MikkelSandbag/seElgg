@@ -5,12 +5,11 @@
  *
  * Upgrades user entity schema to support new password hashes
  */
+$db = _elgg_services ()->db;
+$prefix = $db->getTablePrefix ();
 
-$db = _elgg_services()->db;
-$prefix = $db->getTablePrefix();
-
-$db->updateData("
+$db->updateData ( "
 	ALTER TABLE {$prefix}users_entity
 	ADD `password_hash` varchar(255) NOT NULL DEFAULT ''
 	AFTER `salt`
-");
+" );

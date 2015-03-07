@@ -1,5 +1,10 @@
 <?php
-
-echo elgg_view('output/tags', array(
-	'value' => array('one', 'two', 'three', 'four', 'cinco'),
-));
+echo elgg_view ( 'output/tags', array (
+		'value' => array (
+				'one',
+				'two',
+				'three',
+				'four',
+				'cinco' 
+		) 
+) );

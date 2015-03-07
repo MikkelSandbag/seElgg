@@ -8,5 +8,4 @@
  *
  * @uses $vars['value'] The text to display
  */
-
-echo htmlspecialchars($vars['value'], ENT_QUOTES, 'UTF-8', false);
+echo htmlspecialchars ( $vars ['value'], ENT_QUOTES, 'UTF-8', false );

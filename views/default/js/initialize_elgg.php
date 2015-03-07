@@ -1,35 +1,34 @@
-<?php 
+<?php
 /**
  * Initialize Elgg's js lib with the uncacheable data
  */
-
-$elgg = array(
-	'config' => array(
-		'lastcache' => (int)elgg_get_config('lastcache'),
-		'viewtype' => elgg_get_viewtype(),
-		'simplecache_enabled' => (int)elgg_is_simplecache_enabled(),
-	),
-	'security' => array(
-		'token' => array(
-			'__elgg_ts' => $ts = time(),
-			'__elgg_token' => generate_action_token($ts),
+$elgg = array (
+		'config' => array (
+				'lastcache' => ( int ) elgg_get_config ( 'lastcache' ),
+				'viewtype' => elgg_get_viewtype (),
+				'simplecache_enabled' => ( int ) elgg_is_simplecache_enabled () 
 		),
-	),
-	'session' => array(
-		'user' => null,
-	),
+		'security' => array (
+				'token' => array (
+						'__elgg_ts' => $ts = time (),
+						'__elgg_token' => generate_action_token ( $ts ) 
+				) 
+		),
+		'session' => array (
+				'user' => null 
+		) 
 );
 
-$page_owner = elgg_get_page_owner_entity();
+$page_owner = elgg_get_page_owner_entity ();
 if ($page_owner instanceof ElggEntity) {
-	$elgg['page_owner'] = $page_owner->toObject();
+	$elgg ['page_owner'] = $page_owner->toObject ();
 }
 
-$user = elgg_get_logged_in_user_entity();
+$user = elgg_get_logged_in_user_entity ();
 if ($user instanceof ElggUser) {
-	$user_object = $user->toObject();
-	$user_object->admin = $user->isAdmin();
-	$elgg['session']['user'] = $user_object;
+	$user_object = $user->toObject ();
+	$user_object->admin = $user->isAdmin ();
+	$elgg ['session'] ['user'] = $user_object;
 }
 
 ?>

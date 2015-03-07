@@ -9,9 +9,8 @@
  * @uses $vars['value'] The email address to display
  *
  */
+$encoded_value = htmlspecialchars ( $vars ['value'], ENT_QUOTES, 'UTF-8' );
 
-$encoded_value = htmlspecialchars($vars['value'], ENT_QUOTES, 'UTF-8');
-
-if (!empty($vars['value'])) {
+if (! empty ( $vars ['value'] )) {
 	echo "<a href=\"mailto:$encoded_value\">$encoded_value</a>";
 }

@@ -1,4 +1,5 @@
-//<script>
+//
+<script>
 elgg.provide('elgg.embed');
 
 elgg.embed.init = function() {
@@ -37,10 +38,10 @@ elgg.embed._deprecated_custom_insert_js = function(hook, type, params, value) {
 	var content = params.content;
 	var event = params.event;
 <?php
-	if (elgg_view_exists('embed/custom_insert_js')) {
-		elgg_deprecated_notice("The view embed/custom_insert_js has been replaced by the js hook 'embed', 'editor'.", 1.9);
-		echo elgg_view('embed/custom_insert_js');
-	}
+if (elgg_view_exists ( 'embed/custom_insert_js' )) {
+	elgg_deprecated_notice ( "The view embed/custom_insert_js has been replaced by the js hook 'embed', 'editor'.", 1.9 );
+	echo elgg_view ( 'embed/custom_insert_js' );
+}
 ?>
 };
 

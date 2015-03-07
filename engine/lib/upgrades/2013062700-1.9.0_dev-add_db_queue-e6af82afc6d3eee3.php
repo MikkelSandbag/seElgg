@@ -5,8 +5,7 @@
  *
  * Creates the table for queue support
  */
-
-$db_prefix = elgg_get_config('dbprefix');
+$db_prefix = elgg_get_config ( 'dbprefix' );
 
 // create queue table
 $query = <<<SQL
@@ -21,4 +20,4 @@ CREATE TABLE IF NOT EXISTS `{$db_prefix}queue` (
   KEY `retrieve` (`timestamp`,`worker`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SQL;
-update_data($query);
+update_data ( $query );

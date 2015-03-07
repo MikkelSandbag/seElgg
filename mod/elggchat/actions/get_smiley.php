@@ -14,18 +14,17 @@
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
-
 $base_folder = "elggchat/_graphics/";
-$smiley = get_input("smiley");
+$smiley = get_input ( "smiley" );
 
 if ($smiley) {
-
-	$filename = elgg_get_plugins_path() . $base_folder . $smiley;
-	$contents = @file_get_contents($filename);
-
-	header("Cache-Control: no-cache, no-store, must-revalidate");
-
+	
+	$filename = elgg_get_plugins_path () . $base_folder . $smiley;
+	$contents = @file_get_contents ( $filename );
+	
+	header ( "Cache-Control: no-cache, no-store, must-revalidate" );
+	
 	echo $contents;
 }
-exit();
+exit ();
 ?>

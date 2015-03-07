@@ -1,19 +1,21 @@
 <?php
+
 namespace Elgg;
 
 /**
- * WARNING: API IN FLUX. DO NOT USE DIRECTLY.
- * 
+ * WARNING: API IN FLUX.
+ * DO NOT USE DIRECTLY.
+ *
  * Use the elgg_* versions instead.
- * 
+ *
  * @access private
- * 
- * @package    Elgg.Core
+ *        
+ * @package Elgg.Core
  * @subpackage Hooks
- * @since      1.9.0
+ * @since 1.9.0
  */
 class PluginHooksService extends \Elgg\HooksRegistrationService {
-
+	
 	/**
 	 * Triggers a plugin hook
 	 *
@@ -21,24 +23,28 @@ class PluginHooksService extends \Elgg\HooksRegistrationService {
 	 * @access private
 	 */
 	public function trigger($hook, $type, $params = null, $returnvalue = null) {
-		$hooks = $this->getOrderedHandlers($hook, $type);
+		$hooks = $this->getOrderedHandlers ( $hook, $type );
 		
-		foreach ($hooks as $callback) {
-			if (!is_callable($callback)) {
+		foreach ( $hooks as $callback ) {
+			if (! is_callable ( $callback )) {
 				if ($this->logger) {
-					$this->logger->warn("handler for plugin hook [$hook, $type] is not callable: "
-										. $this->describeCallable($callback));
+					$this->logger->warn ( "handler for plugin hook [$hook, $type] is not callable: " . $this->describeCallable ( $callback ) );
 				}
 				continue;
 			}
-
-			$args = array($hook, $type, $returnvalue, $params);
-			$temp_return_value = call_user_func_array($callback, $args);
-			if (!is_null($temp_return_value)) {
+			
+			$args = array (
+					$hook,
+					$type,
+					$returnvalue,
+					$params 
+			);
+			$temp_return_value = call_user_func_array ( $callback, $args );
+			if (! is_null ( $temp_return_value )) {
 				$returnvalue = $temp_return_value;
 			}
 		}
-	
+		
 		return $returnvalue;
 	}
 }

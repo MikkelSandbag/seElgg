@@ -4,9 +4,9 @@
  *
  * @since 1.8
  */
-
 ?>
-//<script>
+//
+<script>
 elgg.provide('elgg.admin');
 
 elgg.admin.init = function () {

@@ -6,7 +6,8 @@
 	<version>1.9</version>
 	<category>bundled</category>
 	<category>communication</category>
-	<description>Adds the ability for users to send private messages to each other.</description>
+	<description>Adds the ability for users to send private messages to
+		each other.</description>
 	<website>http://www.elgg.org/</website>
 	<copyright>See COPYRIGHT.txt</copyright>
 	<license>GNU General Public License version 2</license>

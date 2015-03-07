@@ -11,44 +11,44 @@
  * @property int    $guid_two     The GUID of the target of the relationship
  * @property int    $time_created A UNIX timestamp of when the relationship was created (read-only, set on first save)
  */
-class ElggRelationship extends \ElggData implements
-	Importable // deprecated
+class ElggRelationship extends \ElggData implements Importable // deprecated
 {
 	// database column limit
 	const RELATIONSHIP_LIMIT = 50;
-
+	
 	/**
 	 * Create a relationship object
 	 *
-	 * @param \stdClass $row Database row or null for new relationship
+	 * @param \stdClass $row
+	 *        	Database row or null for new relationship
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct($row = null) {
-		$this->initializeAttributes();
-
+		$this->initializeAttributes ();
+		
 		if ($row === null) {
-			elgg_deprecated_notice('Passing null to constructor is deprecated. Use add_entity_relationship()', 1.9);
+			elgg_deprecated_notice ( 'Passing null to constructor is deprecated. Use add_entity_relationship()', 1.9 );
 			return;
 		}
-
-		if (!($row instanceof \stdClass)) {
-			if (!is_numeric($row)) {
-				throw new \InvalidArgumentException("Constructor accepts only a \stdClass or null.");
+		
+		if (! ($row instanceof \stdClass)) {
+			if (! is_numeric ( $row )) {
+				throw new \InvalidArgumentException ( "Constructor accepts only a \stdClass or null." );
 			}
-
-			$id = (int)$row;
-			elgg_deprecated_notice('Passing an ID to constructor is deprecated. Use get_relationship()', 1.9);
-			$row = _elgg_get_relationship_row($id);
-			if (!$row) {
-				throw new \InvalidArgumentException("Relationship not found with ID $id");
+			
+			$id = ( int ) $row;
+			elgg_deprecated_notice ( 'Passing an ID to constructor is deprecated. Use get_relationship()', 1.9 );
+			$row = _elgg_get_relationship_row ( $id );
+			if (! $row) {
+				throw new \InvalidArgumentException ( "Relationship not found with ID $id" );
 			}
 		}
-
-		foreach ((array)$row as $key => $value) {
-			$this->attributes[$key] = $value;
+		
+		foreach ( ( array ) $row as $key => $value ) {
+			$this->attributes [$key] = $value;
 		}
 	}
-
+	
 	/**
 	 * (non-PHPdoc)
 	 *
@@ -57,65 +57,71 @@ class ElggRelationship extends \ElggData implements
 	 * @return void
 	 */
 	protected function initializeAttributes() {
-		parent::initializeAttributes();
-
-		$this->attributes['id'] = null;
-		$this->attributes['guid_one'] = null;
-		$this->attributes['relationship'] = null;
-		$this->attributes['guid_two'] = null;
+		parent::initializeAttributes ();
+		
+		$this->attributes ['id'] = null;
+		$this->attributes ['guid_one'] = null;
+		$this->attributes ['relationship'] = null;
+		$this->attributes ['guid_two'] = null;
 	}
-
+	
 	/**
 	 * Set an attribute of the relationship
 	 *
-	 * @param string $name  Name
-	 * @param mixed  $value Value
+	 * @param string $name
+	 *        	Name
+	 * @param mixed $value
+	 *        	Value
 	 * @return void
 	 */
 	public function __set($name, $value) {
-		$this->attributes[$name] = $value;
+		$this->attributes [$name] = $value;
 	}
-
+	
 	/**
 	 * Class member set overloading
 	 *
-	 * @param string $name  Name
-	 * @param mixed  $value Value
+	 * @param string $name
+	 *        	Name
+	 * @param mixed $value
+	 *        	Value
 	 * @return mixed
 	 * @deprecated 1.9
 	 */
 	public function set($name, $value) {
-		elgg_deprecated_notice("Use -> instead of set()", 1.9);
-		$this->__set($name, $value);
+		elgg_deprecated_notice ( "Use -> instead of set()", 1.9 );
+		$this->__set ( $name, $value );
 		return true;
 	}
-
+	
 	/**
 	 * Get an attribute of the relationship
 	 *
-	 * @param string $name Name
+	 * @param string $name
+	 *        	Name
 	 * @return mixed
 	 */
 	public function __get($name) {
-		if (array_key_exists($name, $this->attributes)) {
-			return $this->attributes[$name];
+		if (array_key_exists ( $name, $this->attributes )) {
+			return $this->attributes [$name];
 		}
-
+		
 		return null;
 	}
 	
 	/**
 	 * Class member get overloading
 	 *
-	 * @param string $name Name
+	 * @param string $name
+	 *        	Name
 	 * @return mixed
 	 * @deprecated 1.9
 	 */
 	public function get($name) {
-		elgg_deprecated_notice("Use -> instead of get()", 1.9);
-		return $this->__get($name);
+		elgg_deprecated_notice ( "Use -> instead of get()", 1.9 );
+		return $this->__get ( $name );
 	}
-
+	
 	/**
 	 * Save the relationship
 	 *
@@ -124,26 +130,26 @@ class ElggRelationship extends \ElggData implements
 	 */
 	public function save() {
 		if ($this->id > 0) {
-			delete_relationship($this->id);
+			delete_relationship ( $this->id );
 		}
-
-		$this->id = add_entity_relationship($this->guid_one, $this->relationship, $this->guid_two);
-		if (!$this->id) {
-			throw new \IOException("Unable to save new " . get_class());
+		
+		$this->id = add_entity_relationship ( $this->guid_one, $this->relationship, $this->guid_two );
+		if (! $this->id) {
+			throw new \IOException ( "Unable to save new " . get_class () );
 		}
-
+		
 		return $this->id;
 	}
-
+	
 	/**
 	 * Delete this relationship from the database.
 	 *
 	 * @return bool
 	 */
 	public function delete() {
-		return delete_relationship($this->id);
+		return delete_relationship ( $this->id );
 	}
-
+	
 	/**
 	 * Get a URL for this relationship.
 	 *
@@ -157,49 +163,55 @@ class ElggRelationship extends \ElggData implements
 		// @todo remove when elgg_register_relationship_url_handler() has been removed
 		if ($this->id) {
 			global $CONFIG;
-
-			$subtype = $this->getSubtype();
-
+			
+			$subtype = $this->getSubtype ();
+			
 			$function = "";
-			if (isset($CONFIG->relationship_url_handler[$subtype])) {
-				$function = $CONFIG->relationship_url_handler[$subtype];
+			if (isset ( $CONFIG->relationship_url_handler [$subtype] )) {
+				$function = $CONFIG->relationship_url_handler [$subtype];
 			}
-			if (isset($CONFIG->relationship_url_handler['all'])) {
-				$function = $CONFIG->relationship_url_handler['all'];
+			if (isset ( $CONFIG->relationship_url_handler ['all'] )) {
+				$function = $CONFIG->relationship_url_handler ['all'];
 			}
-
-			if (is_callable($function)) {
-				$url = call_user_func($function, $this);
+			
+			if (is_callable ( $function )) {
+				$url = call_user_func ( $function, $this );
 			}
-
+			
 			if ($url) {
-				$url = elgg_normalize_url($url);
+				$url = elgg_normalize_url ( $url );
 			}
 		}
-
-		$type = $this->getType();
-		$params = array('relationship' => $this);
-		$url = _elgg_services()->hooks->trigger('relationship:url', $type, $params, $url);
-
-		return elgg_normalize_url($url);
+		
+		$type = $this->getType ();
+		$params = array (
+				'relationship' => $this 
+		);
+		$url = _elgg_services ()->hooks->trigger ( 'relationship:url', $type, $params, $url );
+		
+		return elgg_normalize_url ( $url );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function toObject() {
-		$object = new \stdClass();
+		$object = new \stdClass ();
 		$object->id = $this->id;
 		$object->subject_guid = $this->guid_one;
 		$object->relationship = $this->relationship;
 		$object->object_guid = $this->guid_two;
-		$object->time_created = date('c', $this->getTimeCreated());
-		$params = array('relationship' => $this);
-		return _elgg_services()->hooks->trigger('to:object', 'relationship', $params, $object);
+		$object->time_created = date ( 'c', $this->getTimeCreated () );
+		$params = array (
+				'relationship' => $this 
+		);
+		return _elgg_services ()->hooks->trigger ( 'to:object', 'relationship', $params, $object );
 	}
-
+	
 	// EXPORTABLE INTERFACE ////////////////////////////////////////////////////////////
-
+	
 	/**
 	 * Return an array of fields which can be exported.
 	 *
@@ -207,15 +219,15 @@ class ElggRelationship extends \ElggData implements
 	 * @deprecated 1.9 Use toObject()
 	 */
 	public function getExportableValues() {
-		elgg_deprecated_notice(__METHOD__ . ' has been deprecated by toObject()', 1.9);
-		return array(
-			'id',
-			'guid_one',
-			'relationship',
-			'guid_two'
+		elgg_deprecated_notice ( __METHOD__ . ' has been deprecated by toObject()', 1.9 );
+		return array (
+				'id',
+				'guid_one',
+				'relationship',
+				'guid_two' 
 		);
 	}
-
+	
 	/**
 	 * Export this relationship
 	 *
@@ -223,69 +235,66 @@ class ElggRelationship extends \ElggData implements
 	 * @deprecated 1.9 Use toObject()
 	 */
 	public function export() {
-		elgg_deprecated_notice(__METHOD__ . ' has been deprecated', 1.9);
-		$uuid = get_uuid_from_object($this);
-		$relationship = new ODDRelationship(
-			guid_to_uuid($this->guid_one),
-			$this->relationship,
-			guid_to_uuid($this->guid_two)
-		);
-
-		$relationship->setAttribute('uuid', $uuid);
-
+		elgg_deprecated_notice ( __METHOD__ . ' has been deprecated', 1.9 );
+		$uuid = get_uuid_from_object ( $this );
+		$relationship = new ODDRelationship ( guid_to_uuid ( $this->guid_one ), $this->relationship, guid_to_uuid ( $this->guid_two ) );
+		
+		$relationship->setAttribute ( 'uuid', $uuid );
+		
 		return $relationship;
 	}
-
+	
 	// IMPORTABLE INTERFACE ////////////////////////////////////////////////////////////
-
+	
 	/**
 	 * Import a relationship
 	 *
-	 * @param ODD $data ODD data
-
+	 * @param ODD $data
+	 *        	ODD data
+	 *        	
 	 * @return bool
 	 * @throws ImportException|InvalidParameterException
 	 * @deprecated 1.9
 	 */
 	public function import(ODD $data) {
-		elgg_deprecated_notice(__METHOD__ . ' has been deprecated', 1.9);
-		if (!($data instanceof ODDRelationship)) {
-			throw new \InvalidParameterException("import() passed an unexpected ODD class");
+		elgg_deprecated_notice ( __METHOD__ . ' has been deprecated', 1.9 );
+		if (! ($data instanceof ODDRelationship)) {
+			throw new \InvalidParameterException ( "import() passed an unexpected ODD class" );
 		}
-
-		$uuid_one = $data->getAttribute('uuid1');
-		$uuid_two = $data->getAttribute('uuid2');
-
+		
+		$uuid_one = $data->getAttribute ( 'uuid1' );
+		$uuid_two = $data->getAttribute ( 'uuid2' );
+		
 		// See if this entity has already been imported, if so then we need to link to it
-		$entity1 = get_entity_from_uuid($uuid_one);
-		$entity2 = get_entity_from_uuid($uuid_two);
+		$entity1 = get_entity_from_uuid ( $uuid_one );
+		$entity2 = get_entity_from_uuid ( $uuid_two );
 		if (($entity1) && ($entity2)) {
 			// Set the item ID
-			$this->attributes['guid_one'] = $entity1->getGUID();
-			$this->attributes['guid_two'] = $entity2->getGUID();
-
+			$this->attributes ['guid_one'] = $entity1->getGUID ();
+			$this->attributes ['guid_two'] = $entity2->getGUID ();
+			
 			// Map verb to relationship
-			//$verb = $data->getAttribute('verb');
-			//$relationship = get_relationship_from_verb($verb);
-			$relationship = $data->getAttribute('type');
-
+			// $verb = $data->getAttribute('verb');
+			// $relationship = get_relationship_from_verb($verb);
+			$relationship = $data->getAttribute ( 'type' );
+			
 			if ($relationship) {
-				$this->attributes['relationship'] = $relationship;
+				$this->attributes ['relationship'] = $relationship;
 				// save
-				$result = $this->save();
-				if (!$result) {
-					throw new \ImportException("There was a problem saving " . get_class());
+				$result = $this->save ();
+				if (! $result) {
+					throw new \ImportException ( "There was a problem saving " . get_class () );
 				}
-
+				
 				return true;
 			}
 		}
-
+		
 		return false;
 	}
-
+	
 	// SYSTEM LOG INTERFACE ////////////////////////////////////////////////////////////
-
+	
 	/**
 	 * Return an identification for the object for storage in the system log.
 	 * This id must be an integer.
@@ -295,31 +304,34 @@ class ElggRelationship extends \ElggData implements
 	public function getSystemLogID() {
 		return $this->id;
 	}
-
+	
 	/**
 	 * For a given ID, return the object associated with it.
 	 * This is used by the river functionality primarily.
 	 * This is useful for checking access permissions etc on objects.
 	 *
-	 * @param int $id ID
-	 *
+	 * @param int $id
+	 *        	ID
+	 *        	
 	 * @return \ElggRelationship
 	 */
 	public function getObjectFromID($id) {
-		return get_relationship($id);
+		return get_relationship ( $id );
 	}
-
+	
 	/**
-	 * Return a type of the object - eg. object, group, user, relationship, metadata, annotation etc
+	 * Return a type of the object - eg.
+	 * object, group, user, relationship, metadata, annotation etc
 	 *
 	 * @return string 'relationship'
 	 */
 	public function getType() {
 		return 'relationship';
 	}
-
+	
 	/**
-	 * Return a subtype. For metadata & annotations this is the 'name' and for relationship this
+	 * Return a subtype.
+	 * For metadata & annotations this is the 'name' and for relationship this
 	 * is the relationship type.
 	 *
 	 * @return string

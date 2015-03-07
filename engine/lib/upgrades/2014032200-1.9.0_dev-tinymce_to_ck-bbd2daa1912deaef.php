@@ -6,14 +6,13 @@
  * Activates CKEditor if TinyMCE is active.
  * Deactivates TinyMCE.
  */
+$tiny = elgg_get_plugin_from_id ( 'tinymce' );
 
-$tiny = elgg_get_plugin_from_id('tinymce');
-
-if ($tiny instanceof \ElggPlugin && $tiny->isActive()) {
-	$ck = elgg_get_plugin_from_id('ckeditor');
+if ($tiny instanceof \ElggPlugin && $tiny->isActive ()) {
+	$ck = elgg_get_plugin_from_id ( 'ckeditor' );
 	if ($ck instanceof \ElggPlugin) {
-		$ck->activate();
+		$ck->activate ();
 	}
-
-	$tiny->deactivate();
+	
+	$tiny->deactivate ();
 }

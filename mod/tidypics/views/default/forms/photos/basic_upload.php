@@ -10,21 +10,29 @@
  * @author Cash Costello
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
  */
+$album = $vars ['entity'];
 
-$album = $vars['entity'];
+$maxfilesize = ( float ) elgg_get_plugin_setting ( 'maxfilesize', 'tidypics' );
 
-$maxfilesize = (float) elgg_get_plugin_setting('maxfilesize', 'tidypics');
-
-$instructions = elgg_echo("tidypics:uploader:upload");
-$max = elgg_echo('tidypics:uploader:basic', array($maxfilesize));
+$instructions = elgg_echo ( "tidypics:uploader:upload" );
+$max = elgg_echo ( 'tidypics:uploader:basic', array (
+		$maxfilesize 
+) );
 
 $list = '';
-for ($x = 0; $x < 10; $x++) {
-	$list .= '<li>' . elgg_view('input/file', array('name' => 'images[]')) . '</li>';
+for($x = 0; $x < 10; $x ++) {
+	$list .= '<li>' . elgg_view ( 'input/file', array (
+			'name' => 'images[]' 
+	) ) . '</li>';
 }
 
-$foot = elgg_view('input/hidden', array('name' => 'guid', 'value' => $album->getGUID()));
-$foot .= elgg_view('input/submit', array('value' => elgg_echo("photos:addphotos")));
+$foot = elgg_view ( 'input/hidden', array (
+		'name' => 'guid',
+		'value' => $album->getGUID () 
+) );
+$foot .= elgg_view ( 'input/submit', array (
+		'value' => elgg_echo ( "photos:addphotos" ) 
+) );
 
 $form_body = <<<HTML
 <div>
@@ -40,8 +48,8 @@ $form_body = <<<HTML
 </div>
 HTML;
 
-echo elgg_view('input/form', array(
-	'body' => $form_body,
-	'action' => 'action/photos/image/upload',
-	'enctype' => 'multipart/form-data',
-));
+echo elgg_view ( 'input/form', array (
+		'body' => $form_body,
+		'action' => 'action/photos/image/upload',
+		'enctype' => 'multipart/form-data' 
+) );

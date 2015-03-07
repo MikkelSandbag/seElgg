@@ -2,7 +2,6 @@
 /**
  * Profile info box
  */
-
 ?>
 
 <?php /* We add mrn here because we're doing stupid things with the grid system. Remove this hack */ ?>

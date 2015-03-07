@@ -5,44 +5,49 @@
  * Run this from the command line:
  * 	php create_upgrade.php upgrade_name
  */
-
-error_reporting(E_ALL);
+error_reporting ( E_ALL );
 
 // only allow from the command line.
-if (php_sapi_name() != 'cli') {
-	die('Upgrades can only be created from the command line.');
+if (php_sapi_name () != 'cli') {
+	die ( 'Upgrades can only be created from the command line.' );
 }
 
-if (count($argv) < 2) {
-	elgg_create_upgrade_show_usage('No upgrade name.');
+if (count ( $argv ) < 2) {
+	elgg_create_upgrade_show_usage ( 'No upgrade name.' );
 }
 
-$name = $argv[1];
+$name = $argv [1];
 
-if (strlen($name) > 24) {
-	elgg_create_upgrade_show_usage('Upgrade names cannot be longer than 24 characters.');
+if (strlen ( $name ) > 24) {
+	elgg_create_upgrade_show_usage ( 'Upgrade names cannot be longer than 24 characters.' );
 }
 
 require_once '../../../version.php';
-$upgrade_path = dirname(__FILE__);
+$upgrade_path = dirname ( __FILE__ );
 
-$upgrade_name = strtolower($name);
-$upgrade_name = str_replace(array(' ', '-'), '_', $upgrade_name);
-$upgrade_release = str_replace(array(' ', '-'), '_', $release);
-$time = time();
-$upgrade_rnd = substr(md5($time), 0, 16);
-$upgrade_date = date('Ymd', $time);
+$upgrade_name = strtolower ( $name );
+$upgrade_name = str_replace ( array (
+		' ',
+		'-' 
+), '_', $upgrade_name );
+$upgrade_release = str_replace ( array (
+		' ',
+		'-' 
+), '_', $release );
+$time = time ();
+$upgrade_rnd = substr ( md5 ( $time ), 0, 16 );
+$upgrade_date = date ( 'Ymd', $time );
 
 // determine the inc count
 $upgrade_inc = 0;
-$files = elgg_get_file_list($upgrade_path);
-sort($files);
+$files = elgg_get_file_list ( $upgrade_path );
+sort ( $files );
 
-foreach ($files as $filename) {
-	$filename = basename($filename);
-	$date = (int)substr($filename, 0, 8);
-	$inc = (int)substr($filename, 8, 2);
-
+foreach ( $files as $filename ) {
+	$filename = basename ( $filename );
+	$date = ( int ) substr ( $filename, 0, 8 );
+	$inc = ( int ) substr ( $filename, 8, 2 );
+	
 	if ($upgrade_date == $date) {
 		if ($inc >= $upgrade_inc) {
 			$upgrade_inc = $inc + 1;
@@ -59,7 +64,7 @@ if ($upgrade_inc < 10) {
 $upgrade_version = $upgrade_date . $upgrade_inc;
 
 // make filename
-if (substr($release, 0, 3) == '1.7') {
+if (substr ( $release, 0, 3 ) == '1.7') {
 	// 1.7 upgrades are YYYYMMDDXX
 	$upgrade_name = $upgrade_version . '.php';
 } else {
@@ -69,8 +74,8 @@ if (substr($release, 0, 3) == '1.7') {
 
 $upgrade_file = $upgrade_path . '/' . $upgrade_name;
 
-if (is_file($upgrade_file)) {
-	elgg_create_upgrade_show_usage("Upgrade file $upgrade_file already exists. This script has failed you.");
+if (is_file ( $upgrade_file )) {
+	elgg_create_upgrade_show_usage ( "Upgrade file $upgrade_file already exists. This script has failed you." );
 }
 
 $upgrade_code = <<<___UPGRADE
@@ -86,16 +91,16 @@ $upgrade_code = <<<___UPGRADE
 
 ___UPGRADE;
 
-$h = fopen($upgrade_file, 'wb');
+$h = fopen ( $upgrade_file, 'wb' );
 
-if (!$h) {
-	die("Could not open file $upgrade_file");
+if (! $h) {
+	die ( "Could not open file $upgrade_file" );
 }
 
-if (!fwrite($h, $upgrade_code)) {
-	die("Could not write to $upgrade_file");
+if (! fwrite ( $h, $upgrade_code )) {
+	die ( "Could not write to $upgrade_file" );
 } else {
-	elgg_set_version_dot_php_version($upgrade_version);
+	elgg_set_version_dot_php_version ( $upgrade_version );
 	echo <<<___MSG
 
 Created upgrade file and updated version.php.
@@ -106,41 +111,42 @@ Version:      $upgrade_version
 ___MSG;
 }
 
-fclose($h);
+fclose ( $h );
 
 /**
  * Updates the version number in elgg/version.php
  *
- * @param string $version
+ * @param string $version        	
  * @return boolean
  */
 function elgg_set_version_dot_php_version($version) {
 	$file = '../../../version.php';
-	$h = fopen($file, 'r+b');
-
-	if (!$h) {
+	$h = fopen ( $file, 'r+b' );
+	
+	if (! $h) {
 		return false;
 	}
-
+	
 	$out = '';
-
-	while (($line = fgets($h)) !== false) {
+	
+	while ( ($line = fgets ( $h )) !== false ) {
 		$find = "/\\\$version[ ]?=[ ]?[0-9]{10};/";
 		$replace = "\$version = $version;";
-		$out .= preg_replace($find, $replace, $line);
+		$out .= preg_replace ( $find, $replace, $line );
 	}
-
-	rewind($h);
-
-	fwrite($h, $out);
-	fclose($h);
+	
+	rewind ( $h );
+	
+	fwrite ( $h, $out );
+	fclose ( $h );
 	return true;
 }
 
 /**
  * Shows the usage for the create_upgrade script and dies().
  *
- * @param string $msg Optional message to display
+ * @param string $msg
+ *        	Optional message to display
  * @return void
  */
 function elgg_create_upgrade_show_usage($msg = '') {
@@ -151,8 +157,8 @@ Example:
 	php create_upgrade.php my_upgrade
 
 ___MSG;
-
-	die($text);
+	
+	die ( $text );
 }
 
 /**
@@ -162,62 +168,66 @@ ___MSG;
 /**
  * Returns a list of files in $directory.
  *
- * Only returns files.  Does not recurse into subdirs.
+ * Only returns files. Does not recurse into subdirs.
  *
- * @param string $directory  Directory to look in
- * @param array  $exceptions Array of filenames to ignore
- * @param array  $list       Array of files to append to
- * @param mixed  $extensions Array of extensions to allow, NULL for all. Use a dot: array('.php').
- *
+ * @param string $directory
+ *        	Directory to look in
+ * @param array $exceptions
+ *        	Array of filenames to ignore
+ * @param array $list
+ *        	Array of files to append to
+ * @param mixed $extensions
+ *        	Array of extensions to allow, NULL for all. Use a dot: array('.php').
+ *        	
  * @return array Filenames in $directory, in the form $directory/filename.
  */
-function elgg_get_file_list($directory, $exceptions = array(), $list = array(),
-$extensions = NULL) {
-
-	$directory = sanitise_filepath($directory);
-	if ($handle = opendir($directory)) {
-		while (($file = readdir($handle)) !== FALSE) {
-			if (!is_file($directory . $file) || in_array($file, $exceptions)) {
+function elgg_get_file_list($directory, $exceptions = array(), $list = array(), $extensions = NULL) {
+	$directory = sanitise_filepath ( $directory );
+	if ($handle = opendir ( $directory )) {
+		while ( ($file = readdir ( $handle )) !== FALSE ) {
+			if (! is_file ( $directory . $file ) || in_array ( $file, $exceptions )) {
 				continue;
 			}
-
-			if (is_array($extensions)) {
-				if (in_array(strrchr($file, '.'), $extensions)) {
-					$list[] = $directory . $file;
+			
+			if (is_array ( $extensions )) {
+				if (in_array ( strrchr ( $file, '.' ), $extensions )) {
+					$list [] = $directory . $file;
 				}
 			} else {
-				$list[] = $directory . $file;
+				$list [] = $directory . $file;
 			}
 		}
-		closedir($handle);
+		closedir ( $handle );
 	}
-
+	
 	return $list;
 }
 
 /**
  * Sanitise file paths ensuring that they begin and end with slashes etc.
  *
- * @param string $path         The path
- * @param bool   $append_slash Add tailing slash
- *
+ * @param string $path
+ *        	The path
+ * @param bool $append_slash
+ *        	Add tailing slash
+ *        	
  * @return string
  */
 function sanitise_filepath($path, $append_slash = TRUE) {
 	// Convert to correct UNIX paths
-	$path = str_replace('\\', '/', $path);
-	$path = str_replace('../', '/', $path);
+	$path = str_replace ( '\\', '/', $path );
+	$path = str_replace ( '../', '/', $path );
 	// replace // with / except when preceeded by :
-	$path = preg_replace("/([^:])\/\//", "$1/", $path);
-
+	$path = preg_replace ( "/([^:])\/\//", "$1/", $path );
+	
 	// Sort trailing slash
-	$path = trim($path);
+	$path = trim ( $path );
 	// rtrim defaults plus /
-	$path = rtrim($path, " \n\t\0\x0B/");
-
+	$path = rtrim ( $path, " \n\t\0\x0B/" );
+	
 	if ($append_slash) {
 		$path = $path . '/';
 	}
-
+	
 	return $path;
 }

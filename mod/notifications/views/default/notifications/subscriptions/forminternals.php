@@ -6,10 +6,10 @@
  */
 
 /* @var ElggUser $user */
-$user = $vars['user'];
+$user = $vars ['user'];
 
-elgg_load_js('elgg.friendspicker');
-elgg_load_js('jquery.easing');
+elgg_load_js ( 'elgg.friendspicker' );
+elgg_load_js ( 'jquery.easing' );
 
 ?>
 <div class="elgg-module elgg-module-info">
@@ -24,23 +24,25 @@ elgg_load_js('jquery.easing');
 <?php
 
 // Get friends and subscriptions
-$friends = $user->getFriends(array('limit' => 0));
-		
-$NOTIFICATION_HANDLERS = _elgg_services()->notifications->getMethodsAsDeprecatedGlobal();
-foreach($NOTIFICATION_HANDLERS as $method => $foo) {
-	$subsbig[$method] = elgg_get_entities_from_relationship(array(
-		'relationship' => 'notify' . $method,
-		'relationship_guid' => $user->guid,
-		'type' => 'user',
-		'limit' => false,
-	));
+$friends = $user->getFriends ( array (
+		'limit' => 0 
+) );
+
+$NOTIFICATION_HANDLERS = _elgg_services ()->notifications->getMethodsAsDeprecatedGlobal ();
+foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
+	$subsbig [$method] = elgg_get_entities_from_relationship ( array (
+			'relationship' => 'notify' . $method,
+			'relationship_guid' => $user->guid,
+			'type' => 'user',
+			'limit' => false 
+	) );
 }
-		
-$subs = array();
-foreach($subsbig as $method => $big) {
-	if (is_array($subsbig[$method]) && sizeof($subsbig[$method])) {
-		foreach($subsbig[$method] as $u) { 
-			$subs[$method][] = $u->guid;
+
+$subs = array ();
+foreach ( $subsbig as $method => $big ) {
+	if (is_array ( $subsbig [$method] ) && sizeof ( $subsbig [$method] )) {
+		foreach ( $subsbig [$method] as $u ) {
+			$subs [$method] [] = $u->guid;
 		}
 	}
 }
@@ -48,94 +50,95 @@ foreach($subsbig as $method => $big) {
 // Let the system know that the friends picker is in use
 global $pickerinuse;
 $pickerinuse = true;
-$chararray = elgg_echo('friendspicker:chararray');
+$chararray = elgg_echo ( 'friendspicker:chararray' );
 
 // Initialise name
-if (!isset($vars['name'])) {
+if (! isset ( $vars ['name'] )) {
 	$name = "friend";
 } else {
-	$name = $vars['name'];
+	$name = $vars ['name'];
 }
-		
+
 // Initialise values
-if (!isset($vars['value'])) {
-	$vars['value'] = array();
+if (! isset ( $vars ['value'] )) {
+	$vars ['value'] = array ();
 } else {
-	if (!is_array($vars['value'])) {
-		$vars['value'] = (int) $vars['value'];
-		$vars['value'] = array($vars['value']);
+	if (! is_array ( $vars ['value'] )) {
+		$vars ['value'] = ( int ) $vars ['value'];
+		$vars ['value'] = array (
+				$vars ['value'] 
+		);
 	}
 }
 
 // Initialise whether we're calling back or not
-if (isset($vars['callback'])) {
-	$callback = $vars['callback'];
+if (isset ( $vars ['callback'] )) {
+	$callback = $vars ['callback'];
 } else {
 	$callback = false;
 }
-		
+
 // We need to count the number of friends pickers on the page.
-if (!isset($vars['friendspicker'])) {
+if (! isset ( $vars ['friendspicker'] )) {
 	global $friendspicker;
-	if (!isset($friendspicker)) {
+	if (! isset ( $friendspicker )) {
 		$friendspicker = 0;
 	}
-	$friendspicker++;
+	$friendspicker ++;
 } else {
-	$friendspicker = $vars['friendspicker'];
+	$friendspicker = $vars ['friendspicker'];
 }
 
-$users = array();
-$activeletters = array();
-		
+$users = array ();
+$activeletters = array ();
+
 // Are we displaying form tags and submit buttons?
 // (If we've been given a target, then yes! Otherwise, no.)
-if (isset($vars['formtarget'])) {
-	$formtarget = $vars['formtarget'];
+if (isset ( $vars ['formtarget'] )) {
+	$formtarget = $vars ['formtarget'];
 } else {
 	$formtarget = false;
 }
-		
+
 // Sort users by letter
-if (is_array($friends) && sizeof($friends)) {
-	foreach($friends as $friend) {
-				
-		$letter = elgg_substr($friend->name,0,1);
-		$letter = elgg_strtoupper($letter);
-		if (!elgg_substr_count($chararray,$letter)) {
+if (is_array ( $friends ) && sizeof ( $friends )) {
+	foreach ( $friends as $friend ) {
+		
+		$letter = elgg_substr ( $friend->name, 0, 1 );
+		$letter = elgg_strtoupper ( $letter );
+		if (! elgg_substr_count ( $chararray, $letter )) {
 			$letter = "*";
 		}
-		if (!isset($users[$letter])) {
-			$users[$letter] = array();
+		if (! isset ( $users [$letter] )) {
+			$users [$letter] = array ();
 		}
-		$users[$letter][$friend->guid] = $friend;
+		$users [$letter] [$friend->guid] = $friend;
 	}
 }
 
-if (!$callback) {
-			
-?>
+if (! $callback) {
+	
+	?>
 
 <div class="friends-picker-main-wrapper">
 
 <?php
-
-	if (isset($vars['content'])) {
-		echo $vars['content'];
+	
+	if (isset ( $vars ['content'] )) {
+		echo $vars ['content'];
 	}
 	
-?>
+	?>
 
 	<div id="friends-picker_placeholder<?php echo $friendspicker; ?>">
 
 <?php
-	
 }
-	
-if (!isset($vars['replacement'])) {
+
+if (! isset ( $vars ['replacement'] )) {
 	
 	if ($formtarget) {
-?>
+		?>
 <?php //@todo JS 1.8: no ?>
 	<script language="text/javascript">
 		$(function() { // onload...do
@@ -162,71 +165,71 @@ if (!isset($vars['replacement'])) {
 	</script>
 
 <?php
-
 	}
-
-	echo elgg_view('notifications/subscriptions/jsfuncs',$vars);
-		
-?>
+	
+	echo elgg_view ( 'notifications/subscriptions/jsfuncs', $vars );
+	
+	?>
 
 	<div class="friends-picker-wrapper">
-	<div id="friends-picker<?php echo $friendspicker; ?>">
-		<div class="friends-picker-container">
+				<div id="friends-picker<?php echo $friendspicker; ?>">
+					<div class="friends-picker-container">
 <?php
-
+	
 	// Initialise letters
-	$letter = elgg_substr($chararray,0,1);
+	$letter = elgg_substr ( $chararray, 0, 1 );
 	$letpos = 0;
 	$chararray .= '*';
-	while (1 == 1) {
-?>
+	while ( 1 == 1 ) {
+		?>
 			<div class="panel" title="<?php echo $letter; ?>">
-				<div class="wrapper">
-					<h3><?php echo $letter; ?></h3>					
+							<div class="wrapper">
+								<h3><?php echo $letter; ?></h3>					
 					
 <?php
+		
+		if (isset ( $users [$letter] )) {
+			ksort ( $users [$letter] );
+			?>
 
-		if (isset($users[$letter])) {
-			ksort($users[$letter]);
-?>
-
-<table id="notificationstable" cellspacing="0" cellpadding="4" border="0" width="100%">
-<tr>
-	<td>&nbsp;</td>
+<table id="notificationstable" cellspacing="0" cellpadding="4"
+									border="0" width="100%">
+									<tr>
+										<td>&nbsp;</td>
 <?php
 			$i = 0;
-			foreach($NOTIFICATION_HANDLERS as $method => $foo) {
+			foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
 				if ($i > 0) {
 					echo "<td class='spacercolumn'>&nbsp;</td>";
 				}
-?>
+				?>
 	<td class="<?php echo $method; ?>togglefield"><?php echo elgg_echo('notification:method:'.$method); ?></td>
 <?php
-				$i++;
+				$i ++;
 			}
-?>
+			?>
 	<td>&nbsp;</td>
-</tr>
+									</tr>
 
 <?php
-
-			if (is_array($users[$letter]) && sizeof($users[$letter]) > 0) {
-				foreach($users[$letter] as $friend) {
-					if ($friend instanceof ElggUser ) {
-				
-						if (!in_array($letter,$activeletters)) {
-							$activeletters[] = $letter;
+			
+			if (is_array ( $users [$letter] ) && sizeof ( $users [$letter] ) > 0) {
+				foreach ( $users [$letter] as $friend ) {
+					if ($friend instanceof ElggUser) {
+						
+						if (! in_array ( $letter, $activeletters )) {
+							$activeletters [] = $letter;
 						}
-				
-						$method = array();
+						
+						$method = array ();
 						$fields = '';
 						$i = 0;
-				
-						foreach($NOTIFICATION_HANDLERS as $method => $foo) {
-							if (isset($subs[$method]) && in_array($friend->guid,$subs[$method])) {
-								$checked[$method] = 'checked="checked"';
+						
+						foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
+							if (isset ( $subs [$method] ) && in_array ( $friend->guid, $subs [$method] )) {
+								$checked [$method] = 'checked="checked"';
 							} else {
-								$checked[$method] = '';
+								$checked [$method] = '';
 							}
 							if ($i > 0) {
 								$fields .= "<td class='spacercolumn'>&nbsp;</td>";
@@ -236,90 +239,91 @@ if (!isset($vars['replacement'])) {
 <a border="0" id="{$method}{$friend->guid}" class="{$method}toggleOff" onclick="adjust{$method}_alt('{$method}{$friend->guid}');">
 <input type="checkbox" name="{$method}subscriptions[]" id="{$method}checkbox" onclick="adjust{$method}('{$method}{$friend->guid}');" value="{$friend->guid}" {$checked[$method]} /></a></td>
 END;
-							$i++;
+							$i ++;
 						}
-?>
+						?>
 
 <tr>
-	<td class="namefield">
-		<a href="<?php echo $friend->getURL(); ?>">
+										<td class="namefield"><a
+											href="<?php echo $friend->getURL(); ?>">
 <?php
-			echo elgg_view_entity_icon($friend, 'tiny', array('use_hover' => false));
-?>
+						echo elgg_view_entity_icon ( $friend, 'tiny', array (
+								'use_hover' => false 
+						) );
+						?>
 		</a>
-		<p class="namefieldlink">
-			<a href="<?php echo $friend->getURL(); ?>"><?php echo $friend->name ?></a>
-		</p>
-	</td>
+											<p class="namefieldlink">
+												<a href="<?php echo $friend->getURL(); ?>"><?php echo $friend->name ?></a>
+											</p></td>
 	
 <?php echo $fields; ?>
 
 <td>&nbsp;</td>
-</tr>
+									</tr>
 
 
 <?php
 					}
 				}
 			}
-
-?>
+			
+			?>
 </table>
 
 <?php
 		}
-
-?>
+		
+		?>
 			
 				</div>
-			</div>
-<?php			
-		$letpos++;
-		if ($letpos == elgg_strlen($chararray)) {
+						</div>
+<?php
+		$letpos ++;
+		if ($letpos == elgg_strlen ( $chararray )) {
 			break;
 		}
-		$letter = elgg_substr($chararray,$letpos,1);
+		$letter = elgg_substr ( $chararray, $letpos, 1 );
 	}
-		
-?>
-		</div>		
-	</div>
-	</div>
+	
+	?>
+		</div>
+				</div>
+			</div>
 	
 <?php
 } else {
-	echo $vars['replacement']; 
+	echo $vars ['replacement'];
 }
-if (!$callback) {
-
-?>
+if (! $callback) {
+	
+	?>
 			
 	</div>
-</div>
+	</div>
 
 
 <?php
-
 }
 
 ?>
 <?php
-if (!isset($vars['replacement'])) {
-?>
+
+if (! isset ( $vars ['replacement'] )) {
+	?>
 <?php //@todo JS 1.8: no ?>
 <script type="text/javascript">
 		// initialise picker
 		$("div#friends-picker<?php echo $friendspicker; ?>").friendsPicker(<?php echo $friendspicker; ?>);
 </script>
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(function () {
 	// manually add class to corresponding tab for panels that have content
 <?php
-	if (sizeof($activeletters) > 0) {
+	if (sizeof ( $activeletters ) > 0) {
 		$chararray .= "*";
-		foreach($activeletters as $letter) {
-			$tab = elgg_strpos($chararray, $letter) + 1;
-?>
+		foreach ( $activeletters as $letter ) {
+			$tab = elgg_strpos ( $chararray, $letter ) + 1;
+			?>
 	$("div#friends-picker-navigation<?php echo $friendspicker; ?> li.tab<?php echo $tab; ?> a").addClass("tabHasContent");
 <?php
 		}

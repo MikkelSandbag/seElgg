@@ -4,14 +4,16 @@
  *
  * @since 1.8
  */
+$cancel_button = elgg_view ( 'input/button', array (
+		'value' => elgg_echo ( 'cancel' ),
+		'class' => 'elgg-button-cancel mlm' 
+) );
+$cancel_button = json_encode ( $cancel_button );
 
-$cancel_button = elgg_view('input/button', array(
-	'value' => elgg_echo('cancel'),
-	'class' => 'elgg-button-cancel mlm',
-));
-$cancel_button = json_encode($cancel_button);
+if (0) {
+	?><script><?php
 
-if (0) { ?><script><?php }
+}
 ?>
 
 elgg.provide('elgg.walled_garden');

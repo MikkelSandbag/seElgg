@@ -14,52 +14,62 @@
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
+$user = $vars ["chatuser"];
 
-$user = $vars["chatuser"];
-
-if (!empty($user) && $user instanceof ElggUser) {
-	$link = $vars["link"];
-	$icon = $vars["icon"];
-	$iconSize = $vars["iconSize"];
-	$onlineStatus = $vars["onlineStatus"];
-
+if (! empty ( $user ) && $user instanceof ElggUser) {
+	$link = $vars ["link"];
+	$icon = $vars ["icon"];
+	$iconSize = $vars ["iconSize"];
+	$onlineStatus = $vars ["onlineStatus"];
+	
 	if ($link !== false || $link !== true) {
 		$link = true;
 	}
-
+	
 	if ($icon !== false || $icon !== true) {
 		$icon = true;
 	}
-
+	
 	if ($onlineStatus !== false || $onlineStatus !== true) {
 		$onlineStatus = true;
 	}
-
-	if (empty($iconSize) || !in_array($iconSize, array("tiny", "small", "medium", "large", "profile"))) {
+	
+	if (empty ( $iconSize ) || ! in_array ( $iconSize, array (
+			"tiny",
+			"small",
+			"medium",
+			"large",
+			"profile" 
+	) )) {
 		$iconSize = "tiny";
 	}
-
+	
 	$result = "";
 	$result .= "<tr class='chatmember'>";
-
+	
 	if ($icon) {
-		$result .= "<td>".elgg_view('output/img', array('src' => elgg_format_url($user->getIconURL($iconSize)), 'class' => 'messageIcon'))."</td>";
+		$result .= "<td>" . elgg_view ( 'output/img', array (
+				'src' => elgg_format_url ( $user->getIconURL ( $iconSize ) ),
+				'class' => 'messageIcon' 
+		) ) . "</td>";
 	}
-
+	
 	if ($link) {
-		$result .= "<td class='chatmemberinfo'><a href='" . $user->getUrl() . "' title='" . $user->name . "' rel='" . $user->guid . "'>" . $user->name . "</a></td>";
+		$result .= "<td class='chatmemberinfo'><a href='" . $user->getUrl () . "' title='" . $user->name . "' rel='" . $user->guid . "'>" . $user->name . "</a></td>";
 	} else {
-		$result .= "<td class='chatmemberinfo'>". $user->name . "</td>";
+		$result .= "<td class='chatmemberinfo'>" . $user->name . "</td>";
 	}
-
+	
 	if ($onlineStatus) {
-		$diff = time() - $user->last_action;
-
-		$inactive = (int) elgg_get_plugin_setting("onlinestatus_inactive", "elggchat");
-		$active = (int) elgg_get_plugin_setting("onlinestatus_active", "elggchat");
-
-		$title = elgg_echo("elggchat:session:onlinestatus", array(elgg_get_friendly_time($user->last_action)));
-
+		$diff = time () - $user->last_action;
+		
+		$inactive = ( int ) elgg_get_plugin_setting ( "onlinestatus_inactive", "elggchat" );
+		$active = ( int ) elgg_get_plugin_setting ( "onlinestatus_active", "elggchat" );
+		
+		$title = elgg_echo ( "elggchat:session:onlinestatus", array (
+				elgg_get_friendly_time ( $user->last_action ) 
+		) );
+		
 		if ($diff <= $active) {
 			$result .= "<td><div class='online_status_chat' title='" . $title . "'></div></td>";
 		} elseif ($diff <= $inactive) {
@@ -68,8 +78,8 @@ if (!empty($user) && $user instanceof ElggUser) {
 			$result .= "<td><div class='online_status_chat online_status_inactive' title='" . $title . "'></div></td>";
 		}
 	}
-
+	
 	$result .= "</tr>";
-
+	
 	echo $result;
 }

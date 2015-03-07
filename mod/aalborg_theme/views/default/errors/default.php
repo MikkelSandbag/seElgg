@@ -2,11 +2,10 @@
 /**
  * General error
  */
-
-$message = elgg_echo('error:default:content');
+$message = elgg_echo ( 'error:default:content' );
 
 ?>
 
 <div class="elgg-box-error">
-	<?php echo $message ?>
+	<?php echo $message?>
 </div>

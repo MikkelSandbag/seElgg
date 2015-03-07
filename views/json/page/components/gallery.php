@@ -4,5 +4,4 @@
  *
  * @uses $vars['items']
  */
-
-echo elgg_view('page/components/list', $vars);
+echo elgg_view ( 'page/components/list', $vars );

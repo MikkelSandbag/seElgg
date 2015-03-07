@@ -11,24 +11,23 @@
  * @uses $vars['class']    Additional CSS class
  * @uses $vars['disabled']
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-plaintext {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-plaintext {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-plaintext";
+	$vars ['class'] = "elgg-input-plaintext";
 }
 
-$defaults = array(
-	'value' => '',
-	'rows' => '10',
-	'cols' => '50',
-	'disabled' => false,
+$defaults = array (
+		'value' => '',
+		'rows' => '10',
+		'cols' => '50',
+		'disabled' => false 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
-$value = $vars['value'];
-unset($vars['value']);
+$value = $vars ['value'];
+unset ( $vars ['value'] );
 
 ?>
 

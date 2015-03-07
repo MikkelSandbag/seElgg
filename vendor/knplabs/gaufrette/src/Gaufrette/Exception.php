@@ -7,6 +7,5 @@ namespace Gaufrette;
  *
  * @author Antoine Hérault <antoine.herault@gmail.com>
  */
-interface Exception
-{
+interface Exception {
 }

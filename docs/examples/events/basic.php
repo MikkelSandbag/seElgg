@@ -5,13 +5,11 @@
  * of the handler function is an object that is related to the event. For
  * the 'init', 'system' event, it is null.
  */
-
-elgg_register_event_handler('init', 'system', 'example_event_handler');
-
+elgg_register_event_handler ( 'init', 'system', 'example_event_handler' );
 function example_event_handler($event, $type, $object) {
-	var_dump($event);
-	var_dump($type);
-	var_dump($object);
-
+	var_dump ( $event );
+	var_dump ( $type );
+	var_dump ( $object );
+	
 	return true;
 }

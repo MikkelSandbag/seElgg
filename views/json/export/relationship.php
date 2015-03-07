@@ -7,16 +7,15 @@
  * @subpackage Core
  * @deprecated 1.9
  */
+$r = $vars ['relationship'];
 
-$r = $vars['relationship'];
+$export = new stdClass ();
 
-$export = new stdClass;
+$exportable_values = $entity->getExportableValues ();
 
-$exportable_values = $entity->getExportableValues();
-
-foreach ($exportable_values as $v) {
+foreach ( $exportable_values as $v ) {
 	$export->$v = $r->$v;
 }
 
 global $jsonexport;
-$jsonexport['relationships'][] = $export;
+$jsonexport ['relationships'] [] = $export;

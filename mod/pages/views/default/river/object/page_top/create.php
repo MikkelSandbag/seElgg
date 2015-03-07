@@ -4,5 +4,4 @@
  *
  * @package ElggPages
  */
-
-echo elgg_view('river/object/page/create', $vars);
+echo elgg_view ( 'river/object/page/create', $vars );

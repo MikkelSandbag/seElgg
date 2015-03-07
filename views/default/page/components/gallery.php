@@ -15,51 +15,50 @@
  * @uses $vars['item_class']    Additional CSS class for the <li> elements
  * @uses $vars['no_results']    Message to display if no results (string|Closure)
  */
+$items = $vars ['items'];
+$offset = $vars ['offset'];
+$limit = $vars ['limit'];
+$count = $vars ['count'];
+$base_url = elgg_extract ( 'base_url', $vars, '' );
+$pagination = elgg_extract ( 'pagination', $vars, true );
+$offset_key = elgg_extract ( 'offset_key', $vars, 'offset' );
+$position = elgg_extract ( 'position', $vars, 'after' );
+$no_results = elgg_extract ( 'no_results', $vars, '' );
 
-$items = $vars['items'];
-$offset = $vars['offset'];
-$limit = $vars['limit'];
-$count = $vars['count'];
-$base_url = elgg_extract('base_url', $vars, '');
-$pagination = elgg_extract('pagination', $vars, true);
-$offset_key = elgg_extract('offset_key', $vars, 'offset');
-$position = elgg_extract('position', $vars, 'after');
-$no_results = elgg_extract('no_results', $vars, '');
-
-if (!$items && $no_results) {
+if (! $items && $no_results) {
 	if ($no_results instanceof Closure) {
-		echo $no_results();
+		echo $no_results ();
 		return;
 	}
 	echo "<p>$no_results</p>";
 	return;
 }
 
-if (!is_array($items) || count($items) == 0) {
+if (! is_array ( $items ) || count ( $items ) == 0) {
 	return;
 }
 
-elgg_push_context('gallery');
+elgg_push_context ( 'gallery' );
 
 $gallery_class = 'elgg-gallery';
-if (isset($vars['gallery_class'])) {
+if (isset ( $vars ['gallery_class'] )) {
 	$gallery_class = "$gallery_class {$vars['gallery_class']}";
 }
 
 $item_class = 'elgg-item';
-if (isset($vars['item_class'])) {
+if (isset ( $vars ['item_class'] )) {
 	$item_class = "$item_class {$vars['item_class']}";
 }
 
 $nav = '';
 if ($pagination && $count) {
-	$nav .= elgg_view('navigation/pagination', array(
-		'base_url' => $base_url,
-		'offset' => $offset,
-		'count' => $count,
-		'limit' => $limit,
-		'offset_key' => $offset_key,
-	));
+	$nav .= elgg_view ( 'navigation/pagination', array (
+			'base_url' => $base_url,
+			'offset' => $offset,
+			'count' => $count,
+			'limit' => $limit,
+			'offset_key' => $offset_key 
+	) );
 }
 
 if ($position == 'before' || $position == 'both') {
@@ -69,16 +68,16 @@ if ($position == 'before' || $position == 'both') {
 ?>
 <ul class="<?php echo $gallery_class; ?>">
 	<?php
-		foreach ($items as $item) {
-			if (elgg_instanceof($item)) {
+	foreach ( $items as $item ) {
+		if (elgg_instanceof ( $item )) {
 			$id = "elgg-{$item->getType()}-{$item->getGUID()}";
-			} else {
-				$id = "item-{$item->getType()}-{$item->id}";
-			}
-			echo "<li id=\"$id\" class=\"$item_class\">";
-			echo elgg_view_list_item($item, $vars);
-			echo "</li>";
+		} else {
+			$id = "item-{$item->getType()}-{$item->id}";
 		}
+		echo "<li id=\"$id\" class=\"$item_class\">";
+		echo elgg_view_list_item ( $item, $vars );
+		echo "</li>";
+	}
 	?>
 </ul>
 
@@ -87,4 +86,4 @@ if ($position == 'after' || $position == 'both') {
 	echo $nav;
 }
 
-elgg_pop_context();
+elgg_pop_context ();

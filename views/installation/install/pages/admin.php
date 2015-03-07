@@ -2,16 +2,15 @@
 /**
  * Install create admin account page
  */
+echo elgg_autop ( elgg_echo ( 'install:admin:instructions' ) );
 
-echo elgg_autop(elgg_echo('install:admin:instructions'));
+$vars ['type'] = 'admin';
 
-$vars['type'] = 'admin';
+$url = current_page_url ();
 
-$url = current_page_url();
-
-$form_vars = array(
-	'action' => $url,
-	'disable_security' => TRUE,
+$form_vars = array (
+		'action' => $url,
+		'disable_security' => TRUE 
 );
 
-echo elgg_view_form('install/template', $form_vars, $vars);
+echo elgg_view_form ( 'install/template', $form_vars, $vars );

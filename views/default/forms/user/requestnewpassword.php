@@ -12,10 +12,12 @@
 </div>
 <div>
 	<label><?php echo elgg_echo('loginusername'); ?></label><br />
-	<?php echo elgg_view('input/text', array(
-		'name' => 'username',
-		'autofocus' => true,
-		));
+	<?php
+	
+echo elgg_view ( 'input/text', array (
+			'name' => 'username',
+			'autofocus' => true 
+	) );
 	?>
 </div>
 <?php echo elgg_view('input/captcha'); ?>

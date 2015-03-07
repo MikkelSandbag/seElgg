@@ -12,9 +12,8 @@
  * @uses $vars['header']  Optional override for the header
  * @uses $vars['footer']  Optional footer
  */
-
 $class = 'elgg-layout elgg-layout-one-column clearfix';
-if (isset($vars['class'])) {
+if (isset ( $vars ['class'] )) {
 	$class = "$class {$vars['class']}";
 }
 
@@ -22,18 +21,18 @@ if (isset($vars['class'])) {
 <div class="<?php echo $class; ?>">
 	<div class="elgg-body elgg-main">
 	<?php
-		echo elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
-
-		echo elgg_view('page/layouts/elements/header', $vars);
-
-		echo $vars['content'];
-		
-		// @deprecated 1.8
-		if (isset($vars['area1'])) {
-			echo $vars['area1'];
-		}
-
-		echo elgg_view('page/layouts/elements/footer', $vars);
+	echo elgg_extract ( 'nav', $vars, elgg_view ( 'navigation/breadcrumbs' ) );
+	
+	echo elgg_view ( 'page/layouts/elements/header', $vars );
+	
+	echo $vars ['content'];
+	
+	// @deprecated 1.8
+	if (isset ( $vars ['area1'] )) {
+		echo $vars ['area1'];
+	}
+	
+	echo elgg_view ( 'page/layouts/elements/footer', $vars );
 	?>
 	</div>
 </div>

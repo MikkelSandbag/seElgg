@@ -16,9 +16,8 @@
  * If you want to add languages other than English, name the file according to
  * the language's ISO 639-1 code: http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
  */
-
-$mapping = array(
-	'string:here' => 'Display string here',
+$mapping = array (
+		'string:here' => 'Display string here' 
 );
 
-add_translation('en', $mapping);
+add_translation ( 'en', $mapping );

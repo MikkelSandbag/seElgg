@@ -15,34 +15,34 @@
  */
 
 // Register subtype and class for discussion replies
-if (get_subtype_id('object', 'discussion_reply')) {
-	update_subtype('object', 'discussion_reply', 'ElggDiscussionReply');
+if (get_subtype_id ( 'object', 'discussion_reply' )) {
+	update_subtype ( 'object', 'discussion_reply', 'ElggDiscussionReply' );
 } else {
-	add_subtype('object', 'discussion_reply', 'ElggDiscussionReply');
+	add_subtype ( 'object', 'discussion_reply', 'ElggDiscussionReply' );
 }
 
-$access_status = access_get_show_hidden_status();
-access_show_hidden_entities(true);
-$ia = elgg_set_ignore_access(true);
+$access_status = access_get_show_hidden_status ();
+access_show_hidden_entities ( true );
+$ia = elgg_set_ignore_access ( true );
 
-$discussion_replies = elgg_get_annotations(array(
-	'annotation_names' => 'group_topic_post',
-	'count' => true,
-));
+$discussion_replies = elgg_get_annotations ( array (
+		'annotation_names' => 'group_topic_post',
+		'count' => true 
+) );
 
 // Notify administrator only if there are existing discussion replies
 if ($discussion_replies) {
 	$path = "admin/upgrades/discussion_replies";
-	$upgrade = new \ElggUpgrade();
-
+	$upgrade = new \ElggUpgrade ();
+	
 	// Create the upgrade if one with the same URL doesn't already exist
-	if (!$upgrade->getUpgradeFromPath($path)) {
-		$upgrade->setPath($path);
+	if (! $upgrade->getUpgradeFromPath ( $path )) {
+		$upgrade->setPath ( $path );
 		$upgrade->title = 'Group Discussions Upgrade';
 		$upgrade->description = 'Group discussions have been improved in Elgg 1.9 and require a migration. Run this upgrade to complete the migration.';
-		$upgrade->save();
+		$upgrade->save ();
 	}
 }
 
-elgg_set_ignore_access($ia);
-access_show_hidden_entities($access_status);
+elgg_set_ignore_access ( $ia );
+access_show_hidden_entities ( $access_status );

@@ -8,27 +8,26 @@
  * unmigrated comment annotations left and marks the upgrade as incomplete
  * if annotations are found.
  */
+$access_status = access_get_show_hidden_status ();
+access_show_hidden_entities ( true );
+$ia = elgg_set_ignore_access ( true );
 
-$access_status = access_get_show_hidden_status();
-access_show_hidden_entities(true);
-$ia = elgg_set_ignore_access(true);
-
-$comments = elgg_get_annotations(array(
-	'annotation_names' => 'generic_comment',
-	'count' => true
-));
+$comments = elgg_get_annotations ( array (
+		'annotation_names' => 'generic_comment',
+		'count' => true 
+) );
 
 if ($comments) {
-	$factory = new ElggUpgrade();
-
-	$upgrade = $factory->getUpgradeFromPath("admin/upgrades/comments");
-
+	$factory = new ElggUpgrade ();
+	
+	$upgrade = $factory->getUpgradeFromPath ( "admin/upgrades/comments" );
+	
 	if ($upgrade) {
-		$upgrade->setPrivateSetting('is_completed', 0);
-
-		_elgg_create_notice_of_pending_upgrade(null, null, $upgrade);
+		$upgrade->setPrivateSetting ( 'is_completed', 0 );
+		
+		_elgg_create_notice_of_pending_upgrade ( null, null, $upgrade );
 	}
 }
 
-elgg_set_ignore_access($ia);
-access_show_hidden_entities($access_status);
+elgg_set_ignore_access ( $ia );
+access_show_hidden_entities ( $access_status );

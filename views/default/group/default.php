@@ -5,5 +5,4 @@
  * @package Elgg
  * @subpackage Core
  */
-
-echo elgg_view('object/default', $vars);
+echo elgg_view ( 'object/default', $vars );

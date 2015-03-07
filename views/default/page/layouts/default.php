@@ -12,25 +12,24 @@
  * @uses $vars['header']  Optional override for the header
  * @uses $vars['footer']  Optional footer
  */
-
 $class = 'elgg-layout elgg-layout-default clearfix';
-if (isset($vars['class'])) {
+if (isset ( $vars ['class'] )) {
 	$class = "$class {$vars['class']}";
 }
 
 echo "<div class=\"$class\">";
 
-echo elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
+echo elgg_extract ( 'nav', $vars, elgg_view ( 'navigation/breadcrumbs' ) );
 
-echo elgg_view('page/layouts/elements/header', $vars);
+echo elgg_view ( 'page/layouts/elements/header', $vars );
 
-echo $vars['content'];
+echo $vars ['content'];
 
 // @deprecated 1.8
-if (isset($vars['area1'])) {
-	echo $vars['area1'];
+if (isset ( $vars ['area1'] )) {
+	echo $vars ['area1'];
 }
 
-echo elgg_view('page/layouts/elements/footer', $vars);
+echo elgg_view ( 'page/layouts/elements/footer', $vars );
 
 echo '</div>';

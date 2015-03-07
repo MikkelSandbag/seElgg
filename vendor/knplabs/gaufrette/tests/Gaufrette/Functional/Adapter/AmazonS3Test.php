@@ -2,6 +2,5 @@
 
 namespace Gaufrette\Functional\Adapter;
 
-class AmazonS3Test extends FunctionalTestCase
-{
+class AmazonS3Test extends FunctionalTestCase {
 }

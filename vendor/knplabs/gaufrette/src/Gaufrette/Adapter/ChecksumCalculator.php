@@ -7,14 +7,13 @@ namespace Gaufrette\Adapter;
  *
  * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  */
-interface ChecksumCalculator
-{
-    /**
-     * Returns the checksum of the specified key
-     *
-     * @param string $key
-     *
-     * @return string
-     */
-    public function checksum($key);
+interface ChecksumCalculator {
+	/**
+	 * Returns the checksum of the specified key
+	 *
+	 * @param string $key        	
+	 *
+	 * @return string
+	 */
+	public function checksum($key);
 }

@@ -4,9 +4,8 @@
  *
  * @package ElggGarbageCollector
  */
-
-$period = $vars['entity']->period;
-if (!$period) {
+$period = $vars ['entity']->period;
+if (! $period) {
 	$period = 'monthly';
 }
 
@@ -15,14 +14,14 @@ if (!$period) {
 	<?php echo elgg_echo('garbagecollector:period'); ?>
 	
 	<?php
-		echo elgg_view('input/select', array(
+	echo elgg_view ( 'input/select', array (
 			'name' => 'params[period]',
-			'options_values' => array(
-				'weekly' => elgg_echo('garbagecollector:weekly'),
-				'monthly' => elgg_echo('garbagecollector:monthly'),
-				'yearly' => elgg_echo('garbagecollector:yearly'),
+			'options_values' => array (
+					'weekly' => elgg_echo ( 'garbagecollector:weekly' ),
+					'monthly' => elgg_echo ( 'garbagecollector:monthly' ),
+					'yearly' => elgg_echo ( 'garbagecollector:yearly' ) 
 			),
-			'value' => $period
-		));
+			'value' => $period 
+	) );
 	?>
 </div>

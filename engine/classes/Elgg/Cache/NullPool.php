@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg\Cache;
 
 /**
@@ -8,24 +9,30 @@ namespace Elgg\Cache;
  *
  * WARNING: API IN FLUX. DO NOT USE DIRECTLY.
  *
- * @package    Elgg
+ * @package Elgg
  * @subpackage Cache
- * @since      1.10.0
- *
+ * @since 1.10.0
+ *       
  * @access private
  */
 final class NullPool implements Pool {
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function get($key, callable $callback) {
-		return call_user_func($callback);
+		return call_user_func ( $callback );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function invalidate($key) {
 		// values are always expired, so nothing to do
 	}
-
-	/** @inheritDoc */
+	
+	/**
+	 * @inheritDoc
+	 */
 	public function put($key, $value) {
 		// values are always expired, so nothing to do
 	}

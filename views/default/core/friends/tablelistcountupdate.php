@@ -9,7 +9,6 @@
  * @uses $vars['count'] The count
  * @uses $vars['friendspicker'] The friendspicker counter number
  */
-
 ?>
 <?php //@todo JS 1.8: no ?>
 <script language="text/javascript">

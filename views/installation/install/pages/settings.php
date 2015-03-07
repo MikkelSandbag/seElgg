@@ -1,14 +1,13 @@
 <?php
+echo elgg_autop ( elgg_echo ( 'install:settings:instructions' ) );
 
-echo elgg_autop(elgg_echo('install:settings:instructions'));
+$vars ['type'] = 'settings';
 
-$vars['type'] = 'settings';
+$url = current_page_url ();
 
-$url = current_page_url();
-
-$form_vars = array(
-	'action' => $url,
-	'disable_security' => TRUE,
+$form_vars = array (
+		'action' => $url,
+		'disable_security' => TRUE 
 );
 
-echo elgg_view_form('install/template', $form_vars, $vars);
+echo elgg_view_form ( 'install/template', $form_vars, $vars );

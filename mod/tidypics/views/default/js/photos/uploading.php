@@ -2,7 +2,7 @@
 /**
  * AJAX uploading
  */
-$maxfilesize = (int) elgg_get_plugin_setting('maxfilesize', 'tidypics');
+$maxfilesize = ( int ) elgg_get_plugin_setting ( 'maxfilesize', 'tidypics' );
 $max_files = 10;
 ?>
 

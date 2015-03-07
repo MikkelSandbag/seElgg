@@ -5,11 +5,10 @@
  *
  * Add an 'enabled' column to the river table
  */
-
-$dbprefix = elgg_get_config('dbprefix');
+$dbprefix = elgg_get_config ( 'dbprefix' );
 
 $q1 = "ALTER TABLE  {$dbprefix}river ADD  enabled ENUM(  'yes',  'no' ) NOT NULL DEFAULT  'yes';";
-update_data($q1);
+update_data ( $q1 );
 
 // update any river entries that need to be disabled
 $q2 = <<<Q2
@@ -20,5 +19,5 @@ $q2 = <<<Q2
 	SET rv.enabled = 'no'
 	WHERE (se.enabled = 'no' OR te.enabled = 'no' OR oe.enabled = 'no');
 Q2;
-		
-update_data($q2);
+
+update_data ( $q2 );

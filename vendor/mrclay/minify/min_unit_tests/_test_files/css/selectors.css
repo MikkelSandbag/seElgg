@@ -1,5 +1,4 @@
 /* http://www.w3.org/TR/css3-selectors/ */
-
 *
 E[foo]
 E[foo="bar"]
@@ -36,7 +35,7 @@ E::selection
 E::before
 E::after
 E.warning#myid
-E:not(s)
- > F
- + F
- ~ F {color: red;}
+E:not(s)>F+F
+ ~ F {
+	color: red;
+}

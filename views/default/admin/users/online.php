@@ -1,7 +1,6 @@
 <?php
+$users_online = get_online_users ();
 
-$users_online = get_online_users();
-	
 ?>
 <div class="elgg-module elgg-module-inline">
 	<div class="elgg-head">

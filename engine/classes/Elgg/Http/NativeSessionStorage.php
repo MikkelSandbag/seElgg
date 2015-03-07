@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg\Http;
 
 /**
@@ -29,267 +30,334 @@ namespace Elgg\Http;
  * PHP Session Storage
  *
  * @access private
- * 
- * @package    Elgg.Core
+ *        
+ * @package Elgg.Core
  * @subpackage Http
  */
 class NativeSessionStorage implements \Elgg\Http\SessionStorage {
-
-	/** @var boolean */
+	
+	/**
+	 * @var boolean
+	 */
 	protected $started = false;
-
-	/** @var boolean */
+	
+	/**
+	 * @var boolean
+	 */
 	protected $closed = false;
-
+	
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * List of options for $options array with their defaults.
-	 * @see http://php.net/session.configuration for options
-	 * but we omit 'session.' from the beginning of the keys for convenience.
-	 *
-	 * ("auto_start", is not supported as it tells PHP to start a session before
-	 * PHP starts to execute user-land code. Setting during runtime has no effect).
-	 *
-	 * cache_limiter, "nocache" (use "0" to prevent headers from being sent entirely).
-	 * cookie_domain, ""
-	 * cookie_httponly, ""
-	 * cookie_lifetime, "0"
-	 * cookie_path, "/"
-	 * cookie_secure, ""
-	 * entropy_file, ""
-	 * entropy_length, "0"
-	 * gc_divisor, "100"
-	 * gc_maxlifetime, "1440"
-	 * gc_probability, "1"
-	 * hash_bits_per_character, "4"
-	 * hash_function, "0"
-	 * referer_check, ""
-	 * serialize_handler, "php"
-	 * use_cookies, "1"
-	 * use_only_cookies, "1"
-	 * use_trans_sid, "0"
-	 * upload_progress.enabled, "1"
-	 * upload_progress.cleanup, "1"
-	 * upload_progress.prefix, "upload_progress_"
-	 * upload_progress.name, "PHP_SESSION_UPLOAD_PROGRESS"
-	 * upload_progress.freq, "1%"
-	 * upload_progress.min-freq, "1"
 	 * 
-	 * @param array                     $options Session config options
-	 * @param \Elgg\Http\SessionHandler $handler Session handler
+	 * @see http://php.net/session.configuration for options
+	 *      but we omit 'session.' from the beginning of the keys for convenience.
+	 *     
+	 *      ("auto_start", is not supported as it tells PHP to start a session before
+	 *      PHP starts to execute user-land code. Setting during runtime has no effect).
+	 *     
+	 *      cache_limiter, "nocache" (use "0" to prevent headers from being sent entirely).
+	 *      cookie_domain, ""
+	 *      cookie_httponly, ""
+	 *      cookie_lifetime, "0"
+	 *      cookie_path, "/"
+	 *      cookie_secure, ""
+	 *      entropy_file, ""
+	 *      entropy_length, "0"
+	 *      gc_divisor, "100"
+	 *      gc_maxlifetime, "1440"
+	 *      gc_probability, "1"
+	 *      hash_bits_per_character, "4"
+	 *      hash_function, "0"
+	 *      referer_check, ""
+	 *      serialize_handler, "php"
+	 *      use_cookies, "1"
+	 *      use_only_cookies, "1"
+	 *      use_trans_sid, "0"
+	 *      upload_progress.enabled, "1"
+	 *      upload_progress.cleanup, "1"
+	 *      upload_progress.prefix, "upload_progress_"
+	 *      upload_progress.name, "PHP_SESSION_UPLOAD_PROGRESS"
+	 *      upload_progress.freq, "1%"
+	 *      upload_progress.min-freq, "1"
+	 *     
+	 * @param array $options
+	 *        	Session config options
+	 * @param \Elgg\Http\SessionHandler $handler
+	 *        	Session handler
 	 */
 	public function __construct(array $options = array(), \Elgg\Http\SessionHandler $handler = null) {
-		$this->setOptions($options);
-		$this->setHandler($handler);
+		$this->setOptions ( $options );
+		$this->setHandler ( $handler );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function start() {
-		if ($this->started && !$this->closed) {
+		if ($this->started && ! $this->closed) {
 			return true;
 		}
-
-		if (!session_start()) {
-			throw new \RuntimeException('Failed to start the session');
+		
+		if (! session_start ()) {
+			throw new \RuntimeException ( 'Failed to start the session' );
 		}
-
+		
 		$this->started = true;
 		$this->closed = false;
-
+		
 		return true;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function regenerate($destroy = false, $lifetime = null) {
 		if (null !== $lifetime) {
-			ini_set('session.cookie_lifetime', $lifetime);
+			ini_set ( 'session.cookie_lifetime', $lifetime );
 		}
-
-		return session_regenerate_id($destroy);
+		
+		return session_regenerate_id ( $destroy );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function save() {
-		session_write_close();
-
+		session_write_close ();
+		
 		$this->closed = true;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function isStarted() {
 		return $this->started;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function getId() {
-		if (!$this->started) {
+		if (! $this->started) {
 			return ''; // returning empty is consistent with session_id() behavior
 		}
-
-		return session_id();
+		
+		return session_id ();
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function setId($id) {
 		if ($this->started) {
-			throw new \RuntimeException('Cannot change the ID of an active session');
+			throw new \RuntimeException ( 'Cannot change the ID of an active session' );
 		}
-
-		session_id($id);
+		
+		session_id ( $id );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function getName() {
-		return session_name();
+		return session_name ();
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function setName($name) {
-		session_name($name);
+		session_name ( $name );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function has($name) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-
-		return array_key_exists($name, $_SESSION);
+		
+		return array_key_exists ( $name, $_SESSION );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function get($name, $default = null) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		return array_key_exists($name, $_SESSION) ? $_SESSION[$name] : $default;
+		return array_key_exists ( $name, $_SESSION ) ? $_SESSION [$name] : $default;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function set($name, $value) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		$_SESSION[$name] = $value;
+		$_SESSION [$name] = $value;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function all() {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
 		return $_SESSION;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function replace(array $attributes) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		$_SESSION = array();
-		foreach ($attributes as $key => $value) {
-			$this->set($key, $value);
+		$_SESSION = array ();
+		foreach ( $attributes as $key => $value ) {
+			$this->set ( $key, $value );
 		}
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function remove($name) {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
 		$retval = null;
-		if (array_key_exists($name, $_SESSION)) {
-			$retval = $_SESSION[$name];
-			unset($_SESSION[$name]);
+		if (array_key_exists ( $name, $_SESSION )) {
+			$retval = $_SESSION [$name];
+			unset ( $_SESSION [$name] );
 		}
-
+		
 		return $retval;
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function clear() {
-		if (!$this->started) {
-			$this->start();
+		if (! $this->started) {
+			$this->start ();
 		}
-		$_SESSION = array();
+		$_SESSION = array ();
 	}
-
+	
 	/**
 	 * Sets session.* ini variables.
 	 *
 	 * For convenience we omit 'session.' from the beginning of the keys.
 	 * Explicitly ignores other ini keys.
 	 *
-	 * @param array $options Session ini directives array(key => value).
+	 * @param array $options
+	 *        	Session ini directives array(key => value).
 	 * @return void
 	 * @see http://php.net/session.configuration
 	 */
 	protected function setOptions(array $options) {
-		$validOptions = array_flip(array(
-			'cache_limiter', 'cookie_domain', 'cookie_httponly',
-			'cookie_lifetime', 'cookie_path', 'cookie_secure',
-			'entropy_file', 'entropy_length', 'gc_divisor',
-			'gc_maxlifetime', 'gc_probability', 'hash_bits_per_character',
-			'hash_function', 'name', 'referer_check',
-			'serialize_handler', 'use_cookies',
-			'use_only_cookies', 'use_trans_sid', 'upload_progress.enabled',
-			'upload_progress.cleanup', 'upload_progress.prefix', 'upload_progress.name',
-			'upload_progress.freq', 'upload_progress.min-freq', 'url_rewriter.tags',
-		));
-
-		foreach ($options as $key => $value) {
-			if (isset($validOptions[$key])) {
-				ini_set('session.' . $key, $value);
+		$validOptions = array_flip ( array (
+				'cache_limiter',
+				'cookie_domain',
+				'cookie_httponly',
+				'cookie_lifetime',
+				'cookie_path',
+				'cookie_secure',
+				'entropy_file',
+				'entropy_length',
+				'gc_divisor',
+				'gc_maxlifetime',
+				'gc_probability',
+				'hash_bits_per_character',
+				'hash_function',
+				'name',
+				'referer_check',
+				'serialize_handler',
+				'use_cookies',
+				'use_only_cookies',
+				'use_trans_sid',
+				'upload_progress.enabled',
+				'upload_progress.cleanup',
+				'upload_progress.prefix',
+				'upload_progress.name',
+				'upload_progress.freq',
+				'upload_progress.min-freq',
+				'url_rewriter.tags' 
+		) );
+		
+		foreach ( $options as $key => $value ) {
+			if (isset ( $validOptions [$key] )) {
+				ini_set ( 'session.' . $key, $value );
 			}
 		}
 	}
-
+	
 	/**
 	 * Set the session handler class with PHP
-	 * 
-	 * @param \Elgg\Http\SessionHandler $handler Handler object
+	 *
+	 * @param \Elgg\Http\SessionHandler $handler
+	 *        	Handler object
 	 * @return void
 	 */
 	protected function setHandler($handler) {
-		session_set_save_handler(
-			array($handler, 'open'),
-			array($handler, 'close'),
-			array($handler, 'read'),
-			array($handler, 'write'),
-			array($handler, 'destroy'),
-			array($handler, 'gc'));
+		session_set_save_handler ( array (
+				$handler,
+				'open' 
+		), array (
+				$handler,
+				'close' 
+		), array (
+				$handler,
+				'read' 
+		), array (
+				$handler,
+				'write' 
+		), array (
+				$handler,
+				'destroy' 
+		), array (
+				$handler,
+				'gc' 
+		) );
 	}
-
 }
 

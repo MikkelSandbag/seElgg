@@ -6,5 +6,4 @@
  * At some point in Elgg's history subtype widget was registered with class ElggPlugin.
  * Fix that.
  */
-
-update_subtype('object', 'widget', 'ElggWidget');
+update_subtype ( 'object', 'widget', 'ElggWidget' );

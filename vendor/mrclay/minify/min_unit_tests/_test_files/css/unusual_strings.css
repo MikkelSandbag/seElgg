@@ -1,10 +1,9 @@
 /* test unusual, but valid strings in CSS */
-
 foo[attr="multiple  spaces"] {
-    content: "Hello  World!";
+	content: "Hello  World!";
 }
 
 foo[attr="Hel\
 lo"] {
-    content: " \"World\"";
+	content: " \"World\"";
 }

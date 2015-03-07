@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Stash\Exception;
 
 /**
@@ -16,8 +15,7 @@ namespace Stash\Exception;
  * This kind of exceptions should directly lead to a fix in your code.
  *
  * @package Stash
- * @author  Robert Hafner <tedivm@tedivm.com>
+ * @author Robert Hafner <tedivm@tedivm.com>
  */
-class LogicException extends \LogicException implements Exception
-{
+class LogicException extends \LogicException implements Exception {
 }

@@ -8,9 +8,8 @@
  *
  * @uses $vars['object'] An exception
  */
-
-$exception = $vars['object'];
-$result = new stdClass();
-$result->error = get_class($exception);
-$result->message = $exception->getMessage();
-echo json_encode($result);
+$exception = $vars ['object'];
+$result = new stdClass ();
+$result->error = get_class ( $exception );
+$result->message = $exception->getMessage ();
+echo json_encode ( $result );

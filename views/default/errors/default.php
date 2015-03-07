@@ -2,5 +2,4 @@
 /**
  * General error
  */
-
-echo elgg_echo('error:default:content');
+echo elgg_echo ( 'error:default:content' );

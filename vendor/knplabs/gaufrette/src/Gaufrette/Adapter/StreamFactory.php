@@ -7,14 +7,13 @@ namespace Gaufrette\Adapter;
  *
  * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  */
-interface StreamFactory
-{
-    /**
-     * Creates a new stream instance of the specified file
-     *
-     * @param string $key
-     *
-     * @return Gaufrette\Stream
-     */
-    public function createStream($key);
+interface StreamFactory {
+	/**
+	 * Creates a new stream instance of the specified file
+	 *
+	 * @param string $key        	
+	 *
+	 * @return Gaufrette\Stream
+	 */
+	public function createStream($key);
 }

@@ -1,5 +1,4 @@
 <?php
-
 require 'test_Minify.php';
 require 'test_Minify_Build.php';
 require 'test_Minify_HTML_Helper.php';

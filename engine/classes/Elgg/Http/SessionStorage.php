@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg\Http;
 
 /**
@@ -29,12 +30,12 @@ namespace Elgg\Http;
  * Interface for session storage
  *
  * @access private
- * 
- * @package    Elgg.Core
+ *        
+ * @package Elgg.Core
  * @subpackage Http
  */
 interface SessionStorage {
-
+	
 	/**
 	 * Starts the session.
 	 *
@@ -42,44 +43,46 @@ interface SessionStorage {
 	 * @throws \RuntimeException If something goes wrong starting the session.
 	 */
 	public function start();
-
+	
 	/**
 	 * Checks if the session is started.
 	 *
 	 * @return boolean True if started, false otherwise.
 	 */
 	public function isStarted();
-
+	
 	/**
 	 * Returns the session ID
 	 *
 	 * @return string The session ID or empty.
 	 */
 	public function getId();
-
+	
 	/**
 	 * Sets the session ID
 	 *
-	 * @param string $id Session string
+	 * @param string $id
+	 *        	Session string
 	 * @return void
 	 */
 	public function setId($id);
-
+	
 	/**
 	 * Returns the session name
 	 *
 	 * @return string The session name.
 	 */
 	public function getName();
-
+	
 	/**
 	 * Sets the session name
 	 *
-	 * @param string $name Session name.
+	 * @param string $name
+	 *        	Session name.
 	 * @return void
 	 */
 	public function setName($name);
-
+	
 	/**
 	 * Regenerates id that represents this storage.
 	 *
@@ -91,18 +94,20 @@ interface SessionStorage {
 	 * Note regenerate+destroy should not clear the session data in memory
 	 * only delete the session data from persistent storage.
 	 *
-	 * @param boolean $destroy  Destroy session when regenerating?
-	 * @param integer $lifetime Sets the cookie lifetime for the session cookie. A null value
-	 *                          will leave the system settings unchanged, 0 sets the cookie
-	 *                          to expire with browser session. Time is in seconds, and is
-	 *                          not a Unix timestamp.
-	 *
+	 * @param boolean $destroy
+	 *        	Destroy session when regenerating?
+	 * @param integer $lifetime
+	 *        	Sets the cookie lifetime for the session cookie. A null value
+	 *        	will leave the system settings unchanged, 0 sets the cookie
+	 *        	to expire with browser session. Time is in seconds, and is
+	 *        	not a Unix timestamp.
+	 *        	
 	 * @return boolean True if session regenerated, false if error
-	 *
+	 *        
 	 * @throws \RuntimeException If an error occurs while regenerating this storage
 	 */
 	public function regenerate($destroy = false, $lifetime = null);
-
+	
 	/**
 	 * Force the session to be saved and closed.
 	 *
@@ -113,64 +118,71 @@ interface SessionStorage {
 	 *
 	 * @return void
 	 * @throws \RuntimeException If the session is saved without being started,
-	 *                          or if the session is already closed.
+	 *         or if the session is already closed.
 	 */
 	public function save();
-
+	
 	/**
 	 * Checks if an attribute is defined.
 	 *
-	 * @param string $name The attribute name
-	 *
+	 * @param string $name
+	 *        	The attribute name
+	 *        	
 	 * @return boolean
 	 */
 	public function has($name);
-
+	
 	/**
 	 * Returns an attribute.
 	 *
-	 * @param string $name    The attribute name
-	 * @param mixed  $default The default value if not found.
-	 *
+	 * @param string $name
+	 *        	The attribute name
+	 * @param mixed $default
+	 *        	The default value if not found.
+	 *        	
 	 * @return mixed
 	 */
 	public function get($name, $default = null);
-
+	
 	/**
 	 * Sets an attribute.
 	 *
-	 * @param string $name  Attribute name
-	 * @param mixed  $value Attribute value
+	 * @param string $name
+	 *        	Attribute name
+	 * @param mixed $value
+	 *        	Attribute value
 	 * @return void
 	 */
 	public function set($name, $value);
-
+	
 	/**
 	 * Returns all attributes.
 	 *
 	 * @return array Attributes
 	 */
 	public function all();
-
+	
 	/**
 	 * Replaces all attributes
 	 *
-	 * @param array $attributes Attributes
+	 * @param array $attributes
+	 *        	Attributes
 	 * @return void
 	 */
 	public function replace(array $attributes);
-
+	
 	/**
 	 * Removes an attribute.
 	 *
-	 * @param string $name Attribute name
+	 * @param string $name
+	 *        	Attribute name
 	 * @return mixed The removed value
 	 */
 	public function remove($name);
-
+	
 	/**
 	 * Clears all attributes.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function clear();

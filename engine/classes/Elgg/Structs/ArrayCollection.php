@@ -1,84 +1,106 @@
 <?php
+
 namespace Elgg\Structs;
 
 use Exception;
 
 /**
  * Uses native PHP array to implement the Collection interface.
- * 
- * @package    Elgg.Core
- * @subpackage Structs
- * @since      1.10
  *
+ * @package Elgg.Core
+ * @subpackage Structs
+ * @since 1.10
+ *       
  * @access private
  */
 final class ArrayCollection implements Collection {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $items;
 	
 	/**
 	 * Constructor
-	 * 
-	 * @param array $items The set of items in the collection
+	 *
+	 * @param array $items
+	 *        	The set of items in the collection
 	 */
 	public function __construct(array $items = array()) {
 		$this->items = $items;
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function contains($item) {
-		return in_array($item, $this->items, true);
+		return in_array ( $item, $this->items, true );
 	}
-
-	/** @inheritDoc */
+	
+	/**
+	 * @inheritDoc
+	 */
 	public function count() {
-		return count($this->items);
+		return count ( $this->items );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function current() {
-		return current($this->items);
+		return current ( $this->items );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function filter(callable $filter) {
-		$results = array();
+		$results = array ();
 		
-		foreach ($this->items as $item) {
-			if ($filter($item)) {
-				$results[] = $item;
+		foreach ( $this->items as $item ) {
+			if ($filter ( $item )) {
+				$results [] = $item;
 			}
 		}
 		
-		return new ArrayCollection($results);
+		return new ArrayCollection ( $results );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function key() {
-		return key($this->items);
+		return key ( $this->items );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function map(callable $mapper) {
-		$results = array();
-		foreach ($this->items as $item) {
-			$results[] = $mapper($item);
+		$results = array ();
+		foreach ( $this->items as $item ) {
+			$results [] = $mapper ( $item );
 		}
-		return new ArrayCollection($results);
+		return new ArrayCollection ( $results );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function next() {
-		return next($this->items);
+		return next ( $this->items );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function rewind() {
-		reset($this->items);
+		reset ( $this->items );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function valid() {
-		return key($this->items) !== NULL;
+		return key ( $this->items ) !== NULL;
 	}
 }

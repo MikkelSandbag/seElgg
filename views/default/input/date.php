@@ -17,44 +17,44 @@
  *                          Note: you cannot use an id with the timestamp option.
  */
 
-//@todo popup_calendar deprecated in 1.8.  Remove in 2.0
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-date popup_calendar {$vars['class']}";
+// @todo popup_calendar deprecated in 1.8. Remove in 2.0
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-date popup_calendar {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-date popup_calendar";
+	$vars ['class'] = "elgg-input-date popup_calendar";
 }
 
-$defaults = array(
-	'value' => '',
-	'disabled' => false,
-	'timestamp' => false,
+$defaults = array (
+		'value' => '',
+		'disabled' => false,
+		'timestamp' => false 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
-$timestamp = $vars['timestamp'];
-unset($vars['timestamp']);
+$timestamp = $vars ['timestamp'];
+unset ( $vars ['timestamp'] );
 
 if ($timestamp) {
-	echo elgg_view('input/hidden', array(
-		'name' => $vars['name'],
-		'value' => $vars['value'],
-	));
-
-	$vars['class'] = "{$vars['class']} elgg-input-timestamp";
-	$vars['id'] = $vars['name'];
-	unset($vars['name']);
-	unset($vars['internalname']);
+	echo elgg_view ( 'input/hidden', array (
+			'name' => $vars ['name'],
+			'value' => $vars ['value'] 
+	) );
+	
+	$vars ['class'] = "{$vars['class']} elgg-input-timestamp";
+	$vars ['id'] = $vars ['name'];
+	unset ( $vars ['name'] );
+	unset ( $vars ['internalname'] );
 }
 
 // convert timestamps to text for display
-if (is_numeric($vars['value'])) {
-	$vars['value'] = gmdate('Y-m-d', $vars['value']);
+if (is_numeric ( $vars ['value'] )) {
+	$vars ['value'] = gmdate ( 'Y-m-d', $vars ['value'] );
 }
 
-$attributes = elgg_format_attributes($vars);
+$attributes = elgg_format_attributes ( $vars );
 echo "<input type=\"text\" $attributes />";
 
-if (elgg_is_xhr()) {
-	echo elgg_format_element('script', null, 'elgg.ui.initDatePicker();');
+if (elgg_is_xhr ()) {
+	echo elgg_format_element ( 'script', null, 'elgg.ui.initDatePicker();' );
 }

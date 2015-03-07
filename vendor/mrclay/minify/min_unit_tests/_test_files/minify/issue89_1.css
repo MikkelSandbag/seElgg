@@ -1,7 +1,6 @@
 /* this { is a } comment */
-
 @import "/1.css";
 
 selector {
-    property: value;
+	property: value;
 }

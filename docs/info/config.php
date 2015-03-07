@@ -12,10 +12,10 @@
  * Paths to scan for autoloading languages.
  *
  * Languages are automatically loaded for the site or
- * user's default language.  Plugins can extend or override strings.
+ * user's default language. Plugins can extend or override strings.
  * language_paths is an array of paths to scan for PHP files matching
- * the default language.  The order of paths is determined by the plugin load order,
- * with later entries overriding earlier.  Language files within these paths are
+ * the default language. The order of paths is determined by the plugin load order,
+ * with later entries overriding earlier. Language files within these paths are
  * named as the two-letter ISO 639-1 country codes for the language they represent.
  *
  * Language paths are stored as array keys in the format:
@@ -28,7 +28,6 @@
  * @global array $CONFIG->language_paths
  */
 $CONFIG->language_paths;
-
 
 /**
  * String translations for the current language.
@@ -181,7 +180,7 @@ $CONFIG->default_limit;
  * The current view type
  *
  * View types determin the location of view files that are used to draw pages.
- * They are set system-wide by the $_REQUEST['view'].  If a view type is manually
+ * They are set system-wide by the $_REQUEST['view']. If a view type is manually
  * set in settings.php or through a function hooking to the {@elgg_hook
  *
  * @warning This is the current view type used to determine where to load views.
@@ -254,12 +253,11 @@ $CONFIG->views->simplecache;
  *
  * @note Views are stored as the key and the top level view location is stored as the value.
  * The current viewtype {@link $CONFIG->view} is used to determin which directory under the entry
- * in $CONFIG->views->location to search.  View names are automatically appened a '.php' extension.
+ * in $CONFIG->views->location to search. View names are automatically appened a '.php' extension.
  *
  * @global object $CONFIG->views->locations
  */
 $CONFIG->views->locations;
-
 
 /**
  * A list of valid view types as discovered.
@@ -276,7 +274,8 @@ $CONFIG->view_types;
 $CONFIG->pluginlistcache;
 
 /**
- * A list of registered entities and subtypes.  Used in search.
+ * A list of registered entities and subtypes.
+ * Used in search.
  *
  * @global array $CONFIG->registered_entities
  */
@@ -284,7 +283,8 @@ $CONFIG->registered_entities;
 
 /**
  * A list of entity types and subtypes that have metadata whose access permission
- * can be changed independently of the main object.  {@link register_metadata_as_indepenent()}
+ * can be changed independently of the main object.
+ * {@link register_metadata_as_indepenent()}
  *
  * @global string $CONFIG->independents
  */
@@ -305,7 +305,8 @@ $CONFIG->submenu_items;
 $CONFIG->servicehandler;
 
 /**
- * A list of stop works for search.  Not currently used.
+ * A list of stop works for search.
+ * Not currently used.
  *
  * @global array $CONFIG->wordblacklist
  * @todo currently unused.
@@ -313,35 +314,40 @@ $CONFIG->servicehandler;
 $CONFIG->wordblacklist;
 
 /**
- * A list of menu contexts for menus registered with {@link add_menu()}.  Not currently used.
+ * A list of menu contexts for menus registered with {@link add_menu()}.
+ * Not currently used.
  *
  * @global array $CONFIG->menucontexts
  */
 $CONFIG->menucontexts;
 
 /**
- * A list of registers and their children added via {@add_to_register()}.  Used only for menus.
+ * A list of registers and their children added via {@add_to_register()}.
+ * Used only for menus.
  *
  * @global string $CONFIG->registers
  */
 $CONFIG->registers;
 
 /**
- * A list of objects that can emit notifications.  {@link register_notification_object()}
+ * A list of objects that can emit notifications.
+ * {@link register_notification_object()}
  *
  * @global array $CONFIG->register_objects
  */
 $CONFIG->register_objects;
 
 /**
- * Holds available group tools options.  Added with {@link add_group_tool_option()}
+ * Holds available group tools options.
+ * Added with {@link add_group_tool_option()}
  *
  * @global array $CONFIG->group_tool_options
  */
 $CONFIG->group_tool_options;
 
 /**
- * The last cache time for the current viewtype.  Used in the generation of CSS and JS links.
+ * The last cache time for the current viewtype.
+ * Used in the generation of CSS and JS links.
  *
  * @global string $CONFIG->lastcache
  */
@@ -350,16 +356,16 @@ $CONFIG->lastcache;
 /**
  * This is an optional script used to override Elgg's default handling of
  * uncaught exceptions.
- * 
+ *
  * This should be an absolute file path to a php script that will be called
  * any time an uncaught exception is thrown.
- * 
+ *
  * The script will have access to the following variables as part of the scope
  * global $CONFIG
  * $exception - the unhandled exception
- * 
+ *
  * @warning - the database may not be available
- * 
+ *
  * @global string $CONFIG->exception_include
  */
 $CONFIG->exception_include = '';

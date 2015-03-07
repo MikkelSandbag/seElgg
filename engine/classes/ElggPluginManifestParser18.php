@@ -12,38 +12,42 @@ class ElggPluginManifestParser18 extends \ElggPluginManifestParser {
 	 *
 	 * @var array
 	 */
-	protected $validAttributes = array(
-		'name',
-		'author',
-		'version',
-		'blurb',
-		'description',
-		'id',
-		'website',
-		'copyright',
-		'license',
-		'requires',
-		'suggests',
-		'screenshot',
-		'contributor',
-		'category',
-		'conflicts',
-		'provides',
-		'activate_on_install',
-		'repository',
-		'bugtracker',
-		'donations',
+	protected $validAttributes = array (
+			'name',
+			'author',
+			'version',
+			'blurb',
+			'description',
+			'id',
+			'website',
+			'copyright',
+			'license',
+			'requires',
+			'suggests',
+			'screenshot',
+			'contributor',
+			'category',
+			'conflicts',
+			'provides',
+			'activate_on_install',
+			'repository',
+			'bugtracker',
+			'donations' 
 	);
-
+	
 	/**
 	 * Required attributes for a valid 1.8 manifest
 	 *
 	 * @var array
 	 */
-	protected $requiredAttributes = array(
-		'name', 'author', 'version', 'description', 'requires'
+	protected $requiredAttributes = array (
+			'name',
+			'author',
+			'version',
+			'description',
+			'requires' 
 	);
-
+	
 	/**
 	 * Parse a manifest object from 1.8 and later
 	 *
@@ -52,66 +56,68 @@ class ElggPluginManifestParser18 extends \ElggPluginManifestParser {
 	 * @throws PluginException
 	 */
 	public function parse() {
-		$parsed = array();
-		foreach ($this->manifestObject->children as $element) {
+		$parsed = array ();
+		foreach ( $this->manifestObject->children as $element ) {
 			switch ($element->name) {
 				// single elements
-				case 'blurb':
-				case 'description':
-				case 'name':
-				case 'author':
-				case 'version':
-				case 'id':
-				case 'website':
-				case 'copyright':
-				case 'license':
-				case 'repository':
-				case 'bugtracker':
-				case 'donations':
-				case 'activate_on_install':
-					$parsed[$element->name] = $element->content;
+				case 'blurb' :
+				case 'description' :
+				case 'name' :
+				case 'author' :
+				case 'version' :
+				case 'id' :
+				case 'website' :
+				case 'copyright' :
+				case 'license' :
+				case 'repository' :
+				case 'bugtracker' :
+				case 'donations' :
+				case 'activate_on_install' :
+					$parsed [$element->name] = $element->content;
 					break;
-
+				
 				// arrays
-				case 'category':
-					$parsed[$element->name][] = $element->content;
+				case 'category' :
+					$parsed [$element->name] [] = $element->content;
 					break;
-
+				
 				// 3d arrays
-				case 'screenshot':
-				case 'contributor':
-				case 'provides':
-				case 'conflicts':
-				case 'requires':
-				case 'suggests':
-					if (!isset($element->children)) {
+				case 'screenshot' :
+				case 'contributor' :
+				case 'provides' :
+				case 'conflicts' :
+				case 'requires' :
+				case 'suggests' :
+					if (! isset ( $element->children )) {
 						return false;
 					}
-
-					$info = array();
-					foreach ($element->children as $child_element) {
-						$info[$child_element->name] = $child_element->content;
+					
+					$info = array ();
+					foreach ( $element->children as $child_element ) {
+						$info [$child_element->name] = $child_element->content;
 					}
-
-					$parsed[$element->name][] = $info;
+					
+					$parsed [$element->name] [] = $info;
 					break;
 			}
 		}
-
+		
 		// check we have all the required fields
-		foreach ($this->requiredAttributes as $attr) {
-			if (!array_key_exists($attr, $parsed)) {
-				throw new \PluginException(_elgg_services()->translator->translate('PluginException:ParserErrorMissingRequiredAttribute',
-							array($attr, $this->caller->getPluginID())));
+		foreach ( $this->requiredAttributes as $attr ) {
+			if (! array_key_exists ( $attr, $parsed )) {
+				throw new \PluginException ( _elgg_services ()->translator->translate ( 'PluginException:ParserErrorMissingRequiredAttribute', array (
+						$attr,
+						$this->caller->getPluginID () 
+				) ) );
 			}
 		}
-
+		
 		$this->manifest = $parsed;
-
-		if (!$this->manifest) {
+		
+		if (! $this->manifest) {
 			return false;
 		}
-
+		
 		return true;
 	}
 }

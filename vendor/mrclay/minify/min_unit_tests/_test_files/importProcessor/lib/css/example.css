@@ -1,1 +1,3 @@
-input.test bar { background: url('../img/green.gif') }
+input.test bar {
+	background: url('../img/green.gif')
+}

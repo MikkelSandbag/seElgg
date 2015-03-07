@@ -5,8 +5,7 @@
  *
  * Action type was incorrect due to previoud friends river upgrade
  */
-
 $query = "UPDATE {$CONFIG->dbprefix}river
 			SET action_type='friend'
 			WHERE view='river/relationship/friend/create' AND action_type='create'";
-update_data($query);
+update_data ( $query );

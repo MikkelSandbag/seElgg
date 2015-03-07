@@ -4,53 +4,54 @@
  */
 
 /* @var ElggUser $user */
-$user = $vars['user'];
+$user = $vars ['user'];
 
-$NOTIFICATION_HANDLERS = _elgg_services()->notifications->getMethodsAsDeprecatedGlobal();
+$NOTIFICATION_HANDLERS = _elgg_services ()->notifications->getMethodsAsDeprecatedGlobal ();
 
 ?>
 <div class="notification_personal">
-<div class="elgg-module elgg-module-info">
-	<div class="elgg-head">
-		<h3>
+	<div class="elgg-module elgg-module-info">
+		<div class="elgg-head">
+			<h3>
 			<?php echo elgg_echo('notifications:subscriptions:personal:title'); ?>
 		</h3>
+		</div>
 	</div>
-</div>
-<table id="notificationstable" cellspacing="0" cellpadding="4" width="100%">
-	<tr>
-		<td>&nbsp;</td>
+	<table id="notificationstable" cellspacing="0" cellpadding="4"
+		width="100%">
+		<tr>
+			<td>&nbsp;</td>
 <?php
-$i = 0; 
-foreach($NOTIFICATION_HANDLERS as $method => $foo) {
+$i = 0;
+foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
 	if ($i > 0) {
 		echo "<td class='spacercolumn'>&nbsp;</td>";
 	}
-?>
+	?>
 		<td class="<?php echo $method; ?>togglefield"><?php echo elgg_echo('notification:method:'.$method); ?></td>
 <?php
-	$i++;
+	$i ++;
 }
 ?>
 		<td>&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="namefield">
-			<p>
-				<?php echo elgg_echo('notifications:subscriptions:personal:description') ?>
+		</tr>
+		<tr>
+			<td class="namefield">
+				<p>
+				<?php echo elgg_echo('notifications:subscriptions:personal:description')?>
 			</p>
-		</td>
+			</td>
 
 <?php
 
 $fields = '';
 $i = 0;
-foreach($NOTIFICATION_HANDLERS as $method => $foo) {
-	if ($notification_settings = get_user_notification_settings($user->guid)) {
-		if (isset($notification_settings->$method) && $notification_settings->$method) {
-			$personalchecked[$method] = 'checked="checked"';
+foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
+	if ($notification_settings = get_user_notification_settings ( $user->guid )) {
+		if (isset ( $notification_settings->$method ) && $notification_settings->$method) {
+			$personalchecked [$method] = 'checked="checked"';
 		} else {
-			$personalchecked[$method] = '';
+			$personalchecked [$method] = '';
 		}
 	}
 	if ($i > 0) {
@@ -61,13 +62,13 @@ foreach($NOTIFICATION_HANDLERS as $method => $foo) {
 		<a  border="0" id="{$method}personal" class="{$method}toggleOff" onclick="adjust{$method}_alt('{$method}personal');">
 		<input type="checkbox" name="{$method}personal" id="{$method}checkbox" onclick="adjust{$method}('{$method}personal');" value="1" {$personalchecked[$method]} /></a></td>
 END;
-	$i++;
+	$i ++;
 }
 echo $fields;
 
 ?>
 
 		<td>&nbsp;</td>
-	</tr>
-</table>
+		</tr>
+	</table>
 </div>

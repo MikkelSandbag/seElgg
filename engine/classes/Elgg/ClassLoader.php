@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg;
 
 /**
@@ -6,10 +7,10 @@ namespace Elgg;
  *
  * It is able to load classes that use either:
  *
- *  * The technical interoperability standards for PHP 5.3 namespaces and
- *    class names (https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md);
+ * * The technical interoperability standards for PHP 5.3 namespaces and
+ * class names (https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md);
  *
- *  * The PEAR naming convention for classes (http://pear.php.net/).
+ * * The PEAR naming convention for classes (http://pear.php.net/).
  *
  * Classes from a sub-namespace or a sub-hierarchy of PEAR classes can be
  * looked for in a list of locations to ease the vendoring of a sub-set of
@@ -41,40 +42,41 @@ namespace Elgg;
  * THE SOFTWARE.
  *
  * @access private
- *
- * @package    Elgg.Core
+ *        
+ * @package Elgg.Core
  * @subpackage Autoloader
- * @author     Fabien Potencier <fabien@symfony.com>
+ * @author Fabien Potencier <fabien@symfony.com>
  */
 class ClassLoader {
-
-	protected $namespaces = array();
-	protected $prefixes = array();
-	protected $fallbacks = array();
-
+	protected $namespaces = array ();
+	protected $prefixes = array ();
+	protected $fallbacks = array ();
+	
 	/**
+	 *
 	 * @var \Elgg\ClassMap Map of classes to files
 	 */
 	protected $map;
-
+	
 	/**
 	 * Constructor
-	 * 
-	 * @param \Elgg\ClassMap $map Class map
+	 *
+	 * @param \Elgg\ClassMap $map
+	 *        	Class map
 	 */
 	public function __construct(\Elgg\ClassMap $map) {
 		$this->map = $map;
 	}
-
+	
 	/**
 	 * Get the class map
-	 * 
+	 *
 	 * @return \Elgg\ClassMap
 	 */
 	public function getClassMap() {
 		return $this->map;
 	}
-
+	
 	/**
 	 * Gets the configured namespaces.
 	 *
@@ -83,7 +85,7 @@ class ClassLoader {
 	public function getNamespaces() {
 		return $this->namespaces;
 	}
-
+	
 	/**
 	 * Gets the configured class prefixes.
 	 *
@@ -92,146 +94,155 @@ class ClassLoader {
 	public function getPrefixes() {
 		return $this->prefixes;
 	}
-
+	
 	/**
 	 * Registers an array of namespaces
 	 *
-	 * @param array $namespaces An array of namespaces (namespaces as keys and locations as values)
+	 * @param array $namespaces
+	 *        	An array of namespaces (namespaces as keys and locations as values)
 	 * @return void
 	 */
 	public function registerNamespaces(array $namespaces) {
-		foreach ($namespaces as $namespace => $locations) {
-			$this->namespaces[$namespace] = (array)$locations;
+		foreach ( $namespaces as $namespace => $locations ) {
+			$this->namespaces [$namespace] = ( array ) $locations;
 		}
 	}
-
+	
 	/**
 	 * Registers a namespace.
 	 *
-	 * @param string       $namespace The namespace
-	 * @param array|string $paths     The location(s) of the namespace
+	 * @param string $namespace
+	 *        	The namespace
+	 * @param array|string $paths
+	 *        	The location(s) of the namespace
 	 * @return void
 	 */
 	public function registerNamespace($namespace, $paths) {
-		$this->namespaces[$namespace] = (array)$paths;
+		$this->namespaces [$namespace] = ( array ) $paths;
 	}
-
+	
 	/**
 	 * Registers an array of classes using the PEAR naming convention.
 	 *
-	 * @param array $classes An array of classes (prefixes as keys and locations as values)
+	 * @param array $classes
+	 *        	An array of classes (prefixes as keys and locations as values)
 	 * @return void
 	 */
 	public function registerPrefixes(array $classes) {
-		foreach ($classes as $prefix => $locations) {
-			$this->prefixes[$prefix] = (array)$locations;
+		foreach ( $classes as $prefix => $locations ) {
+			$this->prefixes [$prefix] = ( array ) $locations;
 		}
 	}
-
+	
 	/**
 	 * Registers a set of classes using the PEAR naming convention.
 	 *
-	 * @param string       $prefix The classes prefix
-	 * @param array|string $paths  The location(s) of the classes
+	 * @param string $prefix
+	 *        	The classes prefix
+	 * @param array|string $paths
+	 *        	The location(s) of the classes
 	 * @return void
 	 */
 	public function registerPrefix($prefix, $paths) {
-		$this->prefixes[$prefix] = (array)$paths;
+		$this->prefixes [$prefix] = ( array ) $paths;
 	}
-
+	
 	/**
 	 * Add a directory to search if no registered directory is found.
 	 *
-	 * @param string $path The directory
+	 * @param string $path
+	 *        	The directory
 	 * @return void
 	 */
 	public function addFallback($path) {
-		$this->fallbacks[] = rtrim($path, '/\\');
+		$this->fallbacks [] = rtrim ( $path, '/\\' );
 	}
-
+	
 	/**
 	 * Registers this instance as an autoloader.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function register() {
-		spl_autoload_register(array($this, 'loadClass'));
+		spl_autoload_register ( array (
+				$this,
+				'loadClass' 
+		) );
 	}
-
+	
 	/**
 	 * Loads the given class or interface, possibly updating the class map.
 	 *
-	 * @param string $class The name of the class
+	 * @param string $class
+	 *        	The name of the class
 	 * @return void
 	 */
 	public function loadClass($class) {
-		$file = $this->map->getPath($class);
-		if ($file && is_readable($file)) {
+		$file = $this->map->getPath ( $class );
+		if ($file && is_readable ( $file )) {
 			require $file;
 			return;
 		}
-
-		$file = $this->findFile($class);
-		if ($file && is_readable($file)) {
-			$this->map->setPath($class, $file);
-			$this->map->setAltered(true);
+		
+		$file = $this->findFile ( $class );
+		if ($file && is_readable ( $file )) {
+			$this->map->setPath ( $class, $file );
+			$this->map->setAltered ( true );
 			require $file;
 		}
 	}
-
+	
 	/**
 	 * Finds the path to the file where the class is defined.
 	 *
-	 * @param string $class The name of the class
-	 *
+	 * @param string $class
+	 *        	The name of the class
+	 *        	
 	 * @return string|null The path, if found
 	 */
 	public function findFile($class) {
-		if ('\\' == $class[0]) {
-			$class = substr($class, 1);
+		if ('\\' == $class [0]) {
+			$class = substr ( $class, 1 );
 		}
-
-		$pos = strrpos($class, '\\');
+		
+		$pos = strrpos ( $class, '\\' );
 		if (false !== $pos) {
 			// namespaced class name
-			$namespace = substr($class, 0, $pos);
-			$className = substr($class, $pos + 1);
-			$normalizedClass = str_replace('\\', DIRECTORY_SEPARATOR, $namespace)
-				. DIRECTORY_SEPARATOR
-				. str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-			foreach ($this->namespaces as $ns => $dirs) {
-				if (0 !== strpos($namespace, $ns)) {
+			$namespace = substr ( $class, 0, $pos );
+			$className = substr ( $class, $pos + 1 );
+			$normalizedClass = str_replace ( '\\', DIRECTORY_SEPARATOR, $namespace ) . DIRECTORY_SEPARATOR . str_replace ( '_', DIRECTORY_SEPARATOR, $className ) . '.php';
+			foreach ( $this->namespaces as $ns => $dirs ) {
+				if (0 !== strpos ( $namespace, $ns )) {
 					continue;
 				}
-
-				foreach ($dirs as $dir) {
+				
+				foreach ( $dirs as $dir ) {
 					$file = $dir . DIRECTORY_SEPARATOR . $normalizedClass;
-					if (is_file($file)) {
+					if (is_file ( $file )) {
 						return $file;
 					}
 				}
 			}
-
 		} else {
 			// PEAR-like class name
-			$normalizedClass = str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
-			foreach ($this->prefixes as $prefix => $dirs) {
-				if (0 !== strpos($class, $prefix)) {
+			$normalizedClass = str_replace ( '_', DIRECTORY_SEPARATOR, $class ) . '.php';
+			foreach ( $this->prefixes as $prefix => $dirs ) {
+				if (0 !== strpos ( $class, $prefix )) {
 					continue;
 				}
-
-				foreach ($dirs as $dir) {
+				
+				foreach ( $dirs as $dir ) {
 					$file = $dir . DIRECTORY_SEPARATOR . $normalizedClass;
-					if (is_file($file)) {
+					if (is_file ( $file )) {
 						return $file;
 					}
 				}
 			}
 		}
-
-		foreach ($this->fallbacks as $dir) {
+		
+		foreach ( $this->fallbacks as $dir ) {
 			$file = $dir . DIRECTORY_SEPARATOR . $normalizedClass;
-			if (is_file($file)) {
+			if (is_file ( $file )) {
 				return $file;
 			}
 		}

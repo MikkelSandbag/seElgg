@@ -5,8 +5,7 @@
  *
  * Upgrade the ip column in system_log to be able to store ipv6 addresses
  */
-
-$db_prefix = elgg_get_config('dbprefix');
+$db_prefix = elgg_get_config ( 'dbprefix' );
 $q = "ALTER TABLE {$db_prefix}system_log MODIFY COLUMN ip_address varchar(46) NOT NULL";
 
-update_data($q);
+update_data ( $q );

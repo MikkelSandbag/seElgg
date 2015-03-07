@@ -20,7 +20,7 @@ interface Loggable {
 	 * @return int
 	 */
 	public function getSystemLogID();
-
+	
 	/**
 	 * Return the class name of the object.
 	 * Added as a function because get_class causes errors for some reason.
@@ -28,33 +28,36 @@ interface Loggable {
 	 * @return string
 	 */
 	public function getClassName();
-
+	
 	/**
-	 * Return the type of the object - eg. object, group, user, relationship, metadata, annotation etc
+	 * Return the type of the object - eg.
+	 * object, group, user, relationship, metadata, annotation etc
 	 *
 	 * @return string
 	 */
 	public function getType();
-
+	
 	/**
-	 * Return a subtype. For metadata & annotations this is the 'name' and for relationship this is the
+	 * Return a subtype.
+	 * For metadata & annotations this is the 'name' and for relationship this is the
 	 * relationship type.
 	 *
 	 * @return string
 	 */
 	public function getSubtype();
-
+	
 	/**
 	 * For a given ID, return the object associated with it.
 	 * This is used by the river functionality primarily.
 	 * This is useful for checking access permissions etc on objects.
 	 *
-	 * @param int $id GUID of an entity
-	 *
+	 * @param int $id
+	 *        	GUID of an entity
+	 *        	
 	 * @return \ElggEntity
 	 */
 	public function getObjectFromID($id);
-
+	
 	/**
 	 * Return the GUID of the owner of this object.
 	 *

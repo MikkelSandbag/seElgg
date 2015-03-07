@@ -1,9 +1,9 @@
 <?php
-	$spanish = array(
+$spanish = array (
 		'friend_request' => "Solicitud de Amistad",
 		'friend_request:menu' => "Solicitudes de Amistad",
 		'friend_request:title' => "Solicitudes de Amistad para: %s",
-	
+		
 		'friend_request:new' => "Nueva Solicitud de Amistad",
 		
 		'friend_request:friend:add:pending' => "Solicitud de Amistad Pendiente",
@@ -28,7 +28,7 @@ Aseg&uacute;rate de haber iniciado sesi&oacute;n en el sitio web antes de hacer 
 		'friend_request:approve' => "Aprobar",
 		'friend_request:approve:successful' => "%s es ahora un Amigo",
 		'friend_request:approve:fail' => "Error al crear relaci&oacute;n de Amistad con %s",
-	
+		
 		// Decline request
 		'friend_request:decline' => "Rechazar",
 		'friend_request:decline:subject' => "%s ha rechazado tu solicitud de amistad",
@@ -42,15 +42,15 @@ Aseg&uacute;rate de haber iniciado sesi&oacute;n en el sitio web antes de hacer 
 		'friend_request:revoke' => "Revocar",
 		'friend_request:revoke:success' => "Solicitud de Amistad exitosamente revocada",
 		'friend_request:revoke:fail' => "Error al revocar la Solicitud de Amistad, por favor int&eacute;ntelo de nuevo",
-	
+		
 		// Views
 		// Received
 		'friend_request:received:title' => "Solicitudes de Amistad recibidas",
 		'friend_request:received:none' => "No hay solicitudes pendientes de aprobaci&oacute;n",
-	
+		
 		// Sent
 		'friend_request:sent:title' => "Solicitudes de Amistad enviadas",
-		'friend_request:sent:none' => "No hay solicitudes enviadas pendientes de aprobaci&oacute;n",
-	);
-					
-	add_translation("es", $spanish);
+		'friend_request:sent:none' => "No hay solicitudes enviadas pendientes de aprobaci&oacute;n" 
+);
+
+add_translation ( "es", $spanish );

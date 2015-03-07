@@ -30,14 +30,13 @@
  * @package Elgg.Core
  * @subpackage PageHandler
  */
+require_once (dirname ( dirname ( __FILE__ ) ) . "/start.php");
 
-require_once(dirname(dirname(__FILE__)) . "/start.php");
+register_error ( "Update your .htaccess file to remove the page handler" );
 
-register_error("Update your .htaccess file to remove the page handler");
+$router = _elgg_services ()->router;
+$request = _elgg_services ()->request;
 
-$router = _elgg_services()->router;
-$request = _elgg_services()->request;
-
-if (!$router->route($request)) {
-	forward('', '404');
+if (! $router->route ( $request )) {
+	forward ( '', '404' );
 }

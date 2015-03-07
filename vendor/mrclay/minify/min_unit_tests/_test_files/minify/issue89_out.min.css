@@ -1,1 +1,11 @@
-@import "/1.css";@import "/2.css";selector{property:value}selector2{property:value}
+@import "/1.css";
+
+@import "/2.css";
+
+selector {
+	property: value
+}
+
+selector2 {
+	property: value
+}

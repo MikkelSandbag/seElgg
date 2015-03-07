@@ -8,8 +8,7 @@
  * @uses $vars['body']        The main content of the page
  * @uses $vars['sysmessages'] A 2d array of various message registers, passed from system_messages()
  */
-
-$is_sticky_register = elgg_is_sticky_form('register');
+$is_sticky_register = elgg_is_sticky_form ( 'register' );
 $wg_body_class = 'elgg-body-walledgarden';
 $inline_js = '';
 if ($is_sticky_register) {
@@ -24,8 +23,10 @@ __JS;
 }
 
 // render content before head so that JavaScript and CSS can be loaded. See #4032
-$messages = elgg_view('page/elements/messages', array('object' => $vars['sysmessages']));
-$content = $vars["body"];
+$messages = elgg_view ( 'page/elements/messages', array (
+		'object' => $vars ['sysmessages'] 
+) );
+$content = $vars ["body"];
 
 $body = <<<__BODY
 <div class="elgg-page elgg-page-walledgarden">
@@ -38,10 +39,13 @@ $body = <<<__BODY
 </div>
 __BODY;
 
-$body .= elgg_view('page/elements/foot');
+$body .= elgg_view ( 'page/elements/foot' );
 
 $body .= $inline_js;
 
-$head = elgg_view('page/elements/head', $vars['head']);
+$head = elgg_view ( 'page/elements/head', $vars ['head'] );
 
-echo elgg_view("page/elements/html", array("head" => $head, "body" => $body));
+echo elgg_view ( "page/elements/html", array (
+		"head" => $head,
+		"body" => $body 
+) );

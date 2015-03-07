@@ -8,15 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Stash\Exception;
 
 /**
  * Exception thrown if an argument does not match with the expected value.
  *
  * @package Stash
- * @author  Robert Hafner <tedivm@tedivm.com>
+ * @author Robert Hafner <tedivm@tedivm.com>
  */
-class InvalidArgumentException extends \InvalidArgumentException implements Exception
-{
+class InvalidArgumentException extends \InvalidArgumentException implements Exception {
 }

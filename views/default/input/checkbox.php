@@ -19,29 +19,28 @@
  * @uses $vars['class']       Additional CSS class
  * @uses $vars['label_class'] Optional class for the label
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-checkbox {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-checkbox {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-checkbox";
+	$vars ['class'] = "elgg-input-checkbox";
 }
 
-$defaults = array(
-	'default' => 0,
-	'disabled' => false,
+$defaults = array (
+		'default' => 0,
+		'disabled' => false 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
-$default = $vars['default'];
-unset($vars['default']);
+$default = $vars ['default'];
+unset ( $vars ['default'] );
 
-if (isset($vars['name']) && $default !== false) {
+if (isset ( $vars ['name'] ) && $default !== false) {
 	echo "<input type=\"hidden\" name=\"{$vars['name']}\" value=\"$default\"/>";
 }
 
-if (isset($vars['label'])) {
-	if (isset($vars['label_class'])) {
+if (isset ( $vars ['label'] )) {
+	if (isset ( $vars ['label_class'] )) {
 		echo "<label class=\"{$vars['label_class']}\">";
 	} else {
 		echo "<label>";
@@ -50,6 +49,6 @@ if (isset($vars['label'])) {
 ?>
 <input type="checkbox" <?php echo elgg_format_attributes($vars); ?> />
 <?php
-if (isset($vars['label'])) {
+if (isset ( $vars ['label'] )) {
 	echo "{$vars['label']}</label>";
 }

@@ -16,18 +16,17 @@
  * @uses $vars['body']     HTML for the content body
  * @uses $vars['class']    Optional additional class for the content wrapper
  */
-
-$icon = elgg_extract('icon', $vars);
-$summary = elgg_extract('summary', $vars);
-$body = elgg_extract('body', $vars);
-$class = elgg_extract('class', $vars);
+$icon = elgg_extract ( 'icon', $vars );
+$summary = elgg_extract ( 'summary', $vars );
+$body = elgg_extract ( 'body', $vars );
+$class = elgg_extract ( 'class', $vars );
 if ($class) {
 	$class = "elgg-content clearfix $class";
 } else {
 	$class = "elgg-content clearfix";
 }
 
-$header = elgg_view_image_block($icon, $summary);
+$header = elgg_view_image_block ( $icon, $summary );
 
 echo <<<HTML
 <div class="$class">

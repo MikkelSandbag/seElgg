@@ -4,7 +4,6 @@
  * 
  * @uses $vars['entity']
  */
-
 ?>
 <div>
 	<label><?php echo elgg_echo("avatar:upload"); ?></label><br />

@@ -7,17 +7,16 @@
  * @subpackage Core
  * @deprecated 1.9
  */
+$entity = $vars ['entity'];
 
-$entity = $vars['entity'];
+$export = new stdClass ();
+$exportable_values = $entity->getExportableValues ();
 
-$export = new stdClass;
-$exportable_values = $entity->getExportableValues();
-
-foreach ($exportable_values as $v) {
+foreach ( $exportable_values as $v ) {
 	$export->$v = $entity->$v;
 }
 
-$export->url = $entity->getURL();
+$export->url = $entity->getURL ();
 
 global $jsonexport;
-$jsonexport[$entity->getType()][$entity->getSubtype()][] = $export;
+$jsonexport [$entity->getType ()] [$entity->getSubtype ()] [] = $export;

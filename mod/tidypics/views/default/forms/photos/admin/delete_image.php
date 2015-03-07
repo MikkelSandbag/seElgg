@@ -4,12 +4,15 @@
  *
  * iionly@gmx.de
  */
+$title = elgg_echo ( 'tidypics:delete_image' );
+$content = '<p>' . elgg_echo ( 'tidypics:delete_image_blurb' ) . '</p>';
+$content .= '<label>' . elgg_echo ( 'tidypics:delete_image_id' ) . '</label>';
+$content .= elgg_view ( 'input/text', array (
+		'name' => 'guid' 
+) );
 
-$title = elgg_echo('tidypics:delete_image');
-$content = '<p>' . elgg_echo('tidypics:delete_image_blurb') . '</p>';
-$content .= '<label>' . elgg_echo('tidypics:delete_image_id') . '</label>';
-$content .= elgg_view('input/text', array('name' => 'guid'));
+echo elgg_view_module ( 'inline', $title, $content );
 
-echo elgg_view_module('inline', $title, $content);
-
-echo elgg_view('input/submit', array('value' => elgg_echo("delete")));
+echo elgg_view ( 'input/submit', array (
+		'value' => elgg_echo ( "delete" ) 
+) );

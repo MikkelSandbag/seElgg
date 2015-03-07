@@ -8,13 +8,11 @@
  * @uses $vars['full_view'] Whether to display the full view
  * @uses $vars['revision']  This parameter not supported by elgg_view_entity()
  */
+$full = elgg_extract ( 'full_view', $vars, FALSE );
+$page = elgg_extract ( 'entity', $vars, FALSE );
+$revision = elgg_extract ( 'revision', $vars, FALSE );
 
-
-$full = elgg_extract('full_view', $vars, FALSE);
-$page = elgg_extract('entity', $vars, FALSE);
-$revision = elgg_extract('revision', $vars, FALSE);
-
-if (!$page) {
+if (! $page) {
 	return TRUE;
 }
 
@@ -24,45 +22,50 @@ if ($page->write_access_id == ACCESS_PUBLIC) {
 	$page->write_access_id = ACCESS_LOGGED_IN;
 }
 
-
 if ($revision) {
 	$annotation = $revision;
 } else {
-	$annotation = $page->getAnnotations(array(
-		'annotation_name' => 'page',
-		'limit' => 1,
-		'reverse_order_by' => true,
-	));
+	$annotation = $page->getAnnotations ( array (
+			'annotation_name' => 'page',
+			'limit' => 1,
+			'reverse_order_by' => true 
+	) );
 	if ($annotation) {
-		$annotation = $annotation[0];
+		$annotation = $annotation [0];
 	} else {
-		elgg_log("Failed to access annotation for page with GUID {$page->guid}", 'WARNING');
+		elgg_log ( "Failed to access annotation for page with GUID {$page->guid}", 'WARNING' );
 		return;
 	}
 }
 
-$page_icon = elgg_view('pages/icon', array('annotation' => $annotation, 'size' => 'small'));
+$page_icon = elgg_view ( 'pages/icon', array (
+		'annotation' => $annotation,
+		'size' => 'small' 
+) );
 
-$editor = get_entity($annotation->owner_guid);
-$editor_link = elgg_view('output/url', array(
-	'href' => "pages/owner/$editor->username",
-	'text' => $editor->name,
-	'is_trusted' => true,
-));
+$editor = get_entity ( $annotation->owner_guid );
+$editor_link = elgg_view ( 'output/url', array (
+		'href' => "pages/owner/$editor->username",
+		'text' => $editor->name,
+		'is_trusted' => true 
+) );
 
-$date = elgg_view_friendly_time($annotation->time_created);
-$editor_text = elgg_echo('pages:strapline', array($date, $editor_link));
-$categories = elgg_view('output/categories', $vars);
+$date = elgg_view_friendly_time ( $annotation->time_created );
+$editor_text = elgg_echo ( 'pages:strapline', array (
+		$date,
+		$editor_link 
+) );
+$categories = elgg_view ( 'output/categories', $vars );
 
-$comments_count = $page->countComments();
-//only display if there are commments
-if ($comments_count != 0 && !$revision) {
-	$text = elgg_echo("comments") . " ($comments_count)";
-	$comments_link = elgg_view('output/url', array(
-		'href' => $page->getURL() . '#comments',
-		'text' => $text,
-		'is_trusted' => true,
-	));
+$comments_count = $page->countComments ();
+// only display if there are commments
+if ($comments_count != 0 && ! $revision) {
+	$text = elgg_echo ( "comments" ) . " ($comments_count)";
+	$comments_link = elgg_view ( 'output/url', array (
+			'href' => $page->getURL () . '#comments',
+			'text' => $text,
+			'is_trusted' => true 
+	) );
 } else {
 	$comments_link = '';
 }
@@ -70,57 +73,58 @@ if ($comments_count != 0 && !$revision) {
 $subtitle = "$editor_text $comments_link $categories";
 
 // do not show the metadata and controls in widget view
-if (!elgg_in_context('widgets')) {
+if (! elgg_in_context ( 'widgets' )) {
 	// If we're looking at a revision, display annotation menu
 	if ($revision) {
-		$metadata = elgg_view_menu('annotation', array(
-			'annotation' => $annotation,
-			'sort_by' => 'priority',
-			'class' => 'elgg-menu-hz float-alt',
-		));
+		$metadata = elgg_view_menu ( 'annotation', array (
+				'annotation' => $annotation,
+				'sort_by' => 'priority',
+				'class' => 'elgg-menu-hz float-alt' 
+		) );
 	} else {
 		// Regular entity menu
-		$metadata = elgg_view_menu('entity', array(
-			'entity' => $vars['entity'],
-			'handler' => 'pages',
-			'sort_by' => 'priority',
-			'class' => 'elgg-menu-hz',
-		));
+		$metadata = elgg_view_menu ( 'entity', array (
+				'entity' => $vars ['entity'],
+				'handler' => 'pages',
+				'sort_by' => 'priority',
+				'class' => 'elgg-menu-hz' 
+		) );
 	}
 }
 
 if ($full) {
-	$body = elgg_view('output/longtext', array('value' => $annotation->value));
-
-	$params = array(
-		'entity' => $page,
-		'metadata' => $metadata,
-		'subtitle' => $subtitle,
+	$body = elgg_view ( 'output/longtext', array (
+			'value' => $annotation->value 
+	) );
+	
+	$params = array (
+			'entity' => $page,
+			'metadata' => $metadata,
+			'subtitle' => $subtitle 
 	);
 	$params = $params + $vars;
-	$summary = elgg_view('object/elements/summary', $params);
-
-	echo elgg_view('object/elements/full', array(
-		'entity' => $page,
-		'title' => false,
-		'icon' => $page_icon,
-		'summary' => $summary,
-		'body' => $body,
-	));
-
+	$summary = elgg_view ( 'object/elements/summary', $params );
+	
+	echo elgg_view ( 'object/elements/full', array (
+			'entity' => $page,
+			'title' => false,
+			'icon' => $page_icon,
+			'summary' => $summary,
+			'body' => $body 
+	) );
 } else {
 	// brief view
-
-	$excerpt = elgg_get_excerpt($page->description);
-
-	$params = array(
-		'entity' => $page,
-		'metadata' => $metadata,
-		'subtitle' => $subtitle,
-		'content' => $excerpt,
+	
+	$excerpt = elgg_get_excerpt ( $page->description );
+	
+	$params = array (
+			'entity' => $page,
+			'metadata' => $metadata,
+			'subtitle' => $subtitle,
+			'content' => $excerpt 
 	);
 	$params = $params + $vars;
-	$list_body = elgg_view('object/elements/summary', $params);
-
-	echo elgg_view_image_block($page_icon, $list_body);
+	$list_body = elgg_view ( 'object/elements/summary', $params );
+	
+	echo elgg_view_image_block ( $page_icon, $list_body );
 }

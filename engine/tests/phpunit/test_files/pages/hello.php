@@ -1,4 +1,3 @@
 <?php
-
 echo $identifier . '/';
-echo implode('/', $segments);
+echo implode ( '/', $segments );

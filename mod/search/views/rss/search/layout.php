@@ -2,5 +2,4 @@
 /**
  * Search layout for RSS
  */
-
-echo $vars['body'];
+echo $vars ['body'];

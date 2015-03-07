@@ -4,11 +4,10 @@
  *
  * @uses $vars['entity'] ElggEntity
  */
-
-$options = array(
-	'container_guid' => $vars['topic']->getGUID(),
-	'type' => 'object',
-	'subtype' => 'discussion_reply',
-	'distinct' => false,
+$options = array (
+		'container_guid' => $vars ['topic']->getGUID (),
+		'type' => 'object',
+		'subtype' => 'discussion_reply',
+		'distinct' => false 
 );
-echo elgg_list_entities($options);
+echo elgg_list_entities ( $options );

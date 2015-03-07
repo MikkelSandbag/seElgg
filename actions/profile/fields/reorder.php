@@ -3,10 +3,9 @@
  * Elgg profile plugin reorder fields
  *
  */
+$ordering = get_input ( 'fieldorder' );
 
-$ordering = get_input('fieldorder');
-
-$result = elgg_save_config('profile_custom_fields', $ordering);
+$result = elgg_save_config ( 'profile_custom_fields', $ordering );
 
 // called by ajax so we exit
-exit;
+exit ();

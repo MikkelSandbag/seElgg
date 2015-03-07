@@ -4,5 +4,4 @@
  *
  * iionly@gmx.de
  */
-
-echo elgg_view_form('photos/admin/delete_image');
+echo elgg_view_form ( 'photos/admin/delete_image' );

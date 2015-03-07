@@ -1,4 +1,5 @@
-//<script>
+//
+<script>
 elgg.provide('elgg.messageboard');
 
 elgg.messageboard.init = function() {

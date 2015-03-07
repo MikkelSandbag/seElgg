@@ -9,15 +9,14 @@
  * @subpackage Core
  * @deprecated 1.9
  */
+$data = get_input ( 'data', '', false );
 
-$data = get_input('data', '', false);
-
-$return = import($data);
+$return = import ( $data );
 
 if ($return) {
-	system_message(elgg_echo('importsuccess'));
+	system_message ( elgg_echo ( 'importsuccess' ) );
 } else {
-	register_error(elgg_echo('importfail'));
+	register_error ( elgg_echo ( 'importfail' ) );
 }
 
-forward(REFERER);
+forward ( REFERER );

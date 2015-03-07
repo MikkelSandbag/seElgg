@@ -5,8 +5,7 @@
  *
  * Adds a field for an IP address in the system log table
  */
-
-$db_prefix = elgg_get_config('dbprefix');
+$db_prefix = elgg_get_config ( 'dbprefix' );
 $q = "ALTER TABLE {$db_prefix}system_log ADD ip_address VARCHAR(15) NOT NULL AFTER time_created";
 
-update_data($q);
+update_data ( $q );

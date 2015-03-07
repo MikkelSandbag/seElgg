@@ -1,31 +1,26 @@
 <?php
+
 namespace Elgg\Http;
 
 use PHPUnit_Framework_TestCase as TestCase;
 
 class InputTest extends TestCase {
-	
 	public function testGetInputDefaultsToProvidedDefaultValue() {
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 	}
-	
 	public function testGetInputTriggersValidateInputHookIfAndOnlyIfFilteringIsEnabled() {
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 	}
-	
 	public function testGetInputCanBeOverriddenBySetInput() {
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 	}
-	
 	public function testGetInputChecksBothPostAndGetParams() {
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 	}
-	
 	public function testGetInputPushesInputContextDuringFiltering() {
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 	}
-	
 	public function testFilterTagsGlobal() {
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 	}
 }

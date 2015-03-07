@@ -10,18 +10,17 @@
  * have caused the class to be saved to the list of processed upgrade instead
  * of the filename. This upgrade replaces the class with the filename.
  */
+$upgrade_data = datalist_get ( 'processed_upgrades' );
+$upgrade_data = unserialize ( $upgrade_data );
 
-$upgrade_data = datalist_get('processed_upgrades');
-$upgrade_data = unserialize($upgrade_data);
-
-foreach ($upgrade_data as $key => $entry) {
-	if (!$entry instanceof ElggUpgrade) {
+foreach ( $upgrade_data as $key => $entry ) {
+	if (! $entry instanceof ElggUpgrade) {
 		continue;
 	}
-
+	
 	if ($entry->title == 'Comments Upgrade') {
-		$upgrade_data[$key] = '2013010400-1.9.0_dev-comments_to_entities-faba94768b055b08.php';
+		$upgrade_data [$key] = '2013010400-1.9.0_dev-comments_to_entities-faba94768b055b08.php';
 	}
 }
 
-datalist_set('processed_upgrades', serialize($upgrade_data));
+datalist_set ( 'processed_upgrades', serialize ( $upgrade_data ) );

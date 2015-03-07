@@ -7,17 +7,18 @@ namespace Gaufrette\Adapter;
  *
  * @author Leszek Prabucki <leszek.prabucki@gmail.com>
  */
-interface MetadataSupporter
-{
-    /**
-     * @param string $key
-     * @param array  $content
-     */
-    public function setMetadata($key, $content);
-
-    /**
-     * @param  string $key
-     * @return array
-     */
-    public function getMetadata($key);
+interface MetadataSupporter {
+	/**
+	 *
+	 * @param string $key        	
+	 * @param array $content        	
+	 */
+	public function setMetadata($key, $content);
+	
+	/**
+	 *
+	 * @param string $key        	
+	 * @return array
+	 */
+	public function getMetadata($key);
 }

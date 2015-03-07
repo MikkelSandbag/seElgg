@@ -10,29 +10,28 @@
  */
 
 // Set title
-if (empty($vars['title'])) {
-	$title = elgg_get_config('sitename');
+if (empty ( $vars ['title'] )) {
+	$title = elgg_get_config ( 'sitename' );
 } else {
-	$title = elgg_get_config('sitename') . ": " . $vars['title'];
+	$title = elgg_get_config ( 'sitename' ) . ": " . $vars ['title'];
 }
 
 // Remove RSS from URL
-$rssurl = current_page_url();
-$url = elgg_http_remove_url_query_element($rssurl, 'view');
+$rssurl = current_page_url ();
+$url = elgg_http_remove_url_query_element ( $rssurl, 'view' );
 
-$rssurl = htmlspecialchars($url, ENT_NOQUOTES, 'UTF-8');
-$url = htmlspecialchars($url, ENT_NOQUOTES, 'UTF-8');
+$rssurl = htmlspecialchars ( $url, ENT_NOQUOTES, 'UTF-8' );
+$url = htmlspecialchars ( $url, ENT_NOQUOTES, 'UTF-8' );
 
-$body = elgg_extract('body', $vars, '');
-$description = elgg_extract('description', $vars, '');
+$body = elgg_extract ( 'body', $vars, '' );
+$description = elgg_extract ( 'description', $vars, '' );
 
-$namespaces = elgg_view('extensions/xmlns');
-$extensions = elgg_view('extensions/channel');
-
+$namespaces = elgg_view ( 'extensions/xmlns' );
+$extensions = elgg_view ( 'extensions/channel' );
 
 // allow caching as required by stupid MS products for https feeds.
-header('Pragma: public', true);
-header("Content-Type: text/xml");
+header ( 'Pragma: public', true );
+header ( "Content-Type: text/xml" );
 
 echo "<?xml version='1.0'?>";
 echo <<<END

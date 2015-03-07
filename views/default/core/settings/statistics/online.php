@@ -5,18 +5,17 @@
  * @package Elgg
  * @subpackage Core
  */
+$user = elgg_get_page_owner_entity ();
 
-$user = elgg_get_page_owner_entity();
+$label_name = elgg_echo ( 'usersettings:statistics:label:name' );
+$label_email = elgg_echo ( 'usersettings:statistics:label:email' );
+$label_member_since = elgg_echo ( 'usersettings:statistics:label:membersince' );
+$label_last_login = elgg_echo ( 'usersettings:statistics:label:lastlogin' );
 
-$label_name = elgg_echo('usersettings:statistics:label:name');
-$label_email = elgg_echo('usersettings:statistics:label:email');
-$label_member_since = elgg_echo('usersettings:statistics:label:membersince');
-$label_last_login = elgg_echo('usersettings:statistics:label:lastlogin');
+$time_created = date ( "r", $user->time_created );
+$last_login = date ( "r", $user->last_login );
 
-$time_created = date("r", $user->time_created);
-$last_login = date("r", $user->last_login);
-
-$title = elgg_echo('usersettings:statistics:yourdetails');
+$title = elgg_echo ( 'usersettings:statistics:yourdetails' );
 
 $content = <<<__HTML
 <table class="elgg-table-alt">
@@ -39,4 +38,4 @@ $content = <<<__HTML
 </table>
 __HTML;
 
-echo elgg_view_module('info', $title, $content);
+echo elgg_view_module ( 'info', $title, $content );

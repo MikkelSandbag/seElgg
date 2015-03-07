@@ -5,9 +5,9 @@
  * @author Cash Costello
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
  */
-
 ?>
-//<script>
+//
+<script>
 elgg.provide('elgg.tidypics.tagging');
 
 elgg.tidypics.tagging.init = function() {

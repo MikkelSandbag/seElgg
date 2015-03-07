@@ -7,7 +7,8 @@
 	<category>bundled</category>
 	<category>content</category>
 	<category>widget</category>
-	<description>Adds the ability for users to bookmark internal and external sites.</description>
+	<description>Adds the ability for users to bookmark internal and
+		external sites.</description>
 	<website>http://www.elgg.org/</website>
 	<copyright>See COPYRIGHT.txt</copyright>
 	<license>GNU General Public License version 2</license>

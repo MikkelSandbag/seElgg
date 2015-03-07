@@ -10,30 +10,30 @@
  * @uses $vars['disabled'] Is the input field disabled?
  * @uses $vars['class']    Additional CSS class
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-longtext {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-longtext {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-longtext";
+	$vars ['class'] = "elgg-input-longtext";
 }
 
-$defaults = array(
-	'value' => '',
-	'rows' => '10',
-	'cols' => '50',
-	'id' => 'elgg-input-' . rand(), //@todo make this more robust
-);
+$defaults = array (
+		'value' => '',
+		'rows' => '10',
+		'cols' => '50',
+		'id' => 'elgg-input-' . rand () 
+) // @todo make this more robust
+;
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
-$value = $vars['value'];
-unset($vars['value']);
+$value = $vars ['value'];
+unset ( $vars ['value'] );
 
-echo elgg_view_menu('longtext', array(
-	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz',
-	'id' => $vars['id'],
-));
+echo elgg_view_menu ( 'longtext', array (
+		'sort_by' => 'priority',
+		'class' => 'elgg-menu-hz',
+		'id' => $vars ['id'] 
+) );
 
 ?>
 

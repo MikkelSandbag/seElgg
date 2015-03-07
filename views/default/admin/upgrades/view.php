@@ -2,34 +2,35 @@
 /**
  * Views the progress bar, statistics and run button for an upgrade
  */
+$count = elgg_extract ( 'count', $vars );
+$action = elgg_extract ( 'action', $vars );
 
-$count = elgg_extract('count', $vars);
-$action = elgg_extract('action', $vars);
-
-if (!$count) {
-	echo elgg_echo('upgrade:finished');
+if (! $count) {
+	echo elgg_echo ( 'upgrade:finished' );
 	return;
 }
 
-elgg_load_js('elgg.upgrades');
+elgg_load_js ( 'elgg.upgrades' );
 
 $warning_string = '';
 if ($count > 1000) {
-	$warning_string = elgg_echo('upgrade:warning');
+	$warning_string = elgg_echo ( 'upgrade:warning' );
 }
 
-$status_string = elgg_echo('upgrade:item_count', array($count));
+$status_string = elgg_echo ( 'upgrade:item_count', array (
+		$count 
+) );
 
-$success_count_string = elgg_echo('upgrade:success_count');
-$error_count_string = elgg_echo('upgrade:error_count');
+$success_count_string = elgg_echo ( 'upgrade:success_count' );
+$error_count_string = elgg_echo ( 'upgrade:error_count' );
 
-$action_link = elgg_view('output/url', array(
-	'text' => elgg_echo('upgrade'),
-	'href' => $action,
-	'class' => 'elgg-button elgg-button-action mtl',
-	'is_action' => true,
-	'id' => 'upgrade-run',
-));
+$action_link = elgg_view ( 'output/url', array (
+		'text' => elgg_echo ( 'upgrade' ),
+		'href' => $action,
+		'class' => 'elgg-button elgg-button-action mtl',
+		'is_action' => true,
+		'id' => 'upgrade-run' 
+) );
 
 echo <<<HTML
 	<p>$warning_string</p>

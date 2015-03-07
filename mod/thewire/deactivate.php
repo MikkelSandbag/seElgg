@@ -2,5 +2,4 @@
 /**
  * Deregister the ElggWire class
  */
-
-update_subtype('object', 'thewire');
+update_subtype ( 'object', 'thewire' );

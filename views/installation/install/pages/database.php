@@ -4,23 +4,22 @@
  *
  * @uses $vars['failure'] Settings file exists but something went wrong
  */
-
-if (isset($vars['failure']) && $vars['failure']) {
-	echo elgg_autop(elgg_echo('install:database:error'));
-	$vars['refresh'] = TRUE;
-	$vars['advance'] = FALSE;
-	echo elgg_view('install/nav', $vars);
+if (isset ( $vars ['failure'] ) && $vars ['failure']) {
+	echo elgg_autop ( elgg_echo ( 'install:database:error' ) );
+	$vars ['refresh'] = TRUE;
+	$vars ['advance'] = FALSE;
+	echo elgg_view ( 'install/nav', $vars );
 } else {
-	echo elgg_autop(elgg_echo('install:database:instructions'));
+	echo elgg_autop ( elgg_echo ( 'install:database:instructions' ) );
 	
-	$vars['type'] = 'database';
+	$vars ['type'] = 'database';
 	
-	$url = current_page_url();
+	$url = current_page_url ();
 	
-	$form_vars = array(
-		'action' => $url,
-		'disable_security' => TRUE,
+	$form_vars = array (
+			'action' => $url,
+			'disable_security' => TRUE 
 	);
 	
-	echo elgg_view_form('install/template', $form_vars, $vars);
+	echo elgg_view_form ( 'install/template', $form_vars, $vars );
 }

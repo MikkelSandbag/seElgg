@@ -6,7 +6,6 @@
  *
  */
 class ProfileManagerCustomGroupField extends ProfileManagerCustomField {
-
 	const SUBTYPE = "custom_group_field";
 	
 	/**
@@ -15,9 +14,9 @@ class ProfileManagerCustomGroupField extends ProfileManagerCustomField {
 	 * @return void
 	 */
 	protected function initializeAttributes() {
-		parent::initializeAttributes();
+		parent::initializeAttributes ();
 	}
-
+	
 	/**
 	 * Returns the title of the field
 	 *
@@ -27,10 +26,10 @@ class ProfileManagerCustomGroupField extends ProfileManagerCustomField {
 		// make title
 		$title = $this->metadata_label;
 		
-		if (empty($title)) {
+		if (empty ( $title )) {
 			$trans_key = "groups:" . $this->metadata_name;
-			if ($trans_key != elgg_echo($trans_key)) {
-				$title = elgg_echo($trans_key);
+			if ($trans_key != elgg_echo ( $trans_key )) {
+				$title = elgg_echo ( $trans_key );
 			} else {
 				$title = $this->metadata_name;
 			}

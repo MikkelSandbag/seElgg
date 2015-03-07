@@ -6,7 +6,8 @@
 	<version>1.9</version>
 	<category>bundled</category>
 	<category>widget</category>
-	<description>Enables users to put a message board widget on their profile for other users to post comments.</description>
+	<description>Enables users to put a message board widget on their
+		profile for other users to post comments.</description>
 	<website>http://www.elgg.org/</website>
 	<copyright>See COPYRIGHT.txt</copyright>
 	<license>GNU General Public License version 2</license>

@@ -16,39 +16,36 @@
  * @subpackage Test
  */
 class ElggCoreSkeletonTest extends \ElggCoreUnitTest {
-
+	
 	/**
 	 * Called before each test object.
 	 */
 	public function __construct() {
-		parent::__construct();
+		parent::__construct ();
 		
 		// all __construct() code should come after here
 	}
-
+	
 	/**
 	 * Called before each test method.
 	 */
 	public function setUp() {
-
 	}
-
+	
 	/**
 	 * Called after each test method.
 	 */
 	public function tearDown() {
-
 	}
-
+	
 	/**
 	 * Called after each test object.
 	 */
 	public function __destruct() {
 		// all __destruct() code should go above here
-		parent::__destruct();
+		parent::__destruct ();
 	}
-
 	public function testFailure() {
-		$this->assertTrue(false);
+		$this->assertTrue ( false );
 	}
 }

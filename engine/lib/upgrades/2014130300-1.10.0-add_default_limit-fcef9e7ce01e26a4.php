@@ -5,5 +5,4 @@
  *
  * Adds the default_limit site config value
  */
-
-set_config('default_limit', 10, elgg_get_site_entity()->guid);
+set_config ( 'default_limit', 10, elgg_get_site_entity ()->guid );

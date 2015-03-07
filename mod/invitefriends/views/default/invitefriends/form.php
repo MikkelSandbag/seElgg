@@ -4,5 +4,4 @@
  *
  * @package ElggInviteFriends
  */
-
-echo elgg_view_form('invitefriends/invite');
+echo elgg_view_form ( 'invitefriends/invite' );

@@ -5,7 +5,8 @@
 	<author>Core developers</author>
 	<version>1.9</version>
 	<category>bundled</category>
-	<description>Adds the option for users to report content and for admins to investigate it.</description>
+	<description>Adds the option for users to report content and for admins
+		to investigate it.</description>
 	<website>http://www.elgg.org/</website>
 	<copyright>See COPYRIGHT.txt</copyright>
 	<license>GNU General Public License version 2</license>

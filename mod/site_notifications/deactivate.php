@@ -2,5 +2,4 @@
 /**
  * Deregister the class
  */
-
-update_subtype('object', 'site_notification');
+update_subtype ( 'object', 'site_notification' );

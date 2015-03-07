@@ -1,55 +1,62 @@
 <?php
+
 namespace Elgg\Queue;
 
 /**
  * FIFO queue that is memory based (not persistent)
- * 
+ *
  * WARNING: API IN FLUX. DO NOT USE DIRECTLY.
  *
  * @access private
- * 
- * @package    Elgg.Core
+ *        
+ * @package Elgg.Core
  * @subpackage Queue
- * @since      1.9.0
+ * @since 1.9.0
  */
 class MemoryQueue implements \Elgg\Queue\Queue {
-
-	/* @var array */
-	protected $queue = array();
-
+	protected $queue = array ();
+	
 	/**
 	 * Create a queue
 	 */
 	public function __construct() {
-		$this->queue = array();
+		$this->queue = array ();
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function enqueue($item) {
-		return (bool)array_push($this->queue, $item);
+		return ( bool ) array_push ( $this->queue, $item );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function dequeue() {
-		return array_shift($this->queue);
+		return array_shift ( $this->queue );
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function clear() {
-		$this->queue = array();
+		$this->queue = array ();
 	}
-
+	
 	/**
-	 * {@inheritdoc}
+	 *
+	 * @ERROR!!!
+	 *
 	 */
 	public function size() {
-		return count($this->queue);
+		return count ( $this->queue );
 	}
 }
 

@@ -5,9 +5,8 @@
  *
  * Convert viewpath cache to system cache
  */
-
-$value = datalist_get('viewpath_cache_enabled');
-datalist_set('system_cache_enabled', $value);
+$value = datalist_get ( 'viewpath_cache_enabled' );
+datalist_set ( 'system_cache_enabled', $value );
 
 $query = "DELETE FROM {$CONFIG->dbprefix}datalists WHERE name='viewpath_cache_enabled'";
-delete_data($query);
+delete_data ( $query );

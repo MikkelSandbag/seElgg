@@ -11,26 +11,27 @@
  */
 
 // render content before head so that JavaScript and CSS can be loaded. See #4032
-
 $notices_html = '';
-$notices = elgg_get_admin_notices();
+$notices = elgg_get_admin_notices ();
 if ($notices) {
-	foreach ($notices as $notice) {
-		$notices_html .= elgg_view_entity($notice);
+	foreach ( $notices as $notice ) {
+		$notices_html .= elgg_view_entity ( $notice );
 	}
-
+	
 	$notices_html = "<div class=\"elgg-admin-notices\">$notices_html</div>";
 }
 
-$header = elgg_view('admin/header', $vars);
+$header = elgg_view ( 'admin/header', $vars );
 
-$messages = elgg_view('page/elements/messages', array('object' => $vars['sysmessages']));
+$messages = elgg_view ( 'page/elements/messages', array (
+		'object' => $vars ['sysmessages'] 
+) );
 $messages .= $notices_html;
 
-$content = $vars["body"];
+$content = $vars ["body"];
 
-$footer = elgg_view('admin/footer', $vars);
-			
+$footer = elgg_view ( 'admin/footer', $vars );
+
 $body = <<<__BODY
 <div class="elgg-page elgg-page-admin">
 	<div class="elgg-inner">
@@ -56,8 +57,11 @@ $body = <<<__BODY
 </div>
 __BODY;
 
-$body .= elgg_view('page/elements/foot');
+$body .= elgg_view ( 'page/elements/foot' );
 
-$head = elgg_view('page/elements/head', $vars['head']);
+$head = elgg_view ( 'page/elements/head', $vars ['head'] );
 
-echo elgg_view("page/elements/html", array("head" => $head, "body" => $body));
+echo elgg_view ( "page/elements/html", array (
+		"head" => $head,
+		"body" => $body 
+) );

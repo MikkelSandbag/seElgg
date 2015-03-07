@@ -4,5 +4,4 @@
  * 
  * @uses $vars['content']
  */
-
-echo $vars['content'];
+echo $vars ['content'];

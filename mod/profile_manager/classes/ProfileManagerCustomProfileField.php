@@ -6,18 +6,17 @@
  *
  */
 class ProfileManagerCustomProfileField extends ProfileManagerCustomField {
-
 	const SUBTYPE = "custom_profile_field";
-
+	
 	/**
 	 * initializes the default class attributes
 	 *
 	 * @return void
 	 */
 	protected function initializeAttributes() {
-		parent::initializeAttributes();
+		parent::initializeAttributes ();
 		
-		$this->attributes['subtype'] = self::SUBTYPE;
+		$this->attributes ['subtype'] = self::SUBTYPE;
 	}
 	
 	/**
@@ -29,10 +28,10 @@ class ProfileManagerCustomProfileField extends ProfileManagerCustomField {
 		// make title
 		$title = $this->metadata_label;
 		
-		if (empty($title)) {
+		if (empty ( $title )) {
 			$trans_key = "profile:" . $this->metadata_name;
-			if ($trans_key != elgg_echo($trans_key)) {
-				$title = elgg_echo($trans_key);
+			if ($trans_key != elgg_echo ( $trans_key )) {
+				$title = elgg_echo ( $trans_key );
 			} else {
 				$title = $this->metadata_name;
 			}

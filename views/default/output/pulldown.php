@@ -10,5 +10,4 @@
  *
  * @deprecated 1.8 Use output/dropdown
  */
-
-echo elgg_view('output/dropdown', $vars);
+echo elgg_view ( 'output/dropdown', $vars );

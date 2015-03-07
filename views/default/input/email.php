@@ -8,20 +8,19 @@
  *
  * @uses $vars['class'] Additional CSS class
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-email {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-email {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-email";
+	$vars ['class'] = "elgg-input-email";
 }
 
-$defaults = array(
-	'disabled' => false,
-	'autocapitalize' => 'off',
-	'autocorrect' => 'off',
+$defaults = array (
+		'disabled' => false,
+		'autocapitalize' => 'off',
+		'autocorrect' => 'off' 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 
 ?>
 

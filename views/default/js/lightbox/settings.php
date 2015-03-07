@@ -6,7 +6,8 @@
  * See the js/lightbox view for more ways to change lightbox behavior.
  */
 ?>
-//<script>
+//
+<script>
 
 elgg.ui.lightbox.getSettings = function () {
 	return {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Elgg;
 
 /**
@@ -7,34 +8,36 @@ namespace Elgg;
  * This returns paths like: '1/27/'.
  *
  * @note This class does not require the Elgg engine to be loaded and is suitable for
- *       being used directly.
+ * being used directly.
  *
  * @access private
- * 
+ *        
  * @package Elgg.Core
  */
 class EntityDirLocator {
-
+	
 	/**
-	 * Number of entries per matrix dir. DO NOT CHANGE!
+	 * Number of entries per matrix dir.
+	 * DO NOT CHANGE!
 	 */
 	const BUCKET_SIZE = 5000;
-
+	
 	/**
 	 * Find an entity's data dir.
-	 * 
-	 * @param int $guid GUID of the entity.
 	 *
+	 * @param int $guid
+	 *        	GUID of the entity.
+	 *        	
 	 * @throws \InvalidArgumentException
 	 */
 	public function __construct($guid) {
-		$guid = (int) $guid;
-
-		if (!$guid || $guid < 1) {
+		$guid = ( int ) $guid;
+		
+		if (! $guid || $guid < 1) {
 			// Don't throw a ClassException to keep this class completely atomic.
-			throw new \InvalidArgumentException("GUIDs must be integers > 0.");
+			throw new \InvalidArgumentException ( "GUIDs must be integers > 0." );
 		}
-
+		
 		$this->guid = $guid;
 	}
 	
@@ -46,33 +49,35 @@ class EntityDirLocator {
 	 * @return string The path with trailing '/' where the entity's data will be stored relative to the data dir.
 	 */
 	public function getPath() {
-		$bound = $this->getLowerBucketBound($this->guid);
+		$bound = $this->getLowerBucketBound ( $this->guid );
 		return "$bound/$this->guid/";
 	}
-
+	
 	/**
 	 * String casting magic method.
 	 *
 	 * @return string
 	 */
 	public function __toString() {
-		return $this->getPath();
+		return $this->getPath ();
 	}
-
+	
 	/**
 	 * Return the lower bound for a guid with a bucket size
 	 *
-	 * @param int $guid        The guid to get a bound for. Must be > 0.
-	 * @param int $bucket_size The size of the bucket. (The number of entities per dir.)
+	 * @param int $guid
+	 *        	The guid to get a bound for. Must be > 0.
+	 * @param int $bucket_size
+	 *        	The size of the bucket. (The number of entities per dir.)
 	 * @return int
 	 */
 	private static function getLowerBucketBound($guid, $bucket_size = null) {
-		if (!$bucket_size || $bucket_size < 1) {
+		if (! $bucket_size || $bucket_size < 1) {
 			$bucket_size = self::BUCKET_SIZE;
 		}
 		if ($guid < 1) {
 			return false;
 		}
-		return (int) max(floor($guid / $bucket_size) * $bucket_size, 1);
+		return ( int ) max ( floor ( $guid / $bucket_size ) * $bucket_size, 1 );
 	}
 }

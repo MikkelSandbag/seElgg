@@ -16,31 +16,32 @@
  * @uses $vars['tags']      HTML for the tags (default is tags on entity, pass false for no tags)
  * @uses $vars['content']   HTML for the entity content (optional)
  */
+$entity = $vars ['entity'];
 
-$entity = $vars['entity'];
-
-$title_link = elgg_extract('title', $vars, '');
+$title_link = elgg_extract ( 'title', $vars, '' );
 if ($title_link === '') {
-	if (isset($entity->title)) {
+	if (isset ( $entity->title )) {
 		$text = $entity->title;
 	} else {
 		$text = $entity->name;
 	}
-	$params = array(
-		'text' => elgg_get_excerpt($text, 100),
-		'href' => $entity->getURL(),
-		'is_trusted' => true,
+	$params = array (
+			'text' => elgg_get_excerpt ( $text, 100 ),
+			'href' => $entity->getURL (),
+			'is_trusted' => true 
 	);
-	$title_link = elgg_view('output/url', $params);
+	$title_link = elgg_view ( 'output/url', $params );
 }
 
-$metadata = elgg_extract('metadata', $vars, '');
-$subtitle = elgg_extract('subtitle', $vars, '');
-$content = elgg_extract('content', $vars, '');
+$metadata = elgg_extract ( 'metadata', $vars, '' );
+$subtitle = elgg_extract ( 'subtitle', $vars, '' );
+$content = elgg_extract ( 'content', $vars, '' );
 
-$tags = elgg_extract('tags', $vars, '');
+$tags = elgg_extract ( 'tags', $vars, '' );
 if ($tags === '') {
-	$tags = elgg_view('output/tags', array('tags' => $entity->tags));
+	$tags = elgg_view ( 'output/tags', array (
+			'tags' => $entity->tags 
+	) );
 }
 
 if ($metadata) {
@@ -52,7 +53,7 @@ if ($title_link) {
 echo "<div class=\"elgg-subtext\">$subtitle</div>";
 echo $tags;
 
-echo elgg_view('object/summary/extend', $vars);
+echo elgg_view ( 'object/summary/extend', $vars );
 
 if ($content) {
 	echo "<div class=\"elgg-content\">$content</div>";

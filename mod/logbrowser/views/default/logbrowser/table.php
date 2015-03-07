@@ -4,8 +4,7 @@
  *
  * @package ElggLogBrowser
  */
-
-$log_entries = $vars['log_entries'];
+$log_entries = $vars ['log_entries'];
 ?>
 
 <table class="elgg-table">
@@ -19,41 +18,44 @@ $log_entries = $vars['log_entries'];
 		<th><?php echo elgg_echo('logbrowser:action'); ?></th>
 	</tr>
 <?php
-	$alt = '';
-	foreach ($log_entries as $entry) {
-		if ($entry->ip_address) {
-			$ip_address = $entry->ip_address;
-		} else {
-			$ip_address = '&nbsp;';
-		}
-
-		$user = get_entity($entry->performed_by_guid);
-		if ($user) {
-			$user_link = elgg_view('output/url', array(
-				'href' => $user->getURL(),
+$alt = '';
+foreach ( $log_entries as $entry ) {
+	if ($entry->ip_address) {
+		$ip_address = $entry->ip_address;
+	} else {
+		$ip_address = '&nbsp;';
+	}
+	
+	$user = get_entity ( $entry->performed_by_guid );
+	if ($user) {
+		$user_link = elgg_view ( 'output/url', array (
+				'href' => $user->getURL (),
 				'text' => $user->name,
-				'is_trusted' => true,
-			));
-			$user_guid_link = elgg_view('output/url', array(
+				'is_trusted' => true 
+		) );
+		$user_guid_link = elgg_view ( 'output/url', array (
 				'href' => "admin/administer_utilities/logbrowser?user_guid={$user->guid}",
-				'text' => $user->getGUID(),
-				'is_trusted' => true,
-			));
-		} else {
-			$user_guid_link = $user_link = '&nbsp;';
-		}
-
-		$object = get_object_from_log_entry($entry);
-		if (is_callable(array($object, 'getURL'))) {
-			$object_link = elgg_view('output/url', array(
-				'href' => $object->getURL(),
+				'text' => $user->getGUID (),
+				'is_trusted' => true 
+		) );
+	} else {
+		$user_guid_link = $user_link = '&nbsp;';
+	}
+	
+	$object = get_object_from_log_entry ( $entry );
+	if (is_callable ( array (
+			$object,
+			'getURL' 
+	) )) {
+		$object_link = elgg_view ( 'output/url', array (
+				'href' => $object->getURL (),
 				'text' => $entry->object_class,
-				'is_trusted' => true,
-			));
-		} else {
-			$object_link = $entry->object_class;
-		}
-?>
+				'is_trusted' => true 
+		) );
+	} else {
+		$object_link = $entry->object_class;
+	}
+	?>
 	<tr <?php echo $alt; ?>>
 		<td class="log-entry-time">
 			<?php echo date('r', $entry->time_created); ?>
@@ -78,13 +80,13 @@ $log_entries = $vars['log_entries'];
 		</td>
 	</tr>
 <?php
-
-		$alt = $alt ? '' : 'class="alt"';
-	}
+	
+	$alt = $alt ? '' : 'class="alt"';
+}
 ?>
 </table>
 <?php
-if (!$log_entries) {
-	echo elgg_echo('notfound');
+if (! $log_entries) {
+	echo elgg_echo ( 'notfound' );
 	return true;
 }

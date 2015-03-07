@@ -2,7 +2,6 @@
 /**
  *
  */
-
 ?>
 
 elgg.provide('elgg.tidypics');

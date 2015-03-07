@@ -6,19 +6,18 @@
  *
  * @uses $vars['group']
  */
-
-if (!isset($vars['entity']) || !$vars['entity']) {
-	echo elgg_echo('groups:notfound');
+if (! isset ( $vars ['entity'] ) || ! $vars ['entity']) {
+	echo elgg_echo ( 'groups:notfound' );
 	return true;
 }
 
-$group = $vars['entity'];
-$owner = $group->getOwnerEntity();
+$group = $vars ['entity'];
+$owner = $group->getOwnerEntity ();
 
-if (!$owner) {
+if (! $owner) {
 	// not having an owner is very bad so we throw an exception
 	$msg = "Sorry, '" . 'group owner' . "' does not exist for guid:" . $group->guid;
-	throw new InvalidParameterException($msg);
+	throw new InvalidParameterException ( $msg );
 }
 
 ?>
@@ -26,29 +25,31 @@ if (!$owner) {
 	<div class="elgg-image">
 		<div class="groups-profile-icon">
 			<?php
-				// we don't force icons to be square so don't set width/height
-				echo elgg_view_entity_icon($group, 'large', array(
+			// we don't force icons to be square so don't set width/height
+			echo elgg_view_entity_icon ( $group, 'large', array (
 					'href' => '',
 					'width' => '',
-					'height' => '',
-				)); 
+					'height' => '' 
+			) );
 			?>
 		</div>
 		<div class="groups-stats">
 			<p>
 				<b><?php echo elgg_echo("groups:owner"); ?>: </b>
 				<?php
-					echo elgg_view('output/url', array(
+				echo elgg_view ( 'output/url', array (
 						'text' => $owner->name,
-						'value' => $owner->getURL(),
-						'is_trusted' => true,
-					));
+						'value' => $owner->getURL (),
+						'is_trusted' => true 
+				) );
 				?>
 			</p>
 			<p>
 			<?php
-				$num_members = $group->getMembers(array('count' => true));
-				echo elgg_echo('groups:members') . ": " . $num_members;
+			$num_members = $group->getMembers ( array (
+					'count' => true 
+			) );
+			echo elgg_echo ( 'groups:members' ) . ": " . $num_members;
 			?>
 			</p>
 		</div>
@@ -56,7 +57,7 @@ if (!$owner) {
 
 	<div class="groups-profile-fields elgg-body">
 		<?php
-			echo elgg_view('groups/profile/fields', $vars);
+		echo elgg_view ( 'groups/profile/fields', $vars );
 		?>
 	</div>
 </div>

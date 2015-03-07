@@ -7,20 +7,19 @@
  * @uses $vars['value'] The default value for the tag
  * @uses $vars['class'] Additional CSS class
  */
-
-if (isset($vars['class'])) {
-	$vars['class'] = "elgg-input-tag {$vars['class']}";
+if (isset ( $vars ['class'] )) {
+	$vars ['class'] = "elgg-input-tag {$vars['class']}";
 } else {
-	$vars['class'] = "elgg-input-tag";
+	$vars ['class'] = "elgg-input-tag";
 }
 
-$defaults = array(
-	'value' => '',
-	'disabled' => false,
-	'autocapitalize' => 'off',
+$defaults = array (
+		'value' => '',
+		'disabled' => false,
+		'autocapitalize' => 'off' 
 );
 
-$vars = array_merge($defaults, $vars);
+$vars = array_merge ( $defaults, $vars );
 ?>
 
 <input type="text" <?php echo elgg_format_attributes($vars); ?> />

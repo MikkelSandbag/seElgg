@@ -14,23 +14,22 @@
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
-
-$basesec = elgg_get_plugin_setting("chatUpdateInterval","elggchat");
-if (!$basesec) {
+$basesec = elgg_get_plugin_setting ( "chatUpdateInterval", "elggchat" );
+if (! $basesec) {
 	$basesec = 5;
 }
-$maxsecs = elgg_get_plugin_setting("maxChatUpdateInterval","elggchat");
-if (!$maxsecs) {
+$maxsecs = elgg_get_plugin_setting ( "maxChatUpdateInterval", "elggchat" );
+if (! $maxsecs) {
 	$maxsecs = 30;
 }
 
-$sound = elgg_get_plugin_setting("enableSounds","elggchat");
-if(empty($sound)) {
+$sound = elgg_get_plugin_setting ( "enableSounds", "elggchat" );
+if (empty ( $sound )) {
 	$sound = "no";
 }
 
-$flash = elgg_get_plugin_setting("enableFlashing","elggchat");
-if (empty($flash)) {
+$flash = elgg_get_plugin_setting ( "enableFlashing", "elggchat" );
+if (empty ( $flash )) {
 	$flash = "no";
 }
 
@@ -454,12 +453,14 @@ $(document).ready(function(){
 
 		<div id="elggchat_extensions">
 			<?php
-				if(elgg_get_plugin_setting("enableExtensions", "elggchat") == "yes") {
-					echo elgg_view("elggchat/extensions");
-				}
+			if (elgg_get_plugin_setting ( "enableExtensions", "elggchat" ) == "yes") {
+				echo elgg_view ( "elggchat/extensions" );
+			}
 			?>
 		</div>
 	</div>
 
-	<div id="toggle_elggchat_toolbar" class="toggle_elggchat_toolbar" onclick="toggleChatToolbar('slow')" title="<?php echo elgg_echo("elggchat:toolbar:minimize");?>"></div>
+	<div id="toggle_elggchat_toolbar" class="toggle_elggchat_toolbar"
+		onclick="toggleChatToolbar('slow')"
+		title="<?php echo elgg_echo("elggchat:toolbar:minimize");?>"></div>
 </div>

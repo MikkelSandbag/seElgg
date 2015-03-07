@@ -8,23 +8,21 @@
  *
  * @uses $vars['collections'] The array of friends collections
  */
-
-if (is_array($vars['collections']) && sizeof($vars['collections'])) {
+if (is_array ( $vars ['collections'] ) && sizeof ( $vars ['collections'] )) {
 	echo "<ul id=\"friends_collections_accordian\">";
-
+	
 	$friendspicker = 0;
-	foreach ($vars['collections'] as $collection) {
-		$friendspicker++;
-		echo elgg_view('core/friends/collection', array(
-			'collection' => $collection,
-			'friendspicker' => $friendspicker,
-		));
+	foreach ( $vars ['collections'] as $collection ) {
+		$friendspicker ++;
+		echo elgg_view ( 'core/friends/collection', array (
+				'collection' => $collection,
+				'friendspicker' => $friendspicker 
+		) );
 	}
-
+	
 	echo "</ul>";
-
 } else {
-	echo elgg_echo("friends:nocollections");
+	echo elgg_echo ( "friends:nocollections" );
 }
 
 ?>

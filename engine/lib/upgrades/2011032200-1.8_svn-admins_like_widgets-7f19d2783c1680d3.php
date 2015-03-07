@@ -5,9 +5,10 @@
  *
  * Give current admins widgets for those pre-1.8
  */
-
-$admins = elgg_get_admins(array('limit' => 0));
-foreach ($admins as $admin) {
+$admins = elgg_get_admins ( array (
+		'limit' => 0 
+) );
+foreach ( $admins as $admin ) {
 	// call the admin handler for the make_admin event
-	_elgg_add_admin_widgets('make_admin', 'user', $admin);
+	_elgg_add_admin_widgets ( 'make_admin', 'user', $admin );
 }

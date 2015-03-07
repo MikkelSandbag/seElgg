@@ -5,18 +5,18 @@
  * @uses $vars['body'] The content to display inside content wrapper
  * @uses $vars['subclass'] Additional css class
  */
-
-elgg_deprecated_notice("The 'page_elements/contentwrapper' has been deprecated", 1.8);
+elgg_deprecated_notice ( "The 'page_elements/contentwrapper' has been deprecated", 1.8 );
 ?>
 
-<div class="contentWrapper<?php
-
-	if (isset($vars['subclass'])) {
-		echo ' ' . $vars['subclass'];
+<div
+	class="contentWrapper<?php
+	
+	if (isset ( $vars ['subclass'] )) {
+		echo ' ' . $vars ['subclass'];
 	}
-
-?>">
+	
+	?>">
 <?php
-	echo $vars['body'];
+echo $vars ['body'];
 ?>
 </div>

@@ -1,15 +1,14 @@
 <?php
-
-$NOTIFICATION_HANDLERS = _elgg_services()->notifications->getMethodsAsDeprecatedGlobal();
+$NOTIFICATION_HANDLERS = _elgg_services ()->notifications->getMethodsAsDeprecatedGlobal ();
 
 ?> 
 <?php //@todo JS 1.8: no ?>
 <script type="text/javascript">
 
 $(document).ready(function () {
-<?php 
-foreach($NOTIFICATION_HANDLERS as $method => $foo) {
-?>
+<?php
+foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
+	?>
 	$('input[type=checkbox]:checked').parent("a.<?php echo $method; ?>toggleOff").each(function(){
 		$(this).removeClass('<?php echo $method; ?>toggleOff').addClass('<?php echo $method; ?>toggleOn');
 	});
@@ -22,9 +21,9 @@ foreach($NOTIFICATION_HANDLERS as $method => $foo) {
 
 	clickflag = 0;
 
-<?php 
-foreach($NOTIFICATION_HANDLERS as $method => $foo) {
-?>
+<?php
+foreach ( $NOTIFICATION_HANDLERS as $method => $foo ) {
+	?>
 function adjust<?php echo $method; ?>(linkId) {
 	var obj = $(this).prev("a");
 	

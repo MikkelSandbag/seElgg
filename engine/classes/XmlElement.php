@@ -7,15 +7,24 @@
  * @deprecated 1.9
  */
 class XmlElement {
-	/** The name of the element */
+	/**
+	 * The name of the element
+	 */
 	public $name;
-
-	/** The attributes */
+	
+	/**
+	 * The attributes
+	 */
 	public $attributes;
-
-	/** CData */
+	
+	/**
+	 * CData
+	 */
 	public $content;
-
-	/** Child elements */
+	
+	/**
+	 * Child elements
+	 */
 	public $children;
-};
+}
+;

@@ -12,40 +12,56 @@
  * @property-read string $name Name of the cookie
  */
 class ElggCookie {
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $name;
 	
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	public $value = "";
 	
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	public $expire = 0;
 	
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	public $path = "/";
 	
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	public $domain = "";
 	
-	/** @var bool */
+	/**
+	 * @var bool
+	 */
 	public $secure = false;
 	
-	/** @var bool */
+	/**
+	 * @var bool
+	 */
 	public $httpOnly = false;
 	
 	/**
 	 * Constructor
-	 * 
-	 * @param string $name The name of the cookie.
+	 *
+	 * @param string $name
+	 *        	The name of the cookie.
 	 */
 	public function __construct($name) {
 		$this->name = $name;
 	}
-
+	
 	/**
 	 * Get an attribute
-	 * 
-	 * @param string $name Attribute name
+	 *
+	 * @param string $name
+	 *        	Attribute name
 	 * @return mixed
 	 */
 	public function __get($name) {
@@ -54,16 +70,17 @@ class ElggCookie {
 			return $this->name;
 		}
 	}
-
+	
 	/**
 	 * Set the time the cookie expires
 	 *
 	 * Example: $cookie->setExpiresTime("+30 days");
 	 *
-	 * @param string $time A time string appropriate for strtotime()
+	 * @param string $time
+	 *        	A time string appropriate for strtotime()
 	 * @return void
 	 */
 	public function setExpiresTime($time) {
-		$this->expire = strtotime($time);
+		$this->expire = strtotime ( $time );
 	}
 }

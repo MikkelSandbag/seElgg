@@ -4,7 +4,6 @@
  * 
  * Doing this inline enables the editor to initialize textareas loaded through ajax
  */
-
 ?>
 <script>
 // This global variable must be set before the editor script loading.

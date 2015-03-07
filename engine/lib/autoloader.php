@@ -6,21 +6,21 @@
  * @package    Elgg.Core
  * @subpackage Autoloader
  */
-
-$autoload_path = dirname(dirname(__DIR__)) . '/vendor/autoload.php';
-$autoload_available = include_once($autoload_path);	
-if (!$autoload_available) {
-	die("Couldn't include '$autoload_path'. Did you run `composer install`?");
+$autoload_path = dirname ( dirname ( __DIR__ ) ) . '/vendor/autoload.php';
+$autoload_available = include_once ($autoload_path);
+if (! $autoload_available) {
+	die ( "Couldn't include '$autoload_path'. Did you run `composer install`?" );
 }
 
 /**
+ *
  * @return \Elgg\Di\ServiceProvider
  * @access private
  */
 function _elgg_services() {
 	static $provider;
 	if (null === $provider) {
-		$provider = _elgg_create_service_provider();
+		$provider = _elgg_create_service_provider ();
 	}
 	return $provider;
 }
@@ -36,13 +36,13 @@ function _elgg_services() {
  * @access private
  */
 function _elgg_create_service_provider() {
-	$loader = new \Elgg\ClassLoader(new \Elgg\ClassMap());
+	$loader = new \Elgg\ClassLoader ( new \Elgg\ClassMap () );
 	// until the cache can be loaded, just setup PSR-0 autoloading
 	// out of the classes directory. No need to build a full map.
-	$loader->register();
-	$manager = new \Elgg\AutoloadManager($loader);
-
-	return new \Elgg\Di\ServiceProvider($manager);
+	$loader->register ();
+	$manager = new \Elgg\AutoloadManager ( $loader );
+	
+	return new \Elgg\Di\ServiceProvider ( $manager );
 }
 
 /**
@@ -53,10 +53,10 @@ function _elgg_create_service_provider() {
  * @access private
  */
 function _elgg_load_autoload_cache() {
-	$manager = _elgg_services()->autoloadManager;
-	$manager->setStorage(elgg_get_system_cache());
-	if (! $manager->loadCache()) {
-		$manager->addClasses(dirname(dirname(__FILE__)) . '/classes');
+	$manager = _elgg_services ()->autoloadManager;
+	$manager->setStorage ( elgg_get_system_cache () );
+	if (! $manager->loadCache ()) {
+		$manager->addClasses ( dirname ( dirname ( __FILE__ ) ) . '/classes' );
 	}
 }
 
@@ -66,7 +66,7 @@ function _elgg_load_autoload_cache() {
  * @access private
  */
 function _elgg_save_autoload_cache() {
-	_elgg_services()->autoloadManager->saveCache();
+	_elgg_services ()->autoloadManager->saveCache ();
 }
 
 /**
@@ -75,7 +75,7 @@ function _elgg_save_autoload_cache() {
  * @access private
  */
 function _elgg_delete_autoload_cache() {
-	_elgg_services()->autoloadManager->deleteCache();
+	_elgg_services ()->autoloadManager->deleteCache ();
 }
 
 /**
@@ -84,7 +84,7 @@ function _elgg_delete_autoload_cache() {
  * @return \Elgg\ClassLoader
  */
 function elgg_get_class_loader() {
-	return _elgg_services()->autoloadManager->getLoader();
+	return _elgg_services ()->autoloadManager->getLoader ();
 }
 
 /**
@@ -94,31 +94,34 @@ function elgg_get_class_loader() {
  * and added to the class map (only on the first request), then lower-level
  * directories are registered for standard PSR-0 autoloading.
  *
- * @param string $dir The dir to look in
- *
+ * @param string $dir
+ *        	The dir to look in
+ *        	
  * @return void
  * @since 1.8.0
  */
 function elgg_register_classes($dir) {
-	_elgg_services()->autoloadManager->addClasses($dir);
+	_elgg_services ()->autoloadManager->addClasses ( $dir );
 }
 
 /**
  * Register a classname to a file.
  *
- * @param string $class    The name of the class
- * @param string $location The location of the file
- *
+ * @param string $class
+ *        	The name of the class
+ * @param string $location
+ *        	The location of the file
+ *        	
  * @return bool true
  * @since 1.8.0
  */
 function elgg_register_class($class, $location) {
-	_elgg_services()->autoloadManager->setClassPath($class, $location);
+	_elgg_services ()->autoloadManager->setClassPath ( $class, $location );
 	return true;
 }
 
 // set up autoloading and DIC
-_elgg_services();
+_elgg_services ();
 
-_elgg_services()->events->registerHandler('shutdown', 'system', '_elgg_save_autoload_cache', 1000);
-_elgg_services()->events->registerHandler('upgrade', 'all', '_elgg_delete_autoload_cache');
+_elgg_services ()->events->registerHandler ( 'shutdown', 'system', '_elgg_save_autoload_cache', 1000 );
+_elgg_services ()->events->registerHandler ( 'upgrade', 'all', '_elgg_delete_autoload_cache' );

@@ -14,23 +14,25 @@
 
 // backward compatability support for plugins that are not using the new approach
 // of routing through admin. See reportedcontent plugin for a simple example.
-if (elgg_get_context() == 'admin') {
-	if (get_input('handler') != 'admin') {
-		elgg_deprecated_notice("admin plugins should route through 'admin'.", 1.8);
+if (elgg_get_context () == 'admin') {
+	if (get_input ( 'handler' ) != 'admin') {
+		elgg_deprecated_notice ( "admin plugins should route through 'admin'.", 1.8 );
 	}
-	_elgg_admin_add_plugin_settings_menu();
-	elgg_unregister_css('elgg');
-	echo elgg_view('page/admin', $vars);
+	_elgg_admin_add_plugin_settings_menu ();
+	elgg_unregister_css ( 'elgg' );
+	echo elgg_view ( 'page/admin', $vars );
 	return true;
 }
 
 // render content before head so that JavaScript and CSS can be loaded. See #4032
 
-$messages = elgg_view('page/elements/messages', array('object' => $vars['sysmessages']));
+$messages = elgg_view ( 'page/elements/messages', array (
+		'object' => $vars ['sysmessages'] 
+) );
 
-$header = elgg_view('page/elements/header', $vars);
-$content = elgg_view('page/elements/body', $vars);
-$footer = elgg_view('page/elements/footer', $vars);
+$header = elgg_view ( 'page/elements/header', $vars );
+$content = elgg_view ( 'page/elements/body', $vars );
+$footer = elgg_view ( 'page/elements/footer', $vars );
 
 $body = <<<__BODY
 <div class="elgg-page elgg-page-default">
@@ -39,9 +41,9 @@ $body = <<<__BODY
 	</div>
 __BODY;
 
-if (elgg_is_logged_in()) {
-	$topbar = elgg_view('page/elements/topbar', $vars);
-
+if (elgg_is_logged_in ()) {
+	$topbar = elgg_view ( 'page/elements/topbar', $vars );
+	
 	$body .= <<<__BODY
 	<div class="elgg-page-topbar">
 		<div class="elgg-inner">
@@ -49,7 +51,7 @@ if (elgg_is_logged_in()) {
 		</div>
 	</div>
 __BODY;
-}	
+}
 $body .= <<<__BODY
 	<div class="elgg-page-header">
 		<div class="elgg-inner">
@@ -69,17 +71,17 @@ $body .= <<<__BODY
 </div>
 __BODY;
 
-$body .= elgg_view('page/elements/foot');
+$body .= elgg_view ( 'page/elements/foot' );
 
-$head = elgg_view('page/elements/head', $vars['head']);
+$head = elgg_view ( 'page/elements/head', $vars ['head'] );
 
-$params = array(
-	'head' => $head,
-	'body' => $body,
+$params = array (
+		'head' => $head,
+		'body' => $body 
 );
 
-if (isset($vars['body_attrs'])) {
-	$params['body_attrs'] = $vars['body_attrs'];
+if (isset ( $vars ['body_attrs'] )) {
+	$params ['body_attrs'] = $vars ['body_attrs'];
 }
 
-echo elgg_view("page/elements/html", $params);
+echo elgg_view ( "page/elements/html", $params );

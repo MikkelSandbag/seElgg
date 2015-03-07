@@ -6,10 +6,9 @@
  *
  * @uses $vars['entity']
  */
+$longitude = $vars ['entity']->getLongitude ();
+$latitude = $vars ['entity']->getLatitude ();
 
-$longitude = $vars['entity']->getLongitude();
-$latitude = $vars['entity']->getLatitude();
-
-if ($vars['entity'] instanceof Locatable && $longitude && $latitude) {
+if ($vars ['entity'] instanceof Locatable && $longitude && $latitude) {
 	echo "<georss:point>$latitude $longitude</georss:point>";
 }

@@ -1,5 +1,5 @@
-
-//<script>
+ //
+<script>
 elgg.provide('elgg.dashboard');
 
 elgg.dashboard.init = function() {

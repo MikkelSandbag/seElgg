@@ -1,26 +1,33 @@
 <?php
+
 namespace Elgg\Filesystem;
 
 /**
  * Represents a file that may or may not actually exist.
- * 
+ *
  * @since 1.10.0
- * 
+ *       
  * @access private
  */
 class File {
 	
-	/** @var Directory */
+	/**
+	 * @var Directory
+	 */
 	private $directory;
 	
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $path;
 	
 	/**
 	 * Constructor
-	 * 
-	 * @param Directory $directory The directory where this file resides
-	 * @param string    $path      The path to this file relative to the directory
+	 *
+	 * @param Directory $directory
+	 *        	The directory where this file resides
+	 * @param string $path
+	 *        	The path to this file relative to the directory
 	 */
 	public function __construct(Directory $directory, $path) {
 		$this->directory = $directory;
@@ -28,47 +35,53 @@ class File {
 	}
 	
 	/**
+	 *
 	 * @return boolean Whether this file exists.
 	 */
 	public function exists() {
-		return $this->directory->isFile($this->path);
+		return $this->directory->isFile ( $this->path );
 	}
 	
 	/**
+	 *
 	 * @return string The file's basename.
 	 */
 	public function getBasename() {
-		return pathinfo($this->path, PATHINFO_BASENAME);
+		return pathinfo ( $this->path, PATHINFO_BASENAME );
 	}
 	
 	/**
-	 * Get the text content of this file. Empty string if it doesn't exist.
-	 * 
+	 * Get the text content of this file.
+	 * Empty string if it doesn't exist.
+	 *
 	 * @return string
 	 */
 	public function getContents() {
-		return $this->directory->getContents($this->path);
+		return $this->directory->getContents ( $this->path );
 	}
 	
 	/**
+	 *
 	 * @return string The file's extension.
 	 */
 	public function getExtension() {
-		return pathinfo($this->path, PATHINFO_EXTENSION);
+		return pathinfo ( $this->path, PATHINFO_EXTENSION );
 	}
 	
 	/**
 	 * Do a PHP include of the file and return the result.
-	 * 
+	 *
 	 * TODO(ewinslow): This may only work for local filesystems?
-	 * 
+	 *
 	 * @return mixed
 	 */
 	public function includeFile() {
-		return $this->directory->includeFile($this->path);
+		return $this->directory->includeFile ( $this->path );
 	}
 	
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 */
 	public function __toString() {
 		return $this->path;
 	}

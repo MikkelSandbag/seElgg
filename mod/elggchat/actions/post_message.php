@@ -14,19 +14,18 @@
  * @link https://github.com/iionly
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  */
+$sessionId = ( int ) get_input ( "chatsession" );
+$userId = elgg_get_logged_in_user_guid ();
 
-$sessionId = (int) get_input("chatsession");
-$userId = elgg_get_logged_in_user_guid();
-
-if (check_entity_relationship($sessionId, ELGGCHAT_MEMBER, $userId)) {
-	$chat_message = nl2br(get_input("chatmessage"));
-
-	if (!empty($chat_message)) {
-		$session = get_entity($sessionId);
-
-		$session->annotate(ELGGCHAT_MESSAGE, $chat_message, ACCESS_LOGGED_IN, $userId);
-		$session->save();
+if (check_entity_relationship ( $sessionId, ELGGCHAT_MEMBER, $userId )) {
+	$chat_message = nl2br ( get_input ( "chatmessage" ) );
+	
+	if (! empty ( $chat_message )) {
+		$session = get_entity ( $sessionId );
+		
+		$session->annotate ( ELGGCHAT_MESSAGE, $chat_message, ACCESS_LOGGED_IN, $userId );
+		$session->save ();
 	}
 }
-exit();
+exit ();
 ?>

@@ -1,21 +1,20 @@
 <?php
+
 namespace Elgg;
 
 class UpgradeServiceTest extends \PHPUnit_Framework_TestCase {
 	
 	/**
+	 *
 	 * @var \Elgg\UpgradeService
 	 */
 	private $service;
-	
 	protected function setUp() {
-		
-		$this->service = new \Elgg\UpgradeService();
+		$this->service = new \Elgg\UpgradeService ();
 	}
-	
 	protected function tearDown() {
 		// @todo should be re-enabled if test is complete
-		//$this->service->releaseUpgradeMutex();
+		// $this->service->releaseUpgradeMutex();
 	}
 	
 	/**
@@ -23,18 +22,17 @@ class UpgradeServiceTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testUpgradeRun() {
 		// marked as incomplete because $CONFIG isn't available
-		$this->markTestIncomplete();
+		$this->markTestIncomplete ();
 		
 		try {
 			// running database upgrades can through exceptions
-			$result = $this->service->run();
+			$result = $this->service->run ();
 			
-			$this->assertTrue(is_array($result));
-			$this->assertArrayHasKey("failure", $result);
-			$this->assertFalse($result["failure"]);
-			
-		} catch (Exception $e) {
-			$this->fail($e->getMessage());
+			$this->assertTrue ( is_array ( $result ) );
+			$this->assertArrayHasKey ( "failure", $result );
+			$this->assertFalse ( $result ["failure"] );
+		} catch ( Exception $e ) {
+			$this->fail ( $e->getMessage () );
 		}
 	}
 }

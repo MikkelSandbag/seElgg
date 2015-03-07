@@ -7,21 +7,20 @@
  * @author Cash Costello
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
  */
+$permalink = htmlspecialchars ( $vars ['entity']->getURL (), ENT_NOQUOTES, 'UTF-8' );
+$pubdate = date ( 'r', $vars ['entity']->getTimeCreated () );
 
-$permalink = htmlspecialchars($vars['entity']->getURL(), ENT_NOQUOTES, 'UTF-8');
-$pubdate = date('r', $vars['entity']->getTimeCreated());
+$title = $vars ['entity']->getTitle ();
+$description = elgg_autop ( $vars ['entity']->description );
 
-$title = $vars['entity']->getTitle();
-$description = elgg_autop($vars['entity']->description);
+$creator = elgg_view ( 'page/components/creator', $vars );
+$georss = elgg_view ( 'page/components/georss', $vars );
+$extension = elgg_view ( 'extensions/item', $vars );
 
-$creator = elgg_view('page/components/creator', $vars);
-$georss = elgg_view('page/components/georss', $vars);
-$extension = elgg_view('extensions/item', $vars);
+$thumbnail_url = $vars ['entity']->getIconURL ( 'tiny' );
+$download_url = $vars ['entity']->getIconURL ( 'large' );
 
-$thumbnail_url = $vars['entity']->getIconURL('tiny');
-$download_url = $vars['entity']->getIconURL('large');
-
-$mime_type = $vars['entity']->getMimeType();
+$mime_type = $vars ['entity']->getMimeType ();
 
 $item = <<<__HTML
 <item>

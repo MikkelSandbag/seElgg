@@ -9,10 +9,10 @@ use OpenCloud\ObjectStore\Service;
  *
  * @author Daniel Richter <nexyz9@gmail.com>
  */
-interface ObjectStoreFactoryInterface
-{
-    /**
-     * @return Service
-     */
-    public function getObjectStore();
+interface ObjectStoreFactoryInterface {
+	/**
+	 *
+	 * @return Service
+	 */
+	public function getObjectStore();
 }

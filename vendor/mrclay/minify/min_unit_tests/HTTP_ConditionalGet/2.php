@@ -1,19 +1,18 @@
 <?php
-
-set_include_path(get_include_path() . PATH_SEPARATOR . realpath(dirname(__FILE__) . '/../../min/lib'));
+set_include_path ( get_include_path () . PATH_SEPARATOR . realpath ( dirname ( __FILE__ ) . '/../../min/lib' ) );
 require 'HTTP/ConditionalGet.php';
 
 // emulate regularly updating document
 $every = 20;
-$lastModified = round(time()/$every)*$every - $every;
+$lastModified = round ( time () / $every ) * $every - $every;
 
-$cg = new HTTP_ConditionalGet(array(
-    'lastModifiedTime' => $lastModified
-));
+$cg = new HTTP_ConditionalGet ( array (
+		'lastModifiedTime' => $lastModified 
+) );
 if ($cg->cacheIsValid) {
-    $cg->sendHeaders();
-    // we're done
-    exit();
+	$cg->sendHeaders ();
+	// we're done
+	exit ();
 }
 
 // generate content
@@ -28,17 +27,17 @@ content.</p>
 <p><strong>Note:</strong> This is not required if your PHP config buffers all
 output and your script doesn\'t do any incremental flushing of the output
 buffer. PHP will generally set Content-Length for you if it can.</p>
-<p>This script emulates a document that changes every ' .$every. ' seconds.
-<br>This is version: ' . date('r', $lastModified) . '</p>
+<p>This script emulates a document that changes every ' . $every . ' seconds.
+<br>This is version: ' . date ( 'r', $lastModified ) . '</p>
 ';
 
 require '_include.php';
-$content = get_content(array(
-    'title' => $title
-    ,'explain' => $explain
-));
+$content = get_content ( array (
+		'title' => $title,
+		'explain' => $explain 
+) );
 
-$cg->setContentLength(strlen($content));
-$cg->sendHeaders();
-send_slowly($content);
+$cg->setContentLength ( strlen ( $content ) );
+$cg->sendHeaders ();
+send_slowly ( $content );
 

@@ -2,13 +2,12 @@
 /**
  * 
  */
-
-$note = get_entity(get_input('guid'));
-if (!$note || !$note->canEdit()) {
-	register_error(elgg_echo(''));
-	forward(REFERER);
+$note = get_entity ( get_input ( 'guid' ) );
+if (! $note || ! $note->canEdit ()) {
+	register_error ( elgg_echo ( '' ) );
+	forward ( REFERER );
 }
 
-$note->delete();
+$note->delete ();
 
-forward(REFERER);
+forward ( REFERER );

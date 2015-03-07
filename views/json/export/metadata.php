@@ -7,16 +7,15 @@
  * @subpackage Core
  * @deprecated 1.9
  */
+$m = $vars ['metadata'];
 
-$m = $vars['metadata'];
+$export = new stdClass ();
+$exportable_values = $entity->getExportableValues ();
 
-$export = new stdClass;
-$exportable_values = $entity->getExportableValues();
-
-foreach ($exportable_values as $v) {
+foreach ( $exportable_values as $v ) {
 	$export->$v = $m->$v;
 }
 
 global $jsonexport;
-$jsonexport['metadata'][] = $entity;
+$jsonexport ['metadata'] [] = $entity;
 // echo json_encode($export);

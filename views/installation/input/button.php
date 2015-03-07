@@ -6,35 +6,35 @@
  * @uses $vars['name'] The name of the input field
  * @uses $vars['type'] submit or button.
  */
-
-if (isset($vars['class'])) {
-	$class = $vars['class'];
+if (isset ( $vars ['class'] )) {
+	$class = $vars ['class'];
 } else {
 	$class = "elgg-button-submit";
 }
 
-if (isset($vars['name'])) {
-	$name = $vars['name'];
+if (isset ( $vars ['name'] )) {
+	$name = $vars ['name'];
 } else {
 	$name = '';
 }
 
-if (isset($vars['type'])) {
-	$type = strtolower($vars['type']);
+if (isset ( $vars ['type'] )) {
+	$type = strtolower ( $vars ['type'] );
 } else {
 	$type = 'submit';
 }
 
 switch ($type) {
 	case 'button' :
-		$type='button';
+		$type = 'button';
 		break;
-	case 'submit':
-	default:
+	case 'submit' :
+	default :
 		$type = 'submit';
 }
 
-$value = htmlentities($vars['value'], ENT_QUOTES, 'UTF-8');
+$value = htmlentities ( $vars ['value'], ENT_QUOTES, 'UTF-8' );
 
 ?>
-<input type="<?php echo $type; ?>" value="<?php echo $value; ?>" class="<?php echo $class; ?>" />
+<input type="<?php echo $type; ?>" value="<?php echo $value; ?>"
+	class="<?php echo $class; ?>" />

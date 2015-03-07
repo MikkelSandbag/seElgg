@@ -5,33 +5,35 @@
  * @package ElggFile
  */
 
-// once elgg_view stops throwing all sorts of junk into $vars, we can use 
-$title = elgg_extract('title', $vars, '');
-$desc = elgg_extract('description', $vars, '');
-$tags = elgg_extract('tags', $vars, '');
-$access_id = elgg_extract('access_id', $vars, ACCESS_DEFAULT);
-$container_guid = elgg_extract('container_guid', $vars);
-if (!$container_guid) {
-	$container_guid = elgg_get_logged_in_user_guid();
+// once elgg_view stops throwing all sorts of junk into $vars, we can use
+$title = elgg_extract ( 'title', $vars, '' );
+$desc = elgg_extract ( 'description', $vars, '' );
+$tags = elgg_extract ( 'tags', $vars, '' );
+$access_id = elgg_extract ( 'access_id', $vars, ACCESS_DEFAULT );
+$container_guid = elgg_extract ( 'container_guid', $vars );
+if (! $container_guid) {
+	$container_guid = elgg_get_logged_in_user_guid ();
 }
-$guid = elgg_extract('guid', $vars, null);
+$guid = elgg_extract ( 'guid', $vars, null );
 
 if ($guid) {
-	$file_label = elgg_echo("file:replace");
-	$submit_label = elgg_echo('save');
+	$file_label = elgg_echo ( "file:replace" );
+	$submit_label = elgg_echo ( 'save' );
 } else {
-	$file_label = elgg_echo("file:file");
-	$submit_label = elgg_echo('upload');
+	$file_label = elgg_echo ( "file:file" );
+	$submit_label = elgg_echo ( 'upload' );
 }
 
 // Get post_max_size and upload_max_filesize
-$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
-$upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
+$post_max_size = elgg_get_ini_setting_in_bytes ( 'post_max_size' );
+$upload_max_filesize = elgg_get_ini_setting_in_bytes ( 'upload_max_filesize' );
 
 // Determine the correct value
 $max_upload = $upload_max_filesize > $post_max_size ? $post_max_size : $upload_max_filesize;
 
-$upload_limit = elgg_echo('file:upload_limit', array(elgg_format_bytes($max_upload)));
+$upload_limit = elgg_echo ( 'file:upload_limit', array (
+		elgg_format_bytes ( $max_upload ) 
+) );
 
 ?>
 <div class="mbm elgg-text-help">
@@ -55,7 +57,7 @@ $upload_limit = elgg_echo('file:upload_limit', array(elgg_format_bytes($max_uplo
 </div>
 <?php
 
-$categories = elgg_view('input/categories', $vars);
+$categories = elgg_view ( 'input/categories', $vars );
 if ($categories) {
 	echo $categories;
 }
@@ -68,13 +70,21 @@ if ($categories) {
 <div class="elgg-foot">
 <?php
 
-echo elgg_view('input/hidden', array('name' => 'container_guid', 'value' => $container_guid));
+echo elgg_view ( 'input/hidden', array (
+		'name' => 'container_guid',
+		'value' => $container_guid 
+) );
 
 if ($guid) {
-	echo elgg_view('input/hidden', array('name' => 'file_guid', 'value' => $guid));
+	echo elgg_view ( 'input/hidden', array (
+			'name' => 'file_guid',
+			'value' => $guid 
+	) );
 }
 
-echo elgg_view('input/submit', array('value' => $submit_label));
+echo elgg_view ( 'input/submit', array (
+		'value' => $submit_label 
+) );
 
 ?>
 </div>

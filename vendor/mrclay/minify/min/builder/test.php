@@ -1,5 +1,5 @@
 <?php
-exit();
+exit ();
 /* currently unused.
 
 // capture PHP's default setting (may get overridden in config

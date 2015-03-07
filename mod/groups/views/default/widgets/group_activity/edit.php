@@ -4,20 +4,22 @@
  */
 
 // once autocomplete is working use that
-$groups = elgg_get_logged_in_user_entity()->getGroups(array('limit' => 0));
-$mygroups = array();
-if (!$vars['entity']->group_guid) {
-	$mygroups[0] = '';
+$groups = elgg_get_logged_in_user_entity ()->getGroups ( array (
+		'limit' => 0 
+) );
+$mygroups = array ();
+if (! $vars ['entity']->group_guid) {
+	$mygroups [0] = '';
 }
-foreach ($groups as $group) {
-	$mygroups[$group->guid] = $group->name;
+foreach ( $groups as $group ) {
+	$mygroups [$group->guid] = $group->name;
 }
-$params = array(
-	'name' => 'params[group_guid]',
-	'value' => $vars['entity']->group_guid,
-	'options_values' => $mygroups,
+$params = array (
+		'name' => 'params[group_guid]',
+		'value' => $vars ['entity']->group_guid,
+		'options_values' => $mygroups 
 );
-$group_dropdown = elgg_view('input/select', $params);
+$group_dropdown = elgg_view ( 'input/select', $params );
 ?>
 <div>
 	<?php echo elgg_echo('groups:widget:group_activity:edit:select'); ?>:
@@ -26,16 +28,23 @@ $group_dropdown = elgg_view('input/select', $params);
 <?php
 
 // set default value for number to display
-if (!isset($vars['entity']->num_display)) {
-	$vars['entity']->num_display = 8;
+if (! isset ( $vars ['entity']->num_display )) {
+	$vars ['entity']->num_display = 8;
 }
 
-$params = array(
-	'name' => 'params[num_display]',
-	'value' => $vars['entity']->num_display,
-	'options' => array(5, 8, 10, 12, 15, 20),
+$params = array (
+		'name' => 'params[num_display]',
+		'value' => $vars ['entity']->num_display,
+		'options' => array (
+				5,
+				8,
+				10,
+				12,
+				15,
+				20 
+		) 
 );
-$num_dropdown = elgg_view('input/select', $params);
+$num_dropdown = elgg_view ( 'input/select', $params );
 
 ?>
 <div>
@@ -45,5 +54,7 @@ $num_dropdown = elgg_view('input/select', $params);
 
 <?php
 
-$title_input = elgg_view('input/hidden', array('name' => 'title'));
+$title_input = elgg_view ( 'input/hidden', array (
+		'name' => 'title' 
+) );
 echo $title_input;

@@ -7,14 +7,13 @@ namespace Gaufrette\Adapter;
  *
  * @author Andrew Tch <andrew.tchircoff@gmail.com>
  */
-interface ListKeysAware
-{
-    /**
-     * Lists keys beginning with pattern given
-     * (no wildcard / regex matching)
-     *
-     * @param string $prefix
-     * @return array
-     */
-    public function listKeys($prefix = '');
+interface ListKeysAware {
+	/**
+	 * Lists keys beginning with pattern given
+	 * (no wildcard / regex matching)
+	 *
+	 * @param string $prefix        	
+	 * @return array
+	 */
+	public function listKeys($prefix = '');
 }

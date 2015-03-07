@@ -2,37 +2,36 @@
 /**
  * Tidypics server analysis
  */
-
 function tp_readable_size($bytes) {
-	if (strpos($bytes, 'M')) {
+	if (strpos ( $bytes, 'M' )) {
 		return $bytes . 'B';
 	}
-
+	
 	$size = $bytes / 1024;
 	if ($size < 1024) {
-		$size = number_format($size, 2);
+		$size = number_format ( $size, 2 );
 		$size .= ' KB';
 	} else {
 		$size = $size / 1024;
 		if ($size < 1024) {
-			$size = number_format($size, 2);
+			$size = number_format ( $size, 2 );
 			$size .= ' MB';
 		} else {
 			$size = $size / 1024;
-			$size = number_format($size, 2);
+			$size = number_format ( $size, 2 );
 			$size .= ' GB';
 		}
 	}
 	return $size;
 }
 
-$disablefunc = explode(',', ini_get('disable_functions'));
-$exec_avail = elgg_echo('tidypics:disabled');
-if (is_callable('exec') && !in_array('exec',$disablefunc)) {
-	$exec_avail = elgg_echo('tidypics:enabled');
+$disablefunc = explode ( ',', ini_get ( 'disable_functions' ) );
+$exec_avail = elgg_echo ( 'tidypics:disabled' );
+if (is_callable ( 'exec' ) && ! in_array ( 'exec', $disablefunc )) {
+	$exec_avail = elgg_echo ( 'tidypics:enabled' );
 }
 
-ob_start();
+ob_start ();
 
 ?>
 <table class="elgg-table-alt">
@@ -110,6 +109,6 @@ ob_start();
 
 <?php
 
-$content = ob_get_clean();
+$content = ob_get_clean ();
 
-echo elgg_view_module('inline', elgg_echo('tidypics:server_info'), $content);
+echo elgg_view_module ( 'inline', elgg_echo ( 'tidypics:server_info' ), $content );

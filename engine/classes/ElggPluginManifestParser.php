@@ -28,39 +28,41 @@ abstract class ElggPluginManifestParser {
 	 * @var \ElggXmlElement
 	 */
 	protected $manifestObject;
-
+	
 	/**
 	 * The manifest array
 	 *
 	 * @var array
 	 */
 	protected $manifest;
-
+	
 	/**
 	 * All valid manifest attributes with default values.
 	 *
 	 * @var array
 	 */
 	protected $validAttributes;
-
+	
 	/**
 	 * The object we're doing parsing for.
 	 *
 	 * @var object
 	 */
 	protected $caller;
-
+	
 	/**
 	 * Loads the manifest XML to be parsed.
 	 *
-	 * @param \ElggXmlElement $xml    The Manifest XML object to be parsed
-	 * @param object          $caller The object calling this parser.
+	 * @param \ElggXmlElement $xml
+	 *        	The Manifest XML object to be parsed
+	 * @param object $caller
+	 *        	The object calling this parser.
 	 */
 	public function __construct(\ElggXMLElement $xml, $caller) {
 		$this->manifestObject = $xml;
 		$this->caller = $caller;
 	}
-
+	
 	/**
 	 * Returns the manifest XML object
 	 *
@@ -69,7 +71,7 @@ abstract class ElggPluginManifestParser {
 	public function getManifestObject() {
 		return $this->manifestObject;
 	}
-
+	
 	/**
 	 * Return the parsed manifest array
 	 *
@@ -78,21 +80,22 @@ abstract class ElggPluginManifestParser {
 	public function getManifest() {
 		return $this->manifest;
 	}
-
+	
 	/**
 	 * Return an attribute in the manifest.
 	 *
-	 * @param string $name Attribute name
+	 * @param string $name
+	 *        	Attribute name
 	 * @return mixed
 	 */
 	public function getAttribute($name) {
-		if (in_array($name, $this->validAttributes) && isset($this->manifest[$name])) {
-			return $this->manifest[$name];
+		if (in_array ( $name, $this->validAttributes ) && isset ( $this->manifest [$name] )) {
+			return $this->manifest [$name];
 		}
-
+		
 		return false;
 	}
-
+	
 	/**
 	 * Parse the XML object into an array
 	 *
